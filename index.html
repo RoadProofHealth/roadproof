@@ -1,24 +1,5 @@
 <!DOCTYPE html>
-<!-- ══════════════════════════════════════════════════════
-     SETUP CHECKLIST — REMOVE THIS COMMENT BEFORE GOING LIVE
-     ══════════════════════════════════════════════════════
-     3 things to replace before uploading to Tiiny.host:
 
-     1. MAILERLITE_ACCOUNT_ID_HERE
-        → Your MailerLite account ID (found in ML dashboard → Integrations → JavaScript snippet)
-        → Appears 1 time in the <script> tag near bottom of file
-
-     2. MAILERLITE_FORM_ID_HERE
-        → Your specific form's embed ID (found in ML → Forms → your form → Embed → data-form value)
-        → Appears 1 time (hero section only)
-
-     3. MAILERLITE_WAITLIST_FORM_URL_HERE
-        → A MailerLite landing page or popup URL for your Road Ready waitlist
-        → Create a separate form in MailerLite, tag subscribers as "road-ready-waitlist"
-        → Appears 1 time in the packages section
-
-     CTRL+F "HERE" to find all 3 spots quickly
-     ══════════════════════════════════════════════════════ -->
 
 <html lang="en">
 <head>
@@ -480,8 +461,8 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
           <li class="pkg-feat dim">Cab-friendly fitness + sleep apnea self-check</li>
         </ul>
       </div>
-    </div>
-      <div id="mlb2-38439339" class="ml-subscribe-form ml-subscribe-form-38439339" style="padding:0 22px 18px;">
+      <!-- Waitlist form inside card -->
+      <div id="mlb2-38439339" class="ml-subscribe-form ml-subscribe-form-38439339" style="padding:0 22px 20px;">
         <div class="row-form">
           <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181859478243641121/subscribe" method="post" target="_blank" style="margin:0;">
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -501,6 +482,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
           <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#1C2B4A;font-weight:700;">&#10022; You&#39;re on the list! We&#39;ll email you when it launches.</p>
         </div>
       </div>
+    </div>
 
     <!-- TIER 03 — MONTHLY -->
     <div class="pkg-card soon-card">
@@ -519,7 +501,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
           <li class="pkg-feat dim">Full replay library access</li>
         </ul>
       </div>
-      <a href="mailto:shop.lifescape@gmail.com?subject=Monthly Membership Waitlist" class="pkg-cta cta-ol">Notify Me When Live</a>
+      <a href="/cdn-cgi/l/email-protection#04776c6b742a686d62617767657461446369656d682a676b693b7771666e61677039496b6a706c687d24496169666176776c6d742453656d70686d7770" class="pkg-cta cta-ol">Notify Me When Live</a>
     </div>
 
     <!-- TIER 04 — PRO -->
@@ -539,7 +521,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
           <li class="pkg-feat dim">Mental Health Miles + Cab Fitness</li>
         </ul>
       </div>
-      <a href="mailto:shop.lifescape@gmail.com?subject=Pro Course Waitlist" class="pkg-cta cta-ol">Notify Me When Live</a>
+      <a href="/cdn-cgi/l/email-protection#eb9883849bc587828d8e98888a9b8eab8c868a8287c5888486d4989e89818e889fd6bb9984cba8849e99988ecbbc8a829f8782989f" class="pkg-cta cta-ol">Notify Me When Live</a>
     </div>
 
     <!-- TIER 05 — MEDCARD PRO (spans full width) -->
@@ -560,7 +542,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
           <li class="pkg-feat dim">Personal pre-exam action plan</li>
           <li class="pkg-feat dim">Post-exam follow-up support</li>
         </ul>
-        <a href="mailto:shop.lifescape@gmail.com?subject=MedCard Pro Waitlist" class="pkg-cta cta-ol" style="display:inline-block;margin:16px 0 0;">Notify Me When Live &rarr;</a>
+        <a href="/cdn-cgi/l/email-protection#bbc8d3d4cb95d7d2dddec8d8dacbdefbdcd6dad2d795d8d4d684c8ced9d1ded8cf86f6dedff8dac9df9bebc9d49becdad2cfd7d2c8cf" class="pkg-cta cta-ol" style="display:inline-block;margin:16px 0 0;">Notify Me When Live &rarr;</a>
       </div>
     </div>
 
@@ -568,7 +550,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
 
   <div style="text-align:center;margin-top:32px;padding:22px;background:var(--white);border-radius:8px;border:1px solid #E8E4DC;max-width:540px;margin-left:auto;margin-right:auto;">
     <p style="font-size:14px;color:var(--dgray);margin-bottom:7px;">Questions about which program is right for you?</p>
-    <a href="mailto:shop.lifescape@gmail.com" style="font-size:14.5px;font-weight:700;color:var(--navy);text-decoration:none;">shop.lifescape@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#fc8f94938cd290959a998f9f9d8c99bc9b919d9590d29f9391" style="font-size:14.5px;font-weight:700;color:var(--navy);text-decoration:none;"><span class="__cf_email__" data-cfemail="ee9d86819ec08287888b9d8d8f9e8bae89838f8782c08d8183">[email&#160;protected]</span></a>
     <p style="font-family:'DM Mono',monospace;font-size:9.5px;color:var(--mgray);margin-top:5px;letter-spacing:.5px;">We respond within 24 hours</p>
   </div>
 </section>
@@ -589,8 +571,32 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
         <li class="g-item"><span class="g-num">06.</span>Your 30-day DOT physical prep plan</li>
         <li class="g-item"><span class="g-num">07.</span>Mental health on the road &mdash; practical steps that work</li>
       </ul>
-      <a href="#hero-form" class="g-cta-btn" style="text-decoration:none;display:inline-block;">Get the Free Guide &mdash; Instant PDF &rarr;</a>
-      <p class="g-note">&#10022; Instant PDF &middot; Nurse-written &middot; No spam &middot; Always free</p>
+      <!-- Second PDF form instance in guide section -->
+      <div id="mlb2-38430510-b" class="ml-subscribe-form ml-subscribe-form-38430510" style="margin-top:24px;">
+        <div class="row-form">
+          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe" method="post" target="_blank" style="margin:0;">
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
+              <input type="text" name="fields[name]" placeholder="Your first name" autocomplete="given-name" aria-label="name"
+                style="padding:13px 16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(240,180,41,.3);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.3)'">
+              <input type="email" name="fields[email]" placeholder="Your email address" autocomplete="email" required aria-label="email" aria-required="true"
+                style="padding:13px 16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(240,180,41,.3);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.3)'">
+            </div>
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+            <button type="submit"
+              style="width:100%;padding:14px;background:#F0B429;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#1C2B4A;cursor:pointer;letter-spacing:.3px;transition:background .2s;"
+              onmouseover="this.style.background='#f7c030'" onmouseout="this.style.background='#F0B429'">
+              Send Me the Free Guide &rarr;
+            </button>
+          </form>
+          <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--dgray);margin-top:10px;letter-spacing:.4px;">&#10022; INSTANT PDF &middot; NURSE-WRITTEN &middot; NO SPAM &middot; ALWAYS FREE</p>
+        </div>
+        <div class="row-success" style="display:none;padding:16px 0 0;">
+          <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#F0B429;font-weight:700;">&#10022; You&#39;re in! Check your email for the download link.</p>
+        </div>
+      </div>
     </div>
     <div class="g-card">
       <div class="g-card-title">What&rsquo;s Inside</div>
@@ -613,8 +619,8 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
     <p class="fleet-p">We're building dedicated wellness programs for fleet operators and carriers who want to protect their drivers and reduce DOT physical failures. Reach out now to be first to know when fleet services launch.</p>
   </div>
   <div class="fleet-right">
-    <a href="mailto:shop.lifescape@gmail.com?subject=Fleet Services Inquiry" class="fleet-btn">&#9993; Contact Us About Fleet Services</a>
-    <p class="fleet-note">shop.lifescape@gmail.com &middot; We reply within 24hrs</p>
+    <a href="/cdn-cgi/l/email-protection#c5b6adaab5eba9aca3a0b6a6a4b5a085a2a8a4aca9eba6aaa8fab6b0a7afa0a6b1f883a9a0a0b1e596a0b7b3aca6a0b6e58cabb4b0acb7bc" class="fleet-btn">&#9993; Contact Us About Fleet Services</a>
+    <p class="fleet-note"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84f7ecebf4aae8ede2e1f7e7e5f4e1c4e3e9e5ede8aae7ebe9">[email&#160;protected]</a> &middot; We reply within 24hrs</p>
   </div>
 </div>
 
@@ -646,7 +652,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
       <div class="ft-brand">Road<span>Proof</span></div>
       <p class="ft-tagline">&ldquo;The road shouldn&rsquo;t cost you your health.&rdquo;</p>
       <div class="ft-parent">A Lifescape Company &middot; Founded 2026</div>
-      <div style="margin-top:11px;"><a href="mailto:shop.lifescape@gmail.com" style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--marigold);text-decoration:none;letter-spacing:.5px;">shop.lifescape@gmail.com</a></div>
+      <div style="margin-top:11px;"><a href="/cdn-cgi/l/email-protection#2152494e510f4d484744524240514461464c40484d0f424e4c" style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--marigold);text-decoration:none;letter-spacing:.5px;"><span class="__cf_email__" data-cfemail="6f1c07001f410306090a1c0c0e1f0a2f08020e0603410c0002">[email&#160;protected]</span></a></div>
     </div>
     <div>
       <div class="ft-col-title">Programs</div>
@@ -663,7 +669,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
       <ul class="ft-links">
         <li><a href="#story">Our Story</a></li>
         <li><a href="#fleet">Fleet Services</a></li>
-        <li><a href="mailto:shop.lifescape@gmail.com">Contact Us</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#d8abb0b7a8f6b4b1bebdabbbb9a8bd98bfb5b9b1b4f6bbb7b5">Contact Us</a></li>
       </ul>
     </div>
     <div>
@@ -680,7 +686,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
     <div class="ft-soc">
       <a href="https://instagram.com/roadproofhealth" target="_blank" class="soc-pill">IG</a>
       <a href="https://tiktok.com/@roadproofhealth" target="_blank" class="soc-pill">TT</a>
-      <a href="https://youtube.com/@roadproofhealth" target="_blank" class="soc-pill">YT</a>
+      <a href="https://youtube.com/@roadproofhealth" target="_blank" class="oc-pill">YT</a>
     </div>
   </div>
 </footer>
