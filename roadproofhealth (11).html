@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<!-- ══════════════════════════════════════════════════════
+     SETUP CHECKLIST — REMOVE THIS COMMENT BEFORE GOING LIVE
+     ══════════════════════════════════════════════════════
+     1 THING TO REPLACE BEFORE GOING LIVE:
+
+     1. MAILERLITE_ACCOUNT_ID_HERE
+        → Your MailerLite account ID
+        → Found in: MailerLite dashboard → Integrations → JavaScript snippet
+        → Copy the number from the ml('account', 'XXXXXXX') line
+        → Appears 1 time in the <script> tag at the bottom of this file
+
+     FORMS ALREADY WIRED (no action needed):
+     → Free PDF form:  ml('show', 'MNx3YH', true)  — hero, guide section, nav
+     → Waitlist form:  ml('show', 'tTNdBz', true)  — Road Ready waitlist card
+
+     PDF LINK WIRED IN MAILERLITE WELCOME EMAIL:
+     → https://drive.google.com/file/d/1m0xvsN4Un-EwqozDfk1tWBcbtH86y6qC/view?usp=sharing
+
+     CTRL+F "MAILERLITE_ACCOUNT_ID_HERE" to find the 1 remaining spot
+     ══════════════════════════════════════════════════════ -->
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road Proof — Nurse-Led Health for CDL Drivers | A Lifescape Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1C2B4A;--navy2:#243358;--navy3:#0E1828;--navy4:#162036;
+  --marigold:#F0B429;--marigold-lt:#FEF3CC;--marigold-dk:#C8900A;
+  --warm-white:#F9F7F2;--white:#FFFFFF;
+  --lgray:#F2F0EB;--mgray:#C8C4BC;--dgray:#6B6560;--charcoal:#1A1A1A;
+  --teal:#0E7490;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--charcoal);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(14,24,40,0.96);backdrop-filter:blur(16px);border-bottom:2px solid var(--marigold);display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:64px;}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.nav-badge{width:34px;height:34px;background:var(--marigold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:700;font-size:12px;color:var(--navy);flex-shrink:0;}
+.nav-wordmark{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;color:#fff;letter-spacing:-.3px;}
+.nav-wordmark span{color:var(--marigold);}
+.nav-sub{font-family:'DM Mono',monospace;font-size:8.5px;color:rgba(200,196,188,.5);letter-spacing:1.8px;text-transform:uppercase;display:block;margin-top:-2px;}
+.nav-links{display:flex;align-items:center;gap:26px;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--mgray);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--marigold);}
+.nav-cta{background:var(--marigold)!important;color:var(--navy)!important;padding:9px 20px;border-radius:5px;font-weight:700!important;font-size:12.5px!important;}
+.nav-cta:hover{background:#f7c030!important;}
+
+/* ── HERO — full bleed cinematic ── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('https://images.unsplash.com/photo-1586861256632-754f0bb1de1c?w=1800&q=85&auto=format&fit=crop&crop=center');
+  background-size:cover;
+  background-position:center 55%;
+}
+/* layered overlay — dark left panel, lighter right */
+.hero-bg::after{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,
+      rgba(14,24,40,0.93) 0%,
+      rgba(14,24,40,0.82) 50%,
+      rgba(14,24,40,0.55) 100%);
+}
+/* subtle gold scatter top-right */
+.hero-glow{
+  position:absolute;top:-80px;right:-80px;z-index:1;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(240,180,41,.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;
+  max-width:660px;
+  padding:130px 6% 80px;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--marigold);
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:22px;
+}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--marigold);}
+h1{
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:clamp(54px,7.5vw,96px);
+  color:#fff;
+  line-height:.93;
+  letter-spacing:-2px;
+  margin-bottom:8px;
+}
+h1 .gold{color:var(--marigold);}
+.hero-rule{width:64px;height:4px;background:var(--marigold);border-radius:2px;margin:24px 0;}
+.hero-headline{
+  font-size:clamp(16px,2vw,20px);
+  font-weight:300;
+  color:rgba(255,255,255,.85);
+  line-height:1.6;
+  max-width:520px;
+  margin-bottom:14px;
+}
+.hero-headline strong{color:#fff;font-weight:600;}
+.hero-sub{
+  font-size:14px;
+  color:rgba(200,196,188,.7);
+  max-width:460px;
+  line-height:1.7;
+  margin-bottom:36px;
+}
+
+/* email capture */
+.hero-capture{
+  background:rgba(255,255,255,.06);
+  border:1.5px solid rgba(240,180,41,.4);
+  border-radius:10px;
+  padding:28px 28px 22px;
+  max-width:500px;
+  backdrop-filter:blur(6px);
+}
+.hero-capture-label{
+  font-family:'DM Mono',monospace;
+  font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--marigold);
+  margin-bottom:14px;
+}
+.hero-capture-title{
+  font-size:17px;font-weight:700;color:#fff;
+  margin-bottom:4px;line-height:1.35;
+}
+.hero-capture-sub{
+  font-size:12.5px;color:rgba(200,196,188,.65);
+  line-height:1.55;margin-bottom:18px;
+}
+/* MailerLite form drops in here */
+.hero-capture .ml-embedded{margin-bottom:0;}
+.ml-hero-btn{
+  width:100%;
+  padding:16px 24px;
+  background:var(--marigold);
+  color:var(--navy);
+  border:none;
+  border-radius:6px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.3px;
+  cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.ml-hero-btn:hover{background:#f7c030;transform:translateY(-2px);}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--marigold);padding:12px 6%;display:flex;justify-content:center;align-items:center;gap:36px;flex-wrap:wrap;}
+.trust-item{font-family:'DM Mono',monospace;font-size:10px;color:var(--navy);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:7px;}
+.trust-item::before{content:'✦';font-size:8px;}
+
+/* ── STATS STRIP (replaces right-side card) ── */
+.stats-strip{background:var(--navy3);padding:36px 6%;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-top:3px solid var(--marigold);}
+.stat-block{padding:28px 24px;text-align:center;border-right:1px solid rgba(200,196,188,.08);}
+.stat-block:last-child{border-right:none;}
+.stat-big{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;color:var(--marigold);line-height:1;margin-bottom:8px;}
+.stat-label{font-size:13px;color:rgba(200,196,188,.7);line-height:1.5;}
+.stat-label strong{color:#fff;display:block;font-size:13.5px;margin-bottom:2px;}
+
+/* ── SECTIONS ── */
+section{padding:80px 6%;}
+.s-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--marigold);display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.s-eye::before{content:'';display:block;width:22px;height:2px;background:var(--marigold);}
+.s-eye.c{justify-content:center;}.s-eye.c::before{display:none;}
+h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(28px,4.2vw,46px);line-height:1.1;margin-bottom:14px;color:var(--navy);}
+h2.wh{color:#fff;}
+.ssub{font-size:15px;font-weight:300;color:var(--dgray);line-height:1.75;max-width:580px;}
+
+/* ── STORY ── */
+.story{background:var(--white);}
+.story-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:center;}
+.story-pull{background:var(--navy);padding:36px;border-left:5px solid var(--marigold);border-radius:4px;}
+.story-quote{font-family:'Playfair Display',serif;font-size:20px;color:#fff;line-height:1.5;font-style:italic;margin-bottom:16px;}
+.story-credit{font-family:'DM Mono',monospace;font-size:10px;color:var(--marigold);letter-spacing:2px;text-transform:uppercase;}
+.story-body p{font-size:15px;font-weight:300;color:var(--charcoal);line-height:1.85;margin-bottom:16px;}
+.story-body strong{color:var(--navy);font-weight:600;}
+
+/* ── PACKAGES — 2 per row ── */
+.packages{background:var(--warm-white);}
+.pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:960px;margin:0 auto;}
+.pkg-card{background:var(--white);border:1.5px solid #E8E4DC;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;}
+.pkg-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(28,43,74,.1);}
+.pkg-card.active{border-color:var(--marigold);border-width:2px;}
+.pkg-card.soon-card{border-color:#D8D4CC;opacity:.85;}
+.pkg-header{padding:20px 22px 18px;position:relative;}
+.pkg-badge{position:absolute;top:-1px;right:16px;font-family:'DM Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:0 0 7px 7px;}
+.b-free{background:var(--navy);color:var(--marigold);}
+.b-act{background:var(--marigold-dk);color:#fff;}
+.b-soon{background:var(--mgray);color:#fff;}
+.pkg-tier{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+.pkg-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;margin-bottom:4px;}
+.pkg-price{font-size:22px;font-weight:700;margin-top:3px;}
+.pkg-price span{font-size:12px;font-weight:400;}
+.pkg-body{padding:16px 22px;flex:1;display:flex;flex-direction:column;}
+.pkg-desc{font-size:12.5px;color:var(--dgray);line-height:1.65;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #EDE9E0;}
+.pkg-features{list-style:none;flex:1;}
+.pkg-feat{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--charcoal);padding:4px 0;line-height:1.5;}
+.pkg-feat::before{content:'→';color:var(--marigold);font-weight:700;flex-shrink:0;}
+.pkg-feat.dim{color:var(--dgray);}
+.pkg-feat.dim::before{color:var(--mgray);}
+.pkg-cta{display:block;margin:14px 22px 18px;padding:12px;text-align:center;border-radius:5px;font-size:12.5px;font-weight:700;text-decoration:none;transition:all .2s;letter-spacing:.3px;}
+.cta-mg{background:var(--marigold);color:var(--navy);}
+.cta-mg:hover{background:#f7c030;}
+.cta-nv{background:var(--navy);color:#fff;}
+.cta-nv:hover{background:var(--navy2);}
+.cta-ol{border:1.5px solid var(--navy);color:var(--navy);background:transparent;}
+.cta-ol:hover{background:var(--lgray);}
+
+/* ── GUIDE SECTION ── */
+.guide-section{background:var(--navy);position:relative;overflow:hidden;padding:80px 6%;}
+.guide-section::before{content:'';position:absolute;bottom:-80px;right:-60px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(240,180,41,.08) 0%,transparent 65%);pointer-events:none;}
+.guide-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start;position:relative;z-index:2;}
+.g-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(32px,4.5vw,50px);color:#fff;line-height:1.05;margin-bottom:14px;}
+.g-title em{color:var(--marigold);font-style:normal;display:block;}
+.g-sub{font-size:14.5px;font-weight:300;color:var(--mgray);line-height:1.75;margin-bottom:24px;}
+.g-list{list-style:none;margin-bottom:28px;}
+.g-item{display:flex;align-items:flex-start;gap:13px;padding:9px 0;border-bottom:1px solid rgba(200,196,188,.08);font-size:13.5px;color:var(--mgray);}
+.g-num{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--marigold);min-width:22px;margin-top:2px;}
+.g-cta-btn{
+  display:inline-block;
+  padding:16px 36px;
+  background:var(--marigold);
+  color:var(--navy);
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;font-weight:800;
+  border-radius:6px;
+  text-decoration:none;
+  letter-spacing:.3px;
+  transition:background .2s,transform .15s;
+  margin-top:8px;
+}
+.g-cta-btn:hover{background:#f7c030;transform:translateY(-2px);}
+.g-note{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--dgray);letter-spacing:.3px;margin-top:10px;}
+.g-card{background:rgba(255,255,255,.05);border:1px solid rgba(240,180,41,.2);border-radius:10px;padding:28px;}
+.g-card-title{font-family:'DM Mono',monospace;font-size:9px;color:var(--marigold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:18px;}
+.g-check{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(200,196,188,.08);}
+.g-check:last-child{border-bottom:none;}
+.chk-ico{width:19px;height:19px;border:2px solid var(--marigold);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--marigold);font-size:10px;font-weight:700;}
+.chk-txt{font-size:12.5px;color:var(--mgray);line-height:1.55;}
+.chk-txt strong{color:#fff;display:block;font-size:13px;margin-bottom:1px;}
+
+/* ── FLEET BANNER ── */
+.fleet-banner{background:var(--teal);padding:56px 6%;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+.fleet-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:9px;}
+.fleet-h{font-family:'Playfair Display',serif;font-size:clamp(22px,3.2vw,34px);color:#fff;margin-bottom:9px;line-height:1.18;}
+.fleet-p{font-size:14.5px;font-weight:300;color:rgba(255,255,255,.8);line-height:1.7;max-width:540px;}
+.fleet-right{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex-shrink:0;}
+.fleet-btn{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--teal);padding:13px 26px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13.5px;transition:all .2s;white-space:nowrap;}
+.fleet-btn:hover{background:var(--warm-white);transform:translateY(-2px);}
+.fleet-note{font-family:'DM Mono',monospace;font-size:9.5px;color:rgba(255,255,255,.55);letter-spacing:.5px;text-align:right;}
+
+/* ── LIFESCAPE BAND ── */
+.ls-band{background:var(--charcoal);padding:52px 6%;text-align:center;}
+.ls-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--marigold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.ls-title{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:10px;}
+.ls-sub{font-size:14.5px;font-weight:300;color:#888;max-width:500px;margin:0 auto 28px;line-height:1.7;}
+.ls-pillars{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+.ls-pillar{border:1px solid #333;border-radius:10px;padding:22px 32px;min-width:170px;text-align:center;transition:border-color .2s;}
+.ls-pillar:hover{border-color:rgba(240,180,41,.4);}
+.ls-name{font-size:15px;font-weight:600;color:#fff;margin-bottom:5px;}
+.ls-status{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;}
+.ls-status.now{color:var(--marigold);}
+.ls-status.soon{color:#555;}
+
+/* ── FOOTER ── */
+footer{background:var(--navy3);border-top:3px solid var(--marigold);padding:48px 6% 24px;}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px;}
+.ft-brand{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:7px;}
+.ft-brand span{color:var(--marigold);}
+.ft-tagline{font-size:12.5px;color:var(--mgray);font-style:italic;line-height:1.6;margin-bottom:9px;}
+.ft-parent{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--dgray);letter-spacing:1.5px;text-transform:uppercase;}
+.ft-col-title{font-family:'DM Mono',monospace;font-size:9px;color:var(--marigold);letter-spacing:2px;text-transform:uppercase;margin-bottom:13px;}
+.ft-links{list-style:none;}
+.ft-links li{margin-bottom:7px;}
+.ft-links a{font-size:12.5px;color:var(--mgray);text-decoration:none;transition:color .2s;}
+.ft-links a:hover{color:var(--marigold);}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(200,196,188,.1);padding-top:18px;flex-wrap:wrap;gap:10px;}
+.ft-copy{font-size:11px;color:var(--dgray);}
+.ft-soc{display:flex;gap:8px;}
+.soc-pill{padding:5px 13px;border:1px solid rgba(200,196,188,.2);border-radius:20px;font-family:'DM Mono',monospace;font-size:9.5px;color:var(--mgray);text-decoration:none;letter-spacing:1px;transition:all .2s;}
+.soc-pill:hover{border-color:var(--marigold);color:var(--marigold);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.hero-eyebrow{opacity:0;animation:fadeUp .6s .1s forwards;}
+h1{opacity:0;animation:fadeUp .7s .25s forwards;}
+.hero-rule{opacity:0;animation:fadeUp .6s .38s forwards;}
+.hero-headline{opacity:0;animation:fadeUp .6s .46s forwards;}
+.hero-sub{opacity:0;animation:fadeUp .6s .52s forwards;}
+.hero-capture{opacity:0;animation:fadeUp .7s .6s forwards;}
+.hero-bg{animation:fadeIn 1.2s .0s forwards;opacity:0;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .pkg-grid{grid-template-columns:1fr;}
+  .stats-strip{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:760px){
+  .hero-content{padding:110px 5% 70px;}
+  .story-grid{grid-template-columns:1fr;}
+  .guide-grid{grid-template-columns:1fr;}
+  .fleet-banner{grid-template-columns:1fr;}
+  .fleet-right{align-items:flex-start;}
+  .ft-grid{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+  .stats-strip{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-badge">RP</div>
+    <div>
+      <div class="nav-wordmark">Road<span>Proof</span></div>
+      <span class="nav-sub">A Lifescape Company</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#story">Our Story</a>
+    <a href="#packages">Programs</a>
+    <a href="#guide">Free Guide</a>
+    <a href="#fleet">Fleet Services</a>
+    <button class="ml-onclick-form nav-cta" onclick="ml('show', 'MNx3YH', true)" style="border:none;cursor:pointer;">Get Free Guide</button>
+  </div>
+</nav>
+
+<!-- ── HERO — cinematic full-bleed truck ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+
+    <div class="hero-eyebrow">Nurse-Led &middot; CDL Driver Health</div>
+
+    <h1>Road<br><span class="gold">Proof</span></h1>
+
+    <div class="hero-rule"></div>
+
+    <p class="hero-headline"><strong>Built for the road. Built for the long haul.</strong></p>
+    <p class="hero-sub">Practical, nurse-led health care for CDL drivers and independent operators. No gym. No kitchen. Just what actually works from inside a cab.</p>
+
+    <!-- Email capture card -->
+    <div class="hero-capture">
+      <div class="hero-capture-label">&#10022; Free Guide &mdash; Instant Download</div>
+      <div class="hero-capture-title">Get the Driver Health Survival Guide</div>
+      <div class="hero-capture-sub">7 nurse-written steps to protect your health, lower your BP, and pass your DOT physical &mdash; free, always.</div>
+      <!-- MailerLite popup trigger - hero -->
+      <button class="ml-onclick-form ml-hero-btn" onclick="ml('show', 'MNx3YH', true)">Get the Free Guide &mdash; Instant PDF &rarr;</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-item">Registered Nurse&ndash;Led</div>
+  <div class="trust-item">CDL Driver Health</div>
+  <div class="trust-item">No Fleet Contract Needed</div>
+  <div class="trust-item">Independent Driver First</div>
+  <div class="trust-item">Fleet Services Coming Soon</div>
+</div>
+
+<!-- ── STATS STRIP ── -->
+<div class="stats-strip">
+  <div class="stat-block">
+    <div class="stat-big">61</div>
+    <div class="stat-label"><strong>Average life expectancy</strong>16 years below the national average</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-big">48%</div>
+    <div class="stat-label"><strong>Get a 1-year medical card</strong>Due to uncontrolled health conditions</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-big">#1</div>
+    <div class="stat-label"><strong>Cause of CDL card loss</strong>High blood pressure &mdash; entirely manageable</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-big">$0</div>
+    <div class="stat-label"><strong>To start today</strong>Our free guide is step one</div>
+  </div>
+</div>
+
+<!-- ── STORY ── -->
+<section class="story" id="story">
+  <div class="story-grid">
+    <div>
+      <div class="story-pull">
+        <div class="story-quote">&ldquo;The road changes people. We built this so it doesn't have to change you.&rdquo;</div>
+        <div class="story-credit">A Lifescape Company</div>
+      </div>
+    </div>
+    <div class="story-body">
+      <div class="s-eye">Our Story</div>
+      <h2>Built for our family.<br>Built for yours.</h2>
+      <p>We have family members who drive trucks for a living. Before trucking, they were healthy and active. A few years in &mdash; overweight, high blood pressure, nervous every time a DOT physical comes around.</p>
+      <p>Not because they don't care. Because <strong>nobody ever showed them how to stay healthy out there.</strong> Every program we found was built for big fleet carriers with HR departments and corporate budgets. Not for the independent driver.</p>
+      <p>One of us is a Registered Nurse. One of us builds digital brands. Together we built the resource we wish existed &mdash; <strong>practical, nurse-led, designed for real life on the road.</strong></p>
+      <p>Because your health is your CDL. Your CDL is your livelihood. The road shouldn't cost you your health &mdash; or your career.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PACKAGES ── -->
+<section class="packages" id="packages">
+  <div style="text-align:center;max-width:640px;margin:0 auto 44px;">
+    <div class="s-eye c">Programs &amp; Pricing</div>
+    <h2>Start free. Go deeper when you're ready.</h2>
+    <p class="ssub" style="margin:0 auto;text-align:center;">Every program is built for a driver who is short on time, long on miles, and serious about staying on the road.</p>
+  </div>
+  <div class="pkg-grid">
+
+    <!-- TIER 01 — FREE -->
+    <div class="pkg-card active">
+      <div class="pkg-header" style="background:var(--marigold)">
+        <div class="pkg-badge b-free">&#10022; FREE &mdash; Start Here</div>
+        <div class="pkg-tier" style="color:rgba(28,43,74,.65)">Tier 01</div>
+        <div class="pkg-name" style="color:var(--navy)">Driver Health Guide</div>
+        <div class="pkg-price" style="color:var(--navy)">FREE <span style="color:rgba(28,43,74,.55)">always</span></div>
+      </div>
+      <div class="pkg-body">
+        <p class="pkg-desc">7 nurse-written, cab-practical steps to protect your health and pass your DOT physical. Our flagship free resource.</p>
+        <ul class="pkg-features">
+          <li class="pkg-feat">7-step practical health guide (instant PDF)</li>
+          <li class="pkg-feat">DOT physical quick-reference card</li>
+          <li class="pkg-feat">Top 10 truck stop food swap chart</li>
+          <li class="pkg-feat">3-day cab-friendly meal plan</li>
+          <li class="pkg-feat">Weekly nurse health tips by email</li>
+        </ul>
+      </div>
+      <a href="#guide" class="pkg-cta cta-mg">Download Free Guide &rarr;</a>
+    </div>
+
+    <!-- TIER 02 — WAITLIST -->
+    <div class="pkg-card soon-card">
+      <div class="pkg-header" style="background:var(--navy)">
+        <div class="pkg-badge b-soon">Coming Soon &mdash; Join Waitlist</div>
+        <div class="pkg-tier" style="color:var(--marigold)">Tier 02</div>
+        <div class="pkg-name" style="color:#fff">Road Ready Guide</div>
+        <div class="pkg-price" style="color:var(--marigold)">$27 <span style="color:var(--mgray)">one-time</span></div>
+      </div>
+      <div class="pkg-body">
+        <p class="pkg-desc">The complete cab nutrition system &mdash; macro targets, meal timing, what to order at every major truck stop chain, 30-day eating plan, and wellness tracker.</p>
+        <ul class="pkg-features">
+          <li class="pkg-feat dim">Full nutrition framework + meal timing for HOS</li>
+          <li class="pkg-feat dim">Truck stop chain guide (Pilot, Love's, TA, McDonald's +)</li>
+          <li class="pkg-feat dim">Cab stocking list + grocery guide</li>
+          <li class="pkg-feat dim">30-day eating plan + printable tracker</li>
+          <li class="pkg-feat dim">Cab-friendly fitness + sleep apnea self-check</li>
+        </ul>
+      </div>
+      <button class="ml-onclick-form pkg-cta cta-ol" onclick="ml('show', 'tTNdBz', true)">Join Waitlist &mdash; Get notified first &rarr;</button>
+    </div>
+
+    <!-- TIER 03 — MONTHLY -->
+    <div class="pkg-card soon-card">
+      <div class="pkg-header" style="background:var(--lgray)">
+        <div class="pkg-badge b-soon">Coming Soon</div>
+        <div class="pkg-tier" style="color:var(--dgray)">Tier 03</div>
+        <div class="pkg-name" style="color:var(--navy)">Monthly Membership</div>
+        <div class="pkg-price" style="color:var(--dgray)">$49 <span>/month</span></div>
+      </div>
+      <div class="pkg-body">
+        <p class="pkg-desc">Monthly nurse-hosted live Q&amp;A, rotating wellness guides, replay library, and a community of drivers done letting the road win.</p>
+        <ul class="pkg-features">
+          <li class="pkg-feat dim">Monthly live nurse Q&amp;A (recorded)</li>
+          <li class="pkg-feat dim">New wellness guide every month</li>
+          <li class="pkg-feat dim">BP, diabetes, mental health, sleep topics</li>
+          <li class="pkg-feat dim">Full replay library access</li>
+        </ul>
+      </div>
+      <a href="/cdn-cgi/l/email-protection#f4879c9b84da989d92918797958491b49399959d98da979b99cb8781969e919780c9b99b9a809c988dd4b99199969186879c9d84d4a3959d80989d8780" class="pkg-cta cta-ol">Notify Me When Live</a>
+    </div>
+
+    <!-- TIER 04 — PRO -->
+    <div class="pkg-card soon-card">
+      <div class="pkg-header" style="background:var(--lgray)">
+        <div class="pkg-badge b-soon">Coming Soon</div>
+        <div class="pkg-tier" style="color:var(--dgray)">Tier 04</div>
+        <div class="pkg-name" style="color:var(--navy)">Road Proof Pro</div>
+        <div class="pkg-price" style="color:var(--dgray)">$127 <span>one-time</span></div>
+      </div>
+      <div class="pkg-body">
+        <p class="pkg-desc">Full nurse-led micro-course library covering every major health topic that affects CDL drivers. At your own pace, on your phone.</p>
+        <ul class="pkg-features">
+          <li class="pkg-feat dim">Lower BP on the Road (full course)</li>
+          <li class="pkg-feat dim">Eat to Pass &mdash; DOT nutrition course</li>
+          <li class="pkg-feat dim">Sleep Apnea &amp; Your Card</li>
+          <li class="pkg-feat dim">Mental Health Miles + Cab Fitness</li>
+        </ul>
+      </div>
+      <a href="/cdn-cgi/l/email-protection#780b1017085614111e1d0b1b19081d381f15191114561b1715470b0d1a121d1b0c45280a17583b170d0a0b1d582f19110c14110b0c" class="pkg-cta cta-ol">Notify Me When Live</a>
+    </div>
+
+    <!-- TIER 05 — MEDCARD PRO (spans full width) -->
+    <div class="pkg-card soon-card" style="grid-column:1/-1;border-color:rgba(240,180,41,.3);flex-direction:row;align-items:stretch;">
+      <div class="pkg-header" style="background:var(--navy);flex:0 0 280px;display:flex;flex-direction:column;justify-content:center;">
+        <div class="pkg-badge b-soon">Coming Soon</div>
+        <div class="pkg-tier" style="color:var(--marigold)">Tier 05</div>
+        <div class="pkg-name" style="color:#fff">MedCard Pro</div>
+        <div class="pkg-price" style="color:var(--marigold)">$297 <span style="color:var(--mgray)">one-time</span></div>
+        <p style="font-size:11.5px;color:var(--mgray);margin-top:8px;line-height:1.5;">The crown jewel. Full 30-day nurse-guided DOT physical prep with 1-on-1 coaching.</p>
+      </div>
+      <div class="pkg-body" style="padding:20px 24px;">
+        <ul class="pkg-features" style="display:grid;grid-template-columns:1fr 1fr;gap:0 20px;">
+          <li class="pkg-feat dim">Full 30-day DOT physical prep program</li>
+          <li class="pkg-feat dim">1-on-1 nurse coaching call (45&ndash;60 min)</li>
+          <li class="pkg-feat dim">Medication review + red flag identification</li>
+          <li class="pkg-feat dim">Exam day strategy + prep protocol</li>
+          <li class="pkg-feat dim">Personal pre-exam action plan</li>
+          <li class="pkg-feat dim">Post-exam follow-up support</li>
+        </ul>
+        <a href="/cdn-cgi/l/email-protection#8efde6e1fea0e2e7e8ebfdedeffeebcee9e3efe7e2a0ede1e3b1fdfbece4ebedfab3c3ebeacdeffceaaedefce1aed9efe7fae2e7fdfa" class="pkg-cta cta-ol" style="display:inline-block;margin:16px 0 0;">Notify Me When Live &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:32px;padding:22px;background:var(--white);border-radius:8px;border:1px solid #E8E4DC;max-width:540px;margin-left:auto;margin-right:auto;">
+    <p style="font-size:14px;color:var(--dgray);margin-bottom:7px;">Questions about which program is right for you?</p>
+    <a href="/cdn-cgi/l/email-protection#cbb8a3a4bbe5a7a2adaeb8a8aabbae8baca6aaa2a7e5a8a4a6" style="font-size:14.5px;font-weight:700;color:var(--navy);text-decoration:none;"><span class="__cf_email__" data-cfemail="ee9d86819ec08287888b9d8d8f9e8bae89838f8782c08d8183">[email&#160;protected]</span></a>
+    <p style="font-family:'DM Mono',monospace;font-size:9.5px;color:var(--mgray);margin-top:5px;letter-spacing:.5px;">We respond within 24 hours</p>
+  </div>
+</section>
+
+<!-- ── FREE GUIDE SECTION ── -->
+<section class="guide-section" id="guide">
+  <div class="guide-grid">
+    <div>
+      <div class="s-eye" style="color:var(--marigold);">Free Download &mdash; Start Here</div>
+      <h2 class="g-title">Your Complete<br><em>Driver Health Survival Guide</em></h2>
+      <p class="g-sub">7 practical, nurse-led steps you can take RIGHT NOW &mdash; from inside your cab &mdash; to protect your health, lower your blood pressure, and pass your next DOT physical with confidence. Free, always.</p>
+      <ul class="g-list">
+        <li class="g-item"><span class="g-num">01.</span>Check your blood pressure this week &mdash; free at any pharmacy</li>
+        <li class="g-item"><span class="g-num">02.</span>Top 10 truck stop food swaps that actually move the needle</li>
+        <li class="g-item"><span class="g-num">03.</span>How to actually move during your 30-minute HOS break</li>
+        <li class="g-item"><span class="g-num">04.</span>Sleep apnea &mdash; how to know before your DOT exam does</li>
+        <li class="g-item"><span class="g-num">05.</span>The water formula that lowers BP without more bathroom stops</li>
+        <li class="g-item"><span class="g-num">06.</span>Your 30-day DOT physical prep plan</li>
+        <li class="g-item"><span class="g-num">07.</span>Mental health on the road &mdash; practical steps that work</li>
+      </ul>
+      <button class="ml-onclick-form g-cta-btn" onclick="ml('show', 'MNx3YH', true)">Get the Free Guide &mdash; Instant PDF &rarr;</button>
+      <p class="g-note">&#10022; Instant PDF &middot; Nurse-written &middot; No spam &middot; Always free</p>
+    </div>
+    <div class="g-card">
+      <div class="g-card-title">What&rsquo;s Inside</div>
+      <div class="g-check"><div class="chk-ico">&#10003;</div><div class="chk-txt"><strong>DOT Physical Quick Reference</strong>Know your numbers before you walk in</div></div>
+      <div class="g-check"><div class="chk-ico">&#10003;</div><div class="chk-txt"><strong>7 Cab-Practical Steps</strong>No gym. No kitchen. No excuses needed.</div></div>
+      <div class="g-check"><div class="chk-ico">&#10003;</div><div class="chk-txt"><strong>Blood Pressure Action Plan</strong>The #1 thing taking drivers off the road</div></div>
+      <div class="g-check"><div class="chk-ico">&#10003;</div><div class="chk-txt"><strong>Top 10 Truck Stop Swap Chart</strong>Real options at real stops you use</div></div>
+      <div class="g-check"><div class="chk-ico">&#10003;</div><div class="chk-txt"><strong>3-Day Cab-Friendly Meal Plan</strong>Breakfast, lunch, dinner &amp; snacks</div></div>
+      <div class="g-check"><div class="chk-ico">&#10003;</div><div class="chk-txt"><strong>Sleep Apnea Self-Check</strong>Know your risk before the examiner does</div></div>
+      <div class="g-check"><div class="chk-ico">&#10003;</div><div class="chk-txt"><strong>RN-Written &amp; Reviewed</strong>Clinical expertise, not influencer advice</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FLEET BANNER ── -->
+<div class="fleet-banner" id="fleet">
+  <div>
+    <div class="fleet-tag">For Fleet Operators &amp; Carriers</div>
+    <div class="fleet-h">Fleet health programs<br>are coming soon.</div>
+    <p class="fleet-p">We're building dedicated wellness programs for fleet operators and carriers who want to protect their drivers and reduce DOT physical failures. Reach out now to be first to know when fleet services launch.</p>
+  </div>
+  <div class="fleet-right">
+    <a href="/cdn-cgi/l/email-protection#14677c7b643a787d72716777756471547379757d783a777b792b6761767e71776029527871716034477166627d777167345d7a65617d666d" class="fleet-btn">&#9993; Contact Us About Fleet Services</a>
+    <p class="fleet-note"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="43302b2c336d2f2a2526302022332603242e222a2f6d202c2e">[email&#160;protected]</a> &middot; We reply within 24hrs</p>
+  </div>
+</div>
+
+<!-- ── LIFESCAPE BAND ── -->
+<div class="ls-band">
+  <div class="ls-tag">Part of Something Bigger</div>
+  <div class="ls-title">Road Proof is a Lifescape Company</div>
+  <p class="ls-sub">Lifescape is a holistic transformation platform &mdash; health, lifestyle coaching, and spiritual wellness &mdash; for people ready to change their whole life, not just one part of it.</p>
+  <div class="ls-pillars">
+    <div class="ls-pillar" style="background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.45);">
+      <div class="ls-name">Road Proof</div>
+      <div class="ls-status now">&#10022; Live Now</div>
+    </div>
+    <div class="ls-pillar" style="background:rgba(46,180,120,.07);border-color:rgba(46,180,120,.28);">
+      <div class="ls-name">Lifescape Wellness</div>
+      <div class="ls-status soon">Coming Soon</div>
+    </div>
+    <div class="ls-pillar" style="background:rgba(147,112,219,.07);border-color:rgba(147,112,219,.28);">
+      <div class="ls-name">Lifescape Soul</div>
+      <div class="ls-status soon">Coming Soon</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand">Road<span>Proof</span></div>
+      <p class="ft-tagline">&ldquo;The road shouldn&rsquo;t cost you your health.&rdquo;</p>
+      <div class="ft-parent">A Lifescape Company &middot; Founded 2026</div>
+      <div style="margin-top:11px;"><a href="/cdn-cgi/l/email-protection#57243f3827793b3e3132243436273217303a363e3b7934383a" style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--marigold);text-decoration:none;letter-spacing:.5px;"><span class="__cf_email__" data-cfemail="55263d3a257b393c33302636342530153238343c397b363a38">[email&#160;protected]</span></a></div>
+    </div>
+    <div>
+      <div class="ft-col-title">Programs</div>
+      <ul class="ft-links">
+        <li><a href="#guide">Free Health Guide</a></li>
+        <li><a href="#packages">Road Ready &mdash; Waitlist</a></li>
+        <li><a href="#packages">Monthly &mdash; Coming Soon</a></li>
+        <li><a href="#packages">Pro Courses &mdash; Coming Soon</a></li>
+        <li><a href="#packages">MedCard Pro &mdash; Coming Soon</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-title">Company</div>
+      <ul class="ft-links">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#fleet">Fleet Services</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#24574c4b540a484d42415747455441644349454d480a474b49">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-title">Follow</div>
+      <ul class="ft-links">
+        <li><a href="https://instagram.com/roadproofhealth" target="_blank">@roadproofhealth</a></li>
+        <li><a href="https://tiktok.com/@roadproofhealth" target="_blank">TikTok</a></li>
+        <li><a href="https://youtube.com/@roadproofhealth" target="_blank">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2026 Road Proof Health &middot; A Lifescape Company &middot; roadproofhealth.tiiny.site</div>
+    <div class="ft-soc">
+      <a href="https://instagram.com/roadproofhealth" target="_blank" class="soc-pill">IG</a>
+      <a href="https://tiktok.com/@roadproofhealth" target="_blank" class="soc-pill">TT</a>
+      <a href="https://youtube.com/@roadproofhealth" target="_blank" class="soc-pill">YT</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+  ml('account', 'MAILERLITE_ACCOUNT_ID_HERE');
+</script>
+
+</body>
+</html>
