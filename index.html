@@ -294,84 +294,6 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
   .nav-links{display:none;}
   .stats-strip{grid-template-columns:repeat(2,1fr);}
 }
-  /* ROAD PROOF MAILERLITE OVERRIDE */
-
-#mlb2-38430510,
-#mlb2-38430510 *{
-  box-sizing:border-box;
-}
-
-#mlb2-38430510 .ml-form-embedWrapper{
-  background:transparent !important;
-  border:none !important;
-  width:100% !important;
-  max-width:100% !important;
-}
-
-#mlb2-38430510 .ml-form-embedBody{
-  padding:0 !important;
-}
-
-#mlb2-38430510 .ml-form-fieldRow{
-  margin-bottom:10px !important;
-}
-
-#mlb2-38430510 input{
-  width:100% !important;
-  padding:13px 16px !important;
-  background:rgba(255,255,255,.10) !important;
-  border:1.5px solid rgba(240,180,41,.40) !important;
-  border-radius:6px !important;
-  color:#fff !important;
-  font-family:'DM Sans',sans-serif !important;
-  font-size:14px !important;
-}
-
-#mlb2-38430510 input::placeholder{
-  color:rgba(255,255,255,.60) !important;
-}
-
-#mlb2-38430510 input:focus{
-  border-color:#F0B429 !important;
-  outline:none !important;
-}
-
-#mlb2-38430510 .ml-form-embedSubmit{
-  margin:0 !important;
-}
-
-#mlb2-38430510 .ml-form-embedSubmit button{
-  width:100% !important;
-  padding:14px !important;
-  background:#F0B429 !important;
-  border:none !important;
-  border-radius:6px !important;
-  color:#1C2B4A !important;
-  font-family:'DM Sans',sans-serif !important;
-  font-size:15px !important;
-  font-weight:800 !important;
-  cursor:pointer !important;
-  transition:.2s !important;
-}
-
-#mlb2-38430510 .ml-form-embedSubmit button:hover{
-  background:#f7c030 !important;
-}
-
-#mlb2-38430510 .ml-form-successBody{
-  background:none !important;
-  padding:0 !important;
-}
-
-#mlb2-38430510 .ml-form-successContent h4{
-  color:#F0B429 !important;
-  font-family:'Playfair Display',serif !important;
-  font-size:24px !important;
-}
-
-#mlb2-38430510 .ml-form-successContent p{
-  color:#ffffff !important;
-}
 </style>
 </head>
 <body>
@@ -388,7 +310,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
   <div class="nav-links">
     <a href="#story">Our Story</a>
     <a href="#packages">Programs</a>
-    <a href="#hero-form">Free Guide</a>
+    <a href="#guide">Free Guide</a>
     <a href="#fleet">Fleet Services</a>
     <a href="#hero-form" class="nav-cta">Get Free Guide</a>
   </div>
@@ -410,69 +332,36 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
     <p class="hero-sub">Practical, nurse-led health care for CDL drivers and independent operators. No gym. No kitchen. Just what actually works from inside a cab.</p>
 
     <!-- Email capture card -->
-    <div id="mlb2-38430510" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-38430510">
-  <div class="ml-form-align-center">
-    <div class="ml-form-embedWrapper embedForm">
-
-      <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-
-        <form class="ml-block-form"
-              action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe"
-              method="post"
-              target="_blank">
-
-          <div class="ml-form-formContent">
-
-            <div class="ml-form-fieldRow">
-              <div class="ml-field-group">
-                <input
-                  type="text"
-                  name="fields[name]"
-                  placeholder="Your first name"
-                  autocomplete="given-name">
-              </div>
+    <div class="hero-capture" id="hero-form">
+      <div class="hero-capture-label">&#10022; Free Guide &mdash; Instant Download</div>
+      <div class="hero-capture-title">Get the Driver Health Survival Guide</div>
+      <div class="hero-capture-sub">7 nurse-written steps to protect your health, lower your BP, and pass your DOT physical &mdash; free, always.</div>
+      <div id="mlb2-38430510" class="ml-subscribe-form ml-subscribe-form-38430510">
+        <div class="row-form">
+          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe" method="post" target="_blank" style="margin:0;">
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
+              <input type="text" name="fields[name]" placeholder="Your first name" autocomplete="given-name" aria-label="name"
+                style="padding:13px 16px;background:rgba(255,255,255,.1);border:1.5px solid rgba(240,180,41,.4);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.4)'">
+              <input type="email" name="fields[email]" placeholder="Your email address" autocomplete="email" required aria-label="email" aria-required="true"
+                style="padding:13px 16px;background:rgba(255,255,255,.1);border:1.5px solid rgba(240,180,41,.4);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.4)'">
             </div>
-
-            <div class="ml-form-fieldRow ml-last-item">
-              <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                <input
-                  type="email"
-                  name="fields[email]"
-                  placeholder="Your email address"
-                  autocomplete="email"
-                  required>
-              </div>
-            </div>
-
-          </div>
-
-          <input type="hidden" name="ml-submit" value="1">
-          <input type="hidden" name="anticsrf" value="true">
-
-          <div class="ml-form-embedSubmit">
-            <button type="submit">
-              Send Me The Free Guide →
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+            <button type="submit" style="width:100%;padding:14px;background:#F0B429;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#1C2B4A;cursor:pointer;letter-spacing:.3px;transition:background .2s;" onmouseover="this.style.background='#f7c030'" onmouseout="this.style.background='#F0B429'">
+              Send Me the Free Guide &rarr;
             </button>
-
-            <button disabled style="display:none;" type="button" class="loading">
-              Loading...
-            </button>
-          </div>
-
-        </form>
-
-      </div>
-
-      <div class="ml-form-successBody row-success" style="display:none;">
-        <div class="ml-form-successContent">
-          <h4>You're In!</h4>
-          <p>Check your email for your Driver Health Survival Guide.</p>
+          </form>
+          <p style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(200,196,188,.45);margin-top:10px;letter-spacing:.5px;">&#10022; INSTANT PDF &middot; NURSE-WRITTEN &middot; NO SPAM &middot; ALWAYS FREE</p>
+        </div>
+        <div class="row-success" style="display:none;padding:16px 0 0;">
+          <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#F0B429;font-weight:700;">&#10022; You&#39;re in! Check your email for the download link.</p>
         </div>
       </div>
-
     </div>
+
   </div>
-</div>
 </section>
 
 <!-- ── TRUST BAR ── -->
@@ -551,7 +440,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
           <li class="pkg-feat">Weekly nurse health tips by email</li>
         </ul>
       </div>
-      <a href="#hero-form" class="pkg-cta cta-mg">Download Free Guide &rarr;</a>
+      <a href="#guide" class="pkg-cta cta-mg">Download Free Guide &rarr;</a>
     </div>
 
     <!-- TIER 02 — ROAD READY -->
@@ -646,8 +535,25 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
         <li class="g-item"><span class="g-num">07.</span>Mental health on the road &mdash; practical steps that work</li>
       </ul>
       <!-- Second PDF form instance in guide section -->
-      <a href="#hero-form" class="g-cta-btn">
-  Get The Free Guide → </a>
+      <div id="mlb2-38430510-b" class="ml-subscribe-form ml-subscribe-form-38430510" style="margin-top:24px;">
+        <div class="row-form">
+          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe" method="post" target="_blank" style="margin:0;">
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
+              <input type="text" name="fields[name]" placeholder="Your first name" autocomplete="given-name" aria-label="name"
+                style="padding:13px 16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(240,180,41,.3);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.3)'">
+              <input type="email" name="fields[email]" placeholder="Your email address" autocomplete="email" required aria-label="email" aria-required="true"
+                style="padding:13px 16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(240,180,41,.3);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.3)'">
+            </div>
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+            <button type="submit"
+              style="width:100%;padding:14px;background:#F0B429;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#1C2B4A;cursor:pointer;letter-spacing:.3px;transition:background .2s;"
+              onmouseover="this.style.background='#f7c030'" onmouseout="this.style.background='#F0B429'">
+              Send Me the Free Guide &rarr;
+            </button>
+          </form>
           <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--dgray);margin-top:10px;letter-spacing:.4px;">&#10022; INSTANT PDF &middot; NURSE-WRITTEN &middot; NO SPAM &middot; ALWAYS FREE</p>
         </div>
         <div class="row-success" style="display:none;padding:16px 0 0;">
@@ -749,15 +655,8 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
 
 <!-- MailerLite webforms -->
 <script>
-function ml_webform_success_38430510() {
-    document
-      .querySelectorAll('.ml-subscribe-form-38430510 .row-success')
-      .forEach(el => el.style.display = 'block');
-
-    document
-      .querySelectorAll('.ml-subscribe-form-38430510 .row-form')
-      .forEach(el => el.style.display = 'none');
-}
+  function ml_webform_success_38430510(){var $=ml_jQuery||jQuery;$('.ml-subscribe-form-38430510 .row-success').show();$('.ml-subscribe-form-38430510 .row-form').hide();}
+  function ml_webform_success_38439339(){var $=ml_jQuery||jQuery;$('.ml-subscribe-form-38439339 .row-success').show();$('.ml-subscribe-form-38439339 .row-form').hide();}
 </script>
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
 <script>
