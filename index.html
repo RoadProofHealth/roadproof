@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,8 +17,6 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--charcoal);overflow-x:hidden;}
-
-/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(14,24,40,0.96);backdrop-filter:blur(16px);border-bottom:2px solid var(--marigold);display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:64px;}
 .nav-left{display:flex;align-items:center;gap:12px;}
 .nav-badge{width:34px;height:34px;background:var(--marigold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:700;font-size:12px;color:var(--navy);flex-shrink:0;}
@@ -32,120 +28,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(14,24,40,0.9
 .nav-links a:hover{color:var(--marigold);}
 .nav-cta{background:var(--marigold)!important;color:var(--navy)!important;padding:9px 20px;border-radius:5px;font-weight:700!important;font-size:12.5px!important;}
 .nav-cta:hover{background:#f7c030!important;}
-
-/* ── HERO — full bleed cinematic ── */
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-  background-image:url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1800&q=85&auto=format&fit=crop&crop=center');
-  background-size:cover;
-  background-position:center 55%;
-}
-/* layered overlay — dark left panel, lighter right */
-.hero-bg::after{
-  content:'';
-  position:absolute;inset:0;
-  background:
-    linear-gradient(to right,
-      rgba(14,24,40,0.93) 0%,
-      rgba(14,24,40,0.82) 50%,
-      rgba(14,24,40,0.55) 100%);
-}
-/* subtle gold scatter top-right */
-.hero-glow{
-  position:absolute;top:-80px;right:-80px;z-index:1;
-  width:600px;height:600px;
-  background:radial-gradient(circle,rgba(240,180,41,.12) 0%,transparent 65%);
-  pointer-events:none;
-}
-.hero-content{
-  position:relative;z-index:2;
-  width:100%;
-  max-width:660px;
-  padding:130px 6% 80px;
-}
-.hero-eyebrow{
-  font-family:'DM Mono',monospace;
-  font-size:10px;letter-spacing:3.5px;text-transform:uppercase;
-  color:var(--marigold);
-  display:inline-flex;align-items:center;gap:10px;
-  margin-bottom:22px;
-}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;background-image:url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1800&q=85&auto=format&fit=crop&crop=center');background-size:cover;background-position:center 55%;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(14,24,40,0.93) 0%,rgba(14,24,40,0.82) 50%,rgba(14,24,40,0.55) 100%);}
+.hero-glow{position:absolute;top:-80px;right:-80px;z-index:1;width:600px;height:600px;background:radial-gradient(circle,rgba(240,180,41,.12) 0%,transparent 65%);pointer-events:none;}
+.hero-content{position:relative;z-index:2;width:100%;max-width:660px;padding:130px 6% 80px;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--marigold);display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;}
 .hero-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--marigold);}
-h1{
-  font-family:'Playfair Display',serif;
-  font-weight:900;
-  font-size:clamp(54px,7.5vw,96px);
-  color:#fff;
-  line-height:.93;
-  letter-spacing:-2px;
-  margin-bottom:8px;
-}
+h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(54px,7.5vw,96px);color:#fff;line-height:.93;letter-spacing:-2px;margin-bottom:8px;}
 h1 .gold{color:var(--marigold);}
 .hero-rule{width:64px;height:4px;background:var(--marigold);border-radius:2px;margin:24px 0;}
-.hero-headline{
-  font-size:clamp(16px,2vw,20px);
-  font-weight:300;
-  color:rgba(255,255,255,.85);
-  line-height:1.6;
-  max-width:520px;
-  margin-bottom:14px;
-}
+.hero-headline{font-size:clamp(16px,2vw,20px);font-weight:300;color:rgba(255,255,255,.85);line-height:1.6;max-width:520px;margin-bottom:14px;}
 .hero-headline strong{color:#fff;font-weight:600;}
-.hero-sub{
-  font-size:14px;
-  color:rgba(200,196,188,.7);
-  max-width:460px;
-  line-height:1.7;
-  margin-bottom:36px;
-}
-
-/* email capture */
-.hero-capture{
-  background:rgba(255,255,255,.06);
-  border:1.5px solid rgba(240,180,41,.4);
-  border-radius:10px;
-  padding:28px 28px 22px;
-  max-width:500px;
-  backdrop-filter:blur(6px);
-}
-.hero-capture-label{
-  font-family:'DM Mono',monospace;
-  font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;
-  color:var(--marigold);
-  margin-bottom:14px;
-}
-.hero-capture-title{
-  font-size:17px;font-weight:700;color:#fff;
-  margin-bottom:4px;line-height:1.35;
-}
-.hero-capture-sub{
-  font-size:12.5px;color:rgba(200,196,188,.65);
-  line-height:1.55;margin-bottom:18px;
-}
-/* MailerLite form drops in here */
-.hero-capture .ml-embedded{margin-bottom:0;}
-
-/* ── TRUST BAR ── */
+.hero-sub{font-size:14px;color:rgba(200,196,188,.7);max-width:460px;line-height:1.7;margin-bottom:36px;}
+.hero-capture{background:rgba(255,255,255,.06);border:1.5px solid rgba(240,180,41,.4);border-radius:10px;padding:28px 28px 22px;max-width:500px;backdrop-filter:blur(6px);}
+.hero-capture-label{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--marigold);margin-bottom:14px;}
+.hero-capture-title{font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;line-height:1.35;}
+.hero-capture-sub{font-size:12.5px;color:rgba(200,196,188,.65);line-height:1.55;margin-bottom:18px;}
+.ml-field{width:100%;padding:13px 16px;background:rgba(255,255,255,.1);border:1.5px solid rgba(240,180,41,.4);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;box-sizing:border-box;transition:border-color .2s;display:block;margin-bottom:10px;}
+.ml-field::placeholder{color:rgba(200,196,188,.5);}
+.ml-field:focus{border-color:#F0B429;}
+.ml-submit-btn{width:100%;padding:14px;background:#F0B429;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#1C2B4A;cursor:pointer;letter-spacing:.3px;transition:background .2s;}
+.ml-submit-btn:hover{background:#f7c030;}
+.form-note{font-family:'DM Mono',monospace;font-size:9px;color:rgba(200,196,188,.45);margin-top:10px;letter-spacing:.5px;}
+.row-success{display:none;padding:16px 0 0;}
+.row-success p{font-family:'DM Sans',sans-serif;font-size:15px;color:#F0B429;font-weight:700;}
 .trust-bar{background:var(--marigold);padding:12px 6%;display:flex;justify-content:center;align-items:center;gap:36px;flex-wrap:wrap;}
 .trust-item{font-family:'DM Mono',monospace;font-size:10px;color:var(--navy);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:7px;}
 .trust-item::before{content:'✦';font-size:8px;}
-
-/* ── STATS STRIP (replaces right-side card) ── */
 .stats-strip{background:var(--navy3);padding:36px 6%;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-top:3px solid var(--marigold);}
 .stat-block{padding:28px 24px;text-align:center;border-right:1px solid rgba(200,196,188,.08);}
 .stat-block:last-child{border-right:none;}
 .stat-big{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;color:var(--marigold);line-height:1;margin-bottom:8px;}
 .stat-label{font-size:13px;color:rgba(200,196,188,.7);line-height:1.5;}
 .stat-label strong{color:#fff;display:block;font-size:13.5px;margin-bottom:2px;}
-
-/* ── SECTIONS ── */
 section{padding:80px 6%;}
 .s-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--marigold);display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .s-eye::before{content:'';display:block;width:22px;height:2px;background:var(--marigold);}
@@ -153,8 +69,6 @@ section{padding:80px 6%;}
 h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(28px,4.2vw,46px);line-height:1.1;margin-bottom:14px;color:var(--navy);}
 h2.wh{color:#fff;}
 .ssub{font-size:15px;font-weight:300;color:var(--dgray);line-height:1.75;max-width:580px;}
-
-/* ── STORY ── */
 .story{background:var(--white);}
 .story-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:center;}
 .story-pull{background:var(--navy);padding:36px;border-left:5px solid var(--marigold);border-radius:4px;}
@@ -162,8 +76,6 @@ h2.wh{color:#fff;}
 .story-credit{font-family:'DM Mono',monospace;font-size:10px;color:var(--marigold);letter-spacing:2px;text-transform:uppercase;}
 .story-body p{font-size:15px;font-weight:300;color:var(--charcoal);line-height:1.85;margin-bottom:16px;}
 .story-body strong{color:var(--navy);font-weight:600;}
-
-/* ── PACKAGES — 2 per row ── */
 .packages{background:var(--warm-white);}
 .pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:960px;margin:0 auto;}
 .pkg-card{background:var(--white);border:1.5px solid #E8E4DC;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;}
@@ -193,8 +105,6 @@ h2.wh{color:#fff;}
 .cta-nv:hover{background:var(--navy2);}
 .cta-ol{border:1.5px solid var(--navy);color:var(--navy);background:transparent;}
 .cta-ol:hover{background:var(--lgray);}
-
-/* ── GUIDE SECTION ── */
 .guide-section{background:var(--navy);position:relative;overflow:hidden;padding:80px 6%;}
 .guide-section::before{content:'';position:absolute;bottom:-80px;right:-60px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(240,180,41,.08) 0%,transparent 65%);pointer-events:none;}
 .guide-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start;position:relative;z-index:2;}
@@ -204,19 +114,7 @@ h2.wh{color:#fff;}
 .g-list{list-style:none;margin-bottom:28px;}
 .g-item{display:flex;align-items:flex-start;gap:13px;padding:9px 0;border-bottom:1px solid rgba(200,196,188,.08);font-size:13.5px;color:var(--mgray);}
 .g-num{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--marigold);min-width:22px;margin-top:2px;}
-.g-cta-btn{
-  display:inline-block;
-  padding:16px 36px;
-  background:var(--marigold);
-  color:var(--navy);
-  font-family:'DM Sans',sans-serif;
-  font-size:15px;font-weight:800;
-  border-radius:6px;
-  text-decoration:none;
-  letter-spacing:.3px;
-  transition:background .2s,transform .15s;
-  margin-top:8px;
-}
+.g-cta-btn{display:inline-block;padding:16px 36px;background:var(--marigold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;border-radius:6px;text-decoration:none;letter-spacing:.3px;transition:background .2s,transform .15s;margin-top:8px;}
 .g-cta-btn:hover{background:#f7c030;transform:translateY(-2px);}
 .g-note{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--dgray);letter-spacing:.3px;margin-top:10px;}
 .g-card{background:rgba(255,255,255,.05);border:1px solid rgba(240,180,41,.2);border-radius:10px;padding:28px;}
@@ -226,8 +124,6 @@ h2.wh{color:#fff;}
 .chk-ico{width:19px;height:19px;border:2px solid var(--marigold);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--marigold);font-size:10px;font-weight:700;}
 .chk-txt{font-size:12.5px;color:var(--mgray);line-height:1.55;}
 .chk-txt strong{color:#fff;display:block;font-size:13px;margin-bottom:1px;}
-
-/* ── FLEET BANNER ── */
 .fleet-banner{background:var(--teal);padding:56px 6%;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
 .fleet-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:9px;}
 .fleet-h{font-family:'Playfair Display',serif;font-size:clamp(22px,3.2vw,34px);color:#fff;margin-bottom:9px;line-height:1.18;}
@@ -236,8 +132,6 @@ h2.wh{color:#fff;}
 .fleet-btn{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--teal);padding:13px 26px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13.5px;transition:all .2s;white-space:nowrap;}
 .fleet-btn:hover{background:var(--warm-white);transform:translateY(-2px);}
 .fleet-note{font-family:'DM Mono',monospace;font-size:9.5px;color:rgba(255,255,255,.55);letter-spacing:.5px;text-align:right;}
-
-/* ── LIFESCAPE BAND ── */
 .ls-band{background:var(--charcoal);padding:52px 6%;text-align:center;}
 .ls-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--marigold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
 .ls-title{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:10px;}
@@ -249,8 +143,6 @@ h2.wh{color:#fff;}
 .ls-status{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;}
 .ls-status.now{color:var(--marigold);}
 .ls-status.soon{color:#555;}
-
-/* ── FOOTER ── */
 footer{background:var(--navy3);border-top:3px solid var(--marigold);padding:48px 6% 24px;}
 .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px;}
 .ft-brand{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:7px;}
@@ -267,8 +159,6 @@ footer{background:var(--navy3);border-top:3px solid var(--marigold);padding:48px
 .ft-soc{display:flex;gap:8px;}
 .soc-pill{padding:5px 13px;border:1px solid rgba(200,196,188,.2);border-radius:20px;font-family:'DM Mono',monospace;font-size:9.5px;color:var(--mgray);text-decoration:none;letter-spacing:1px;transition:all .2s;}
 .soc-pill:hover{border-color:var(--marigold);color:var(--marigold);}
-
-/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .hero-eyebrow{opacity:0;animation:fadeUp .6s .1s forwards;}
@@ -278,22 +168,8 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
 .hero-sub{opacity:0;animation:fadeUp .6s .52s forwards;}
 .hero-capture{opacity:0;animation:fadeUp .7s .6s forwards;}
 .hero-bg{animation:fadeIn 1.2s .0s forwards;opacity:0;}
-
-/* ── RESPONSIVE ── */
-@media(max-width:960px){
-  .pkg-grid{grid-template-columns:1fr;}
-  .stats-strip{grid-template-columns:repeat(2,1fr);}
-}
-@media(max-width:760px){
-  .hero-content{padding:110px 5% 70px;}
-  .story-grid{grid-template-columns:1fr;}
-  .guide-grid{grid-template-columns:1fr;}
-  .fleet-banner{grid-template-columns:1fr;}
-  .fleet-right{align-items:flex-start;}
-  .ft-grid{grid-template-columns:1fr 1fr;}
-  .nav-links{display:none;}
-  .stats-strip{grid-template-columns:repeat(2,1fr);}
-}
+@media(max-width:960px){.pkg-grid{grid-template-columns:1fr;}.stats-strip{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:760px){.hero-content{padding:110px 5% 70px;}.story-grid{grid-template-columns:1fr;}.guide-grid{grid-template-columns:1fr;}.fleet-banner{grid-template-columns:1fr;}.fleet-right{align-items:flex-start;}.ft-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.stats-strip{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -316,51 +192,68 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
   </div>
 </nav>
 
-<!-- ── HERO — cinematic full-bleed truck ── -->
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
-
     <div class="hero-eyebrow">Nurse-Led &middot; CDL Driver Health</div>
-
     <h1>Road<br><span class="gold">Proof</span></h1>
-
     <div class="hero-rule"></div>
-
     <p class="hero-headline"><strong>Built for the road. Built for the long haul.</strong></p>
     <p class="hero-sub">Practical, nurse-led health care for CDL drivers and independent operators. No gym. No kitchen. Just what actually works from inside a cab.</p>
 
-    <!-- Email capture card -->
+    <!-- ══════════════════════════════════════════
+         SINGLE MASTER FORM — hero capture card
+         ID: rp-pdf-form  (used by guide section anchor)
+    ══════════════════════════════════════════ -->
     <div class="hero-capture" id="hero-form">
       <div class="hero-capture-label">&#10022; Free Guide &mdash; Instant Download</div>
       <div class="hero-capture-title">Get the Driver Health Survival Guide</div>
       <div class="hero-capture-sub">7 nurse-written steps to protect your health, lower your BP, and pass your DOT physical &mdash; free, always.</div>
-      <div id="mlb2-38430510" class="ml-subscribe-form ml-subscribe-form-38430510">
-        <div class="row-form">
-          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe" method="post" style="margin:0;">
-            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
-              <input type="text" name="fields[name]" placeholder="Your first name" autocomplete="given-name" aria-label="name"
-                style="padding:13px 16px;background:rgba(255,255,255,.1);border:1.5px solid rgba(240,180,41,.4);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
-                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.4)'">
-              <input type="email" name="fields[email]" placeholder="Your email address" autocomplete="email" required aria-label="email" aria-required="true"
-                style="padding:13px 16px;background:rgba(255,255,255,.1);border:1.5px solid rgba(240,180,41,.4);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
-                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.4)'">
-            </div>
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
-            <button type="submit" style="width:100%;padding:14px;background:#F0B429;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#1C2B4A;cursor:pointer;letter-spacing:.3px;transition:background .2s;" onmouseover="this.style.background='#f7c030'" onmouseout="this.style.background='#F0B429'">
-              Send Me the Free Guide &rarr;
-            </button>
-          </form>
-          <p style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(200,196,188,.45);margin-top:10px;letter-spacing:.5px;">&#10022; INSTANT PDF &middot; NURSE-WRITTEN &middot; NO SPAM &middot; ALWAYS FREE</p>
-        </div>
-        <div class="row-success" style="display:none;padding:16px 0 0;">
-          <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#F0B429;font-weight:700;">&#10022; You&#39;re in! Check your email for the download link.</p>
-        </div>
-      </div>
-    </div>
 
+      <!-- form-visible state -->
+      <div id="rp-form-body">
+        <form
+          id="rp-pdf-form"
+          action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe"
+          method="post"
+          target="_blank"
+          onsubmit="rpHandleSubmit(event)"
+          style="margin:0;">
+          <input
+            class="ml-field"
+            type="text"
+            name="fields[name]"
+            placeholder="Your first name"
+            autocomplete="given-name"
+            aria-label="name">
+          <input
+            class="ml-field"
+            type="email"
+            name="fields[email]"
+            placeholder="Your email address"
+            autocomplete="email"
+            required
+            aria-label="email"
+            aria-required="true">
+          <input type="hidden" name="ml-submit" value="1">
+          <input type="hidden" name="anticsrf" value="true">
+          <button type="submit" class="ml-submit-btn">
+            Send Me the Free Guide &rarr;
+          </button>
+        </form>
+        <p class="form-note">&#10022; INSTANT PDF &middot; NURSE-WRITTEN &middot; NO SPAM &middot; ALWAYS FREE</p>
+      </div>
+
+      <!-- success state — hidden until submit -->
+      <div id="rp-form-success" style="display:none;padding:16px 0 0;">
+        <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#F0B429;font-weight:700;">
+          &#10022; You&#39;re in! Check your email for the download link.
+        </p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -368,7 +261,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
 <div class="trust-bar">
   <div class="trust-item">Registered Nurse&ndash;Led</div>
   <div class="trust-item">CDL Driver Health</div>
-    <div class="trust-item">Independent Driver First</div>
+  <div class="trust-item">Independent Driver First</div>
   <div class="trust-item">Fleet Services</div>
 </div>
 
@@ -404,15 +297,15 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
     <div class="story-body">
       <div class="s-eye">Our Story</div>
       <h2>Built for our family.<br>Built for yours.</h2>
-      <p>One of us is a Registered Nurse with over 20 years of experience. One of us builds digital brands and products with over 15+years experience. Together, we’ve created RoadProof - an online health coaching program that protects drivers’ health and preserves their livelihoods.</p>
-      <p><strong>Drivers must take responsibility for their health, but they need someone who understands their lifestyle to guide them.</strong> Long hours, poor sleep, stress, fast food, isolation, high blood pressure and DOT stress — we’ve seen it affect the people we care about. We understand the pride, the grind the “I’m fine” mentality. </p>
-      <p>RoodProof coaching helps you attain and maintain sustainable lifestyle changes by <strong>taking ownership of your choices.</strong> </p>
-      <p>Health isn’t just “wellness.” <strong>Health means job security.</strong> </p>
-      <p><strong>Your work matters. Your health matters. The road should not cost you your health - or your career. </strong></p>
-     
+      <p>One of us is a Registered Nurse with over 20 years of experience. One of us builds digital brands and products with over 15+ years experience. Together, we've created RoadProof - an online health coaching program that protects drivers' health and preserves their livelihoods.</p>
+      <p><strong>Drivers must take responsibility for their health, but they need someone who understands their lifestyle to guide them.</strong> Long hours, poor sleep, stress, fast food, isolation, high blood pressure and DOT stress — we've seen it affect the people we care about. We understand the pride, the grind, the "I'm fine" mentality.</p>
+      <p>RoadProof coaching helps you attain and maintain sustainable lifestyle changes by <strong>taking ownership of your choices.</strong></p>
+      <p>Health isn't just "wellness." <strong>Health means job security.</strong></p>
+      <p><strong>Your work matters. Your health matters. The road should not cost you your health - or your career.</strong></p>
     </div>
   </div>
 </section>
+
 <!-- ── PACKAGES ── -->
 <section class="packages" id="packages">
   <div style="text-align:center;max-width:640px;margin:0 auto 44px;">
@@ -440,7 +333,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
           <li class="pkg-feat">Weekly nurse health tips by email</li>
         </ul>
       </div>
-      <a href="#guide" class="pkg-cta cta-mg">Download Free Guide &rarr;</a>
+      <a href="#hero-form" class="pkg-cta cta-mg">Download Free Guide &rarr;</a>
     </div>
 
     <!-- TIER 02 — ROAD READY -->
@@ -515,8 +408,6 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
     <p style="font-family:'DM Mono',monospace;font-size:9.5px;color:var(--mgray);margin-top:5px;letter-spacing:.5px;">We respond within 24 hours</p>
   </div>
 </section>
- 
- 
 
 <!-- ── FREE GUIDE SECTION ── -->
 <section class="guide-section" id="guide">
@@ -534,32 +425,9 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
         <li class="g-item"><span class="g-num">06.</span>Your 30-day DOT physical prep plan</li>
         <li class="g-item"><span class="g-num">07.</span>Mental health on the road &mdash; practical steps that work</li>
       </ul>
-      <!-- Second PDF form instance in guide section -->
-      <div id="mlb2-38430510-b" class="ml-subscribe-form ml-subscribe-form-38430510" style="margin-top:24px;">
-        <div class="row-form">
-          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe" method="post" target="_blank" style="margin:0;">
-            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
-              <input type="text" name="fields[name]" placeholder="Your first name" autocomplete="given-name" aria-label="name"
-                style="padding:13px 16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(240,180,41,.3);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
-                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.3)'">
-              <input type="email" name="fields[email]" placeholder="Your email address" autocomplete="email" required aria-label="email" aria-required="true"
-                style="padding:13px 16px;background:rgba(255,255,255,.08);border:1.5px solid rgba(240,180,41,.3);border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;box-sizing:border-box;"
-                onfocus="this.style.borderColor='#F0B429'" onblur="this.style.borderColor='rgba(240,180,41,.3)'">
-            </div>
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
-            <button type="submit"
-              style="width:100%;padding:14px;background:#F0B429;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#1C2B4A;cursor:pointer;letter-spacing:.3px;transition:background .2s;"
-              onmouseover="this.style.background='#f7c030'" onmouseout="this.style.background='#F0B429'">
-              Send Me the Free Guide &rarr;
-            </button>
-          </form>
-          <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--dgray);margin-top:10px;letter-spacing:.4px;">&#10022; INSTANT PDF &middot; NURSE-WRITTEN &middot; NO SPAM &middot; ALWAYS FREE</p>
-        </div>
-        <div class="row-success" style="display:none;padding:16px 0 0;">
-          <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#F0B429;font-weight:700;">&#10022; You&#39;re in! Check your email for the download link.</p>
-        </div>
-      </div>
+      <!-- Anchor back to the single form at the top — no duplicate form -->
+      <a href="#hero-form" class="g-cta-btn">Get the Free Guide &mdash; Instant PDF &rarr;</a>
+      <p class="g-note">&#10022; Instant PDF &middot; Nurse-written &middot; No spam &middot; Always free</p>
     </div>
     <div class="g-card">
       <div class="g-card-title">What&rsquo;s Inside</div>
@@ -583,7 +451,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
   </div>
   <div class="fleet-right">
     <a href="mailto:shop.lifescape@gmail.com" class="fleet-btn">&#9993; Contact Us About Fleet Services</a>
-    <p class="fleet-note"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84f7ecebf4aae8ede2e1f7e7e5f4e1c4e3e9e5ede8aae7ebe9"></a> &middot; We reply within 24hrs</p>
+    <p class="fleet-note">shop.lifescape@gmail.com &middot; We reply within 24hrs</p>
   </div>
 </div>
 
@@ -621,7 +489,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
       <div class="ft-col-title">Programs</div>
       <ul class="ft-links">
         <li><a href="#guide">Free Health Guide</a></li>
-        <li><a href="#packages">Road Ready &mdash; Now Active ! </a></li>
+        <li><a href="#packages">Road Ready &mdash; Now Active!</a></li>
         <li><a href="#packages">Pro Courses &mdash; Coming Soon</a></li>
         <li><a href="#packages">MedCard Pro &mdash; Coming Soon</a></li>
       </ul>
@@ -648,20 +516,47 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
     <div class="ft-soc">
       <a href="https://instagram.com/roadproofhealth" target="_blank" class="soc-pill">IG</a>
       <a href="https://tiktok.com/@roadproofhealth" target="_blank" class="soc-pill">TT</a>
-      <a href="https://youtube.com/@roadproofhealth" target="_blank" class="oc-pill">YT</a>
+      <a href="https://youtube.com/@roadproofhealth" target="_blank" class="soc-pill">YT</a>
     </div>
   </div>
 </footer>
 
-<!-- MailerLite webforms -->
+<!-- ══════════════════════════════════════════════════════
+     SCRIPTS
+     ── rpHandleSubmit: submits to MailerLite via fetch
+        so the page never navigates away, then shows
+        the success message in-place.
+     ── MailerLite webforms.min.js: powers the
+        ml-onclick-form buttons (Coming Soon cards).
+══════════════════════════════════════════════════════ -->
 <script>
-function ml_webform_success_38430510() {
-  document.querySelector('.ml-subscribe-form-38430510 .row-success').style.display = 'block';
-  document.querySelector('.ml-subscribe-form-38430510 .row-form').style.display = 'none';
+function rpHandleSubmit(e) {
+  e.preventDefault();
+  var form = document.getElementById('rp-pdf-form');
+  var data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    mode: 'no-cors'   /* MailerLite doesn't send CORS headers on this endpoint */
+  })
+  .then(function() {
+    /* no-cors means we always land here — treat as success */
+    document.getElementById('rp-form-body').style.display    = 'none';
+    document.getElementById('rp-form-success').style.display = 'block';
+  })
+  .catch(function() {
+    /* network error — still show success since no-cors masks the real result */
+    document.getElementById('rp-form-body').style.display    = 'none';
+    document.getElementById('rp-form-success').style.display = 'block';
+  });
 }
 </script>
+
+<!-- MailerLite universal script — powers ml-onclick-form buttons -->
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
 <script>
+  /* register form with MailerLite tracker */
   fetch("https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/takel");
   fetch("https://assets.mailerlite.com/jsonp/2188120/forms/181859478243641121/takel");
 </script>
