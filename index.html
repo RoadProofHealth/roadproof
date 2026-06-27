@@ -213,10 +213,9 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
       <div class="hero-capture-sub">7 nurse-written steps to protect your health, lower your BP, and pass your DOT physical &mdash; free, always.</div>
 
       <!-- form-visible state -->
-    <div id="mlb2-38430510" class="ml-subscribe-form ml-subscribe-form-38430510" style="margin-top:24px;">
-      
+   <div id="mlb2-38430510" class="ml-subscribe-form ml-subscribe-form-38430510" style="margin-top:24px;">
       <div id="rp-form-body">
-        <form class="ml-block-form" id="rp-pdf-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe" method="post" onsubmit="rpHandleSubmit(event)" style="margin:0;">
+        <form class="ml-block-form" id="rp-pdf-form" action="https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/subscribe" method="post" style="margin:0;">
           <input
             class="ml-field"
             type="text"
@@ -235,6 +234,7 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
             aria-required="true">
           <input type="hidden" name="ml-submit" value="1">
           <input type="hidden" name="anticsrf" value="true">
+          
           <button type="submit" class="ml-submit-btn">
             Send Me the Free Guide &rarr;
           </button>
@@ -519,39 +519,21 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
 
 <!-- ══════════════════════════════════════════════════════
      SCRIPTS
-     ── rpHandleSubmit: submits to MailerLite via fetch
-        so the page never navigates away, then shows
-        the success message in-place.
-     ── MailerLite webforms.min.js: powers the
-        ml-onclick-form buttons (Coming Soon cards).
+
 ══════════════════════════════════════════════════════ -->
 <script>
-function rpHandleSubmit(e) {
-  e.preventDefault();
-
-  const form = document.getElementById('rp-pdf-form');
-  const formBody = document.getElementById('rp-form-body');
-  const success = document.getElementById('rp-form-success');
-
-  const data = new FormData(form);
-
-  fetch(form.action, {
-    method: 'POST',
-    body: data,
-    mode: 'no-cors'
-  });
-
-  formBody.style.display = 'none';
-  success.style.display = 'block';
+function ml_webform_success_38430510() {
+  document.querySelector('.ml-subscribe-form-38430510 .row-success').style.display = 'block';
+  document.querySelector('.ml-subscribe-form-38430510 .row-form').style.display = 'none';
 }
 </script>
-
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
 <!-- MailerLite universal script — powers ml-onclick-form buttons -->
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
 <script>
   /* register form with MailerLite tracker */
   fetch("https://assets.mailerlite.com/jsonp/2188120/forms/181845481390867839/takel");
-  fetch("https://assets.mailerlite.com/jsonp/2188120/forms/181859478243641121/takel");
+  
 </script>
 
 </body>
