@@ -519,8 +519,11 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
 ══════════════════════════════════════════════════════ -->
 <script>
 function ml_webform_success_38430510() {
-  document.querySelector('.ml-subscribe-form-38430510 .row-success').style.display = 'block';
-  document.querySelector('.ml-subscribe-form-38430510 .row-form').style.display = 'none';
+  const form = document.querySelector('#mlb2-38430510 .row-form');
+  const success = document.querySelector('#mlb2-38430510 .row-success');
+
+  if (form) form.style.display = 'none';
+  if (success) success.style.display = 'block';
 }
 </script>
 
