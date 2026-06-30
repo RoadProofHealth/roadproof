@@ -563,7 +563,8 @@ a{text-decoration:none;color:inherit}
     <p id="toastMessage"></p>
     <div class="toast-actions">
       <button type="button" onclick="closeToast()" class="toast-btn toast-stay">Stay Here</button>
-      <button type="button" onclick="continueToNextDay()" class="toast-btn toast-next" id="toastNextBtn">Continue →</button>
+      <button type="button" onclick="continueToNextDay()" class="rr-toast-btn rr-toast-next" id="rr-toast-next-btn">
+  Continue → </button>
     </div>
   </div>
 </div>
@@ -670,7 +671,16 @@ function saveCheck(key,checked){ensureDay(currentDay);data[currentDay][key]=chec
 function selectMood(score){ensureDay(currentDay);data[currentDay].moodScore=score;document.querySelectorAll('.mood-btn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.mood)===Number(score)));document.getElementById('moodAdvice').textContent=moodAdvice[score];save();}
 function changeDay(direction){let next=currentDay+direction;if(next<1)next=1;if(next>30)next=30;loadDay(next);}
 function goToDay(day){loadDay(day);}
-function markDayComplete(){ensureDay(currentDay);data[currentDay].complete=true;save();nextDayAfterToast=currentDay<30?currentDay+1:null;showToast(currentDay);}
+function markDayComplete(){
+  ensureDay(rrCurrentDay);
+
+  rrData[rrCurrentDay].complete = true;
+  rrSave();
+
+  rrNextDayAfterToast = rrCurrentDay < 30 ? rrCurrentDay + 1 : null;
+
+  showRoadReadyMessage(rrCurrentDay);
+}
 function showToast(day){
   const message = milestones[day] || encouragements[Math.floor(Math.random()*encouragements.length)];
   document.getElementById('toastIcon').textContent=message.icon;
@@ -682,9 +692,9 @@ function showToast(day){
 }
 function closeToast(){const toast=document.getElementById('toast');toast.classList.remove('show');setTimeout(()=>toast.style.display='none',350);}
 
-
-
 function continueToNextDay(){
+
+  let rrNextDayAfterToast = null;
   closeRoadReadyToast();
 
   if(rrNextDayAfterToast){
