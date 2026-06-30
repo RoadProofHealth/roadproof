@@ -934,6 +934,131 @@ a{text-decoration:none;color:inherit}
     padding:10px 12px;
   }
 }
+
+
+/* =========================================================
+   MOBILE-FIRST CONTENT SECTION REFINEMENT
+   Preserves desktop split/sticky layout, but on phones the
+   image becomes the section opener under the heading.
+========================================================= */
+@media (max-width:900px){
+  .section{
+    padding:64px 5%;
+    scroll-margin-top:88px;
+  }
+
+  .section-head{
+    margin-bottom:28px;
+  }
+
+  .section h2{
+    font-size:clamp(30px,9vw,42px);
+    line-height:1.05;
+  }
+
+  .section-head p{
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  .split,
+  .split.reverse{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:30px !important;
+    margin:34px 0 44px !important;
+    align-items:stretch !important;
+  }
+
+  /* On mobile, make the photo the visual intro to the section. */
+  .split > .image-wrap,
+  .split.reverse > .image-wrap{
+    order:-1 !important;
+  }
+
+  .image-wrap{
+    position:relative !important;
+    top:auto !important;
+    min-height:0 !important;
+    height:auto !important;
+    width:100% !important;
+    margin:0 !important;
+    overflow:hidden !important;
+    border-radius:20px !important;
+  }
+
+  .image-wrap img{
+    display:block !important;
+    width:100% !important;
+    height:280px !important;
+    min-height:0 !important;
+    object-fit:cover !important;
+  }
+
+  .image-caption{
+    position:absolute !important;
+    left:14px !important;
+    right:14px !important;
+    bottom:14px !important;
+    max-width:none !important;
+    font-size:12px !important;
+    line-height:1.4 !important;
+    padding:10px 12px !important;
+  }
+
+  .protocol{
+    clear:both;
+    padding:22px 0 !important;
+  }
+
+  .protocol:first-child{
+    padding-top:0 !important;
+  }
+
+  .macro-grid,
+  .checklist{
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+  }
+
+  .macro-card{
+    padding:18px !important;
+  }
+
+  .cta-strip{
+    margin-top:36px !important;
+  }
+
+  .tracker-step-cta{
+    grid-template-columns:1fr !important;
+    gap:28px !important;
+    padding:24px !important;
+  }
+
+  .tracker-step-image,
+  .tracker-step-image img{
+    min-height:280px !important;
+    height:280px !important;
+  }
+}
+
+@media (max-width:520px){
+  .section{
+    padding:56px 5%;
+  }
+
+  .image-wrap img{
+    height:240px !important;
+  }
+
+  .image-caption{
+    font-size:11.5px !important;
+  }
+
+  .protocol h3{
+    font-size:24px;
+  }
+}
 </style>
 </head>
 
