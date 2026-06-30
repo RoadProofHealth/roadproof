@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Road Ready Guide — Road Proof Health</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#0E1828;
+  --navy2:#1C2B4A;
+  --blue:#243358;
+  --gold:#F0B429;
+  --cream:#F9F7F2;
+  --cream2:#EFE9DA;
+  --white:#FFFFFF;
+  --text:#182033;
+  --muted:#6B6560;
+  --line:rgba(28,43,74,.14);
+  --green:#1A6B3A;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ══════════════════════════════
+   PASSCODE GATE
+══════════════════════════════ */
+#gate{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+.gate-box{
+  max-width:420px;width:100%;
+  background:var(--navy2);
+  border:1.5px solid rgba(240,180,41,.3);
+  border-radius:20px;
+  padding:44px 36px;
+  text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+}
+.gate-badge{
+  width:56px;height:56px;
+  background:var(--gold);
+  color:var(--navy);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-weight:900;font-size:18px;
+  margin:0 auto 22px;
+}
+.gate-title{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:900;color:#fff;
+  margin-bottom:10px;
+}
+.gate-title span{color:var(--gold)}
+.gate-sub{
+  color:rgba(255,255,255,.65);
+  font-size:14px;line-height:1.65;
+  margin-bottom:28px;
+}
+.gate-input{
+  width:100%;
+  padding:15px 16px;
+  background:rgba(255,255,255,.06);
+  border:1.5px solid rgba(240,180,41,.35);
+  border-radius:10px;
+  color:#fff;
+  font-family:'DM Mono',monospace;
+  font-size:18px;
+  letter-spacing:3px;
+  text-align:center;
+  outline:none;
+  margin-bottom:14px;
+  transition:border-color .2s;
+}
+.gate-input:focus{border-color:var(--gold)}
+.gate-input::placeholder{color:rgba(255,255,255,.3);letter-spacing:1px;font-size:13px;}
+.gate-btn{
+  width:100%;
+  padding:15px;
+  background:var(--gold);
+  color:var(--navy);
+  border:none;
+  border-radius:10px;
+  font-family:'DM Sans',sans-serif;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+  transition:background .2s;
+}
+.gate-btn:hover{background:#f7c030}
+.gate-error{
+  color:#ff8a7a;
+  font-size:13px;
+  margin-top:14px;
+  display:none;
+  font-weight:600;
+}
+.gate-error.show{display:block}
+.gate-help{
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-size:12.5px;
+  color:rgba(255,255,255,.45);
+  line-height:1.7;
+}
+.gate-help a{color:var(--gold);font-weight:700}
+
+/* ══════════════════════════════
+   MAIN SITE STYLES (matches wellness.html)
+══════════════════════════════ */
+#site-content{display:none;}
+
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:72px;
+  background:rgba(14,24,40,.96);
+  backdrop-filter:blur(14px);
+  border-bottom:2px solid var(--gold);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:white;
+}
+.logo{
+  width:38px;
+  height:38px;
+  background:var(--gold);
+  color:var(--navy);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  border-radius:8px;
+  font-family:'DM Mono',monospace;
+}
+.brand-title{
+  font-family:'Playfair Display',serif;
+  font-size:21px;
+  font-weight:900;
+}
+.brand-title span{color:var(--gold)}
+.brand-sub{
+  display:block;
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:rgba(255,255,255,.55);
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+.nav-links a{
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+  font-weight:700;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  border:1px solid rgba(240,180,41,.55);
+  color:var(--gold)!important;
+  padding:10px 16px;
+  border-radius:999px;
+}
+
+.hero{
+  min-height:78vh;
+  background:
+    linear-gradient(90deg, rgba(14,24,40,.95) 0%, rgba(14,24,40,.84) 45%, rgba(14,24,40,.3) 100%),
+    url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1800&q=80");
+  background-size:cover;
+  background-position:center right;
+  color:white;
+  padding:150px 6% 70px;
+  display:flex;
+  align-items:center;
+}
+.hero-content{max-width:740px}
+.eyebrow{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:11px;
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:'';width:24px;height:2px;background:var(--gold);display:block;}
+.price-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(240,180,41,.14);
+  border:1.5px solid rgba(240,180,41,.4);
+  border-radius:10px;
+  padding:10px 18px;
+  margin-bottom:22px;
+}
+.price-pill .amt{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold);}
+.price-pill .type{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.55);}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,6.4vw,78px);
+  line-height:.96;
+  letter-spacing:-1.5px;
+  margin-bottom:18px;
+}
+.hero h1 span{color:var(--gold)}
+.hero p{
+  max-width:600px;
+  color:rgba(255,255,255,.78);
+  font-size:17px;
+  line-height:1.75;
+  margin-bottom:30px;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px 28px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:14px;
+}
+.btn-gold{
+  background:var(--gold);
+  color:var(--navy);
+}
+.btn-outline{
+  border:1px solid rgba(255,255,255,.35);
+  color:white;
+}
+
+.jump{
+  background:var(--navy);
+  color:white;
+  padding:22px 6%;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+  border-top:4px solid var(--gold);
+}
+.jump strong{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.jump a{
+  color:rgba(255,255,255,.78);
+  font-size:14px;
+  font-weight:700;
+}
+.jump a:hover{color:var(--gold)}
+
+.section{
+  padding:90px 6%;
+  scroll-margin-top:90px;
+}
+.section.dark{
+  background:var(--navy);
+  color:white;
+}
+.section.cream{
+  background:var(--cream2);
+}
+.section-inner{
+  max-width:1180px;
+  margin:0 auto;
+}
+.section-head{
+  max-width:760px;
+  margin-bottom:50px;
+}
+.kicker{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.section h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,4.6vw,54px);
+  line-height:1.04;
+  margin-bottom:18px;
+  letter-spacing:-1px;
+}
+.section-head p{
+  font-size:17px;
+  line-height:1.8;
+  color:var(--muted);
+}
+.dark .section-head p{color:rgba(255,255,255,.72)}
+
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:58px;
+  align-items:start;
+  margin:60px 0;
+}
+.split.reverse .image-wrap{order:-1}
+.image-wrap{
+  min-height:380px;
+  border-radius:24px;
+  overflow:hidden;
+  position:relative;
+  background:var(--blue);
+  position:sticky;
+  top:110px;
+}
+.image-wrap img{
+  width:100%;
+  height:100%;
+  min-height:380px;
+  object-fit:cover;
+}
+.image-caption{
+  position:absolute;
+  left:22px;
+  bottom:22px;
+  background:rgba(14,24,40,.84);
+  color:white;
+  padding:11px 15px;
+  border-left:4px solid var(--gold);
+  font-size:12.5px;
+  font-weight:800;
+  max-width:80%;
+}
+
+.protocol{
+  border-top:1px solid var(--line);
+  padding:24px 0;
+}
+.dark .protocol{border-color:rgba(255,255,255,.12)}
+.protocol h3{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  margin-bottom:8px;
+}
+.meta{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:1.6px;
+  margin-bottom:12px;
+}
+.protocol p{
+  color:var(--muted);
+  line-height:1.75;
+  font-size:15px;
+  margin-bottom:14px;
+}
+.dark .protocol p{color:rgba(255,255,255,.7)}
+.steps{
+  list-style:none;
+  display:grid;
+  gap:9px;
+}
+.steps li{
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:11px;
+  align-items:start;
+  line-height:1.6;
+  font-size:14.5px;
+}
+.num{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  font-weight:900;
+  font-size:13px;
+}
+.note{
+  margin-top:16px;
+  padding:15px 17px;
+  border-left:4px solid var(--gold);
+  background:rgba(240,180,41,.12);
+  color:var(--text);
+  line-height:1.65;
+  font-size:13.5px;
+}
+.dark .note{color:rgba(255,255,255,.8)}
+
+/* ── chain order table ── */
+.chain-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:8px;
+}
+.chain-table th{
+  text-align:left;
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  padding:10px 12px;
+  border-bottom:2px solid rgba(240,180,41,.3);
+}
+.chain-table td{
+  padding:12px 12px;
+  font-size:13.5px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+.dark .chain-table td{border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
+.chain-name{font-weight:800;color:var(--text);}
+.dark .chain-name{color:#fff}
+.order-good{color:var(--green);font-weight:700;}
+.dark .order-good{color:#5fd38a;}
+
+/* ── meal plan day cards ── */
+.meal-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:8px;
+}
+.meal-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(240,180,41,.18);
+  border-radius:12px;
+  padding:18px;
+}
+.meal-day{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--gold);
+  letter-spacing:1.5px;
+  margin-bottom:8px;
+}
+.meal-row{
+  font-size:13px;
+  color:rgba(255,255,255,.75);
+  padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  line-height:1.5;
+}
+.meal-row:last-child{border-bottom:none;}
+.meal-row strong{color:#fff;display:block;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.5px;margin-bottom:2px;}
+
+/* ── macro cards ── */
+.macro-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:8px;
+}
+.macro-card{
+  background:rgba(240,180,41,.08);
+  border:1px solid rgba(240,180,41,.25);
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+}
+.macro-num{
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  font-weight:900;
+  color:var(--gold);
+  line-height:1;
+}
+.macro-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+  margin-top:6px;
+}
+
+.cta-strip{
+  background:var(--gold);
+  color:var(--navy);
+  padding:40px;
+  border-radius:24px;
+  margin:64px 0 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.cta-strip h3{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  line-height:1.05;
+}
+.cta-strip p{
+  margin-top:8px;
+  color:rgba(14,24,40,.72);
+}
+.cta-strip .btn{
+  background:var(--navy);
+  color:var(--gold);
+  white-space:nowrap;
+}
+
+/* ── tracker grid ── */
+.tracker-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+  font-size:13px;
+}
+.tracker-table th{
+  font-family:'DM Mono',monospace;
+  font-size:9.5px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--gold);
+  padding:10px 8px;
+  border-bottom:2px solid rgba(240,180,41,.3);
+  text-align:left;
+}
+.tracker-table td{
+  padding:11px 8px;
+  border-bottom:1px solid var(--line);
+  color:var(--muted);
+}
+
+.checklist{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+}
+.check-group h3{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  margin-bottom:16px;
+}
+.check-item{
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:13px;
+  padding:14px 0;
+  border-top:1px solid var(--line);
+}
+.dark .check-item{border-color:rgba(255,255,255,.1)}
+.check{
+  width:26px;
+  height:26px;
+  border:2px solid var(--gold);
+  border-radius:7px;
+  cursor:pointer;
+}
+.check.checked{
+  background:var(--gold);
+  position:relative;
+}
+.check.checked:after{
+  content:"✓";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:var(--navy);
+  font-weight:900;
+  font-size:14px;
+}
+.check-item strong{
+  display:block;
+  margin-bottom:3px;
+  font-size:14px;
+}
+.check-item span{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+.dark .check-item span{color:rgba(255,255,255,.6)}
+
+.footer{
+  background:var(--navy);
+  color:white;
+  padding:40px 6%;
+  border-top:4px solid var(--gold);
+}
+.footer-inner{
+  max-width:1180px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+}
+.footer strong{
+  color:var(--gold);
+  font-family:'Playfair Display',serif;
+  font-size:21px;
+}
+.footer p{
+  max-width:760px;
+  color:rgba(255,255,255,.55);
+  font-size:12px;
+  line-height:1.7;
+}
+
+@media(max-width:900px){
+  .nav{height:auto;min-height:72px;padding:14px 5%;align-items:flex-start}
+  .nav-links{display:none}
+  .hero{padding:130px 5% 70px;background-position:center}
+  .split,.checklist,.macro-grid{grid-template-columns:1fr}
+  .split.reverse .image-wrap{order:0}
+  .image-wrap{position:static;}
+  .cta-strip{flex-direction:column;align-items:flex-start}
+  .chain-table{font-size:12px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════
+     PASSCODE GATE
+══════════════════════════════ -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-badge">RP</div>
+    <div class="gate-title">Road <span>Ready</span> Guide</div>
+    <div class="gate-sub">This content is for paid members only. Enter your access code below — it was sent to you after your Venmo payment.</div>
+    <input type="text" id="passInput" class="gate-input" placeholder="ENTER ACCESS CODE" maxlength="20" autocomplete="off">
+    <button class="gate-btn" onclick="checkPasscode()">Unlock My Guide &rarr;</button>
+    <div class="gate-error" id="gateError">That code didn't match. Double check your email and try again.</div>
+    <div class="gate-help">
+      Just paid? Codes are sent within 24 hours after your Venmo payment is confirmed.<br>
+      Need help? Email <a href="mailto:shop.lifescape@gmail.com">shop.lifescape@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PROTECTED SITE CONTENT
+══════════════════════════════ -->
+<div id="site-content">
+
+<header class="nav">
+  <a href="#top" class="brand">
+    <div class="logo">RP</div>
+    <div>
+      <div class="brand-title">Road<span>Proof</span></div>
+      <span class="brand-sub">Road Ready Guide</span>
+    </div>
+  </a>
+
+  <nav class="nav-links">
+    <a href="#nutrition">Nutrition</a>
+    <a href="#chains">Truck Stops</a>
+    <a href="#mealplan">Meal Plan</a>
+    <a href="#fitness">Fitness</a>
+    <a href="#tracker">Tracker</a>
+    <a class="nav-cta" href="https://roadproofhealth.github.io/roadproof/">Main Site</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Tier 02 &middot; Paid Member Content</div>
+    <div class="price-pill">
+      <span class="amt">$97</span>
+      <span class="type">one-time &middot; yours forever</span>
+    </div>
+    <h1>The Road Ready<br><span>Guide</span></h1>
+    <p>The complete cab nutrition system &mdash; macro targets, meal timing built around your HOS windows, exactly what to order at every major truck stop chain, a full 30-day eating plan, cab-friendly fitness, and your printable wellness tracker.</p>
+    <div class="hero-actions">
+      <a href="#nutrition" class="btn btn-gold">Start the Guide</a>
+      <a href="#tracker" class="btn btn-outline">Jump to Tracker</a>
+    </div>
+  </div>
+</section>
+
+<div class="jump">
+  <strong>Quick Jump</strong>
+  <a href="#nutrition">Nutrition Framework</a>
+  <a href="#chains">Truck Stop Chains</a>
+  <a href="#stocking">Cab Stocking</a>
+  <a href="#mealplan">30-Day Meal Plan</a>
+  <a href="#fitness">Cab Fitness</a>
+  <a href="#apnea">Sleep Apnea Check</a>
+  <a href="#tracker">Wellness Tracker</a>
+</div>
+
+<!-- ══════════════════════════════
+     NUTRITION FRAMEWORK
+══════════════════════════════ -->
+<section class="section" id="nutrition">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">Full Nutrition Framework</div>
+      <h2>Macro targets built for a body that sits 10+ hours a day.</h2>
+      <p>This isn't gym-bro nutrition. These are macro ranges specifically calculated for drivers managing blood pressure and weight while sitting most of the day, built around real truck stop food &mdash; not chicken breast and rice.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <div class="protocol">
+          <div class="meta">Daily targets &middot; Adjust to your size</div>
+          <h3>Your Daily Macro Range</h3>
+          <p>Based on a 180&ndash;220 lb driver in a seated occupation aiming to maintain or lose weight while protecting blood pressure. Adjust down 10% if you're under 160 lbs, up 10% if over 240 lbs.</p>
+          <div class="macro-grid">
+            <div class="macro-card">
+              <div class="macro-num">140g</div>
+              <div class="macro-label">Protein</div>
+            </div>
+            <div class="macro-card">
+              <div class="macro-num">180g</div>
+              <div class="macro-label">Carbs</div>
+            </div>
+            <div class="macro-card">
+              <div class="macro-num">65g</div>
+              <div class="macro-label">Fat</div>
+            </div>
+          </div>
+          <div class="note">Roughly 2,000&ndash;2,200 calories per day. Protein is the priority macro &mdash; it preserves muscle and keeps you full longer between stops, which directly reduces snacking.</div>
+        </div>
+
+        <div class="protocol">
+          <div class="meta">Sodium target &middot; The #1 lever</div>
+          <h3>Your Sodium Ceiling</h3>
+          <p>Most truck stop meals contain 1,500&ndash;2,500mg of sodium in a single item. The American Heart Association recommends an ideal limit of 1,500mg per day for blood pressure management.</p>
+          <ul class="steps">
+            <li><span class="num">&#10022;</span><span><strong>Target:</strong> Under 2,000mg total sodium per day</span></li>
+            <li><span class="num">&#10022;</span><span><strong>Reality check:</strong> One fast food combo meal can be 1,800&ndash;2,400mg alone</span></li>
+            <li><span class="num">&#10022;</span><span><strong>The fix:</strong> One high-sodium meal per day, max. Build the other two around the swaps in this guide.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="image-wrap">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80" alt="Healthy meal prep">
+        <div class="image-caption">Macros matter less than consistency. Hit the range, not perfection.</div>
+      </div>
+    </div>
+
+    <div class="protocol" style="border-top:none;">
+      <div class="meta">Meal timing &middot; Built around HOS</div>
+      <h3>Eating Around Your Driving Windows</h3>
+      <p>When you eat matters as much as what you eat. This timing strategy avoids the energy crash that hits most drivers around hour 5&ndash;6 of a shift.</p>
+      <ul class="steps">
+        <li><span class="num">1</span><span><strong>Before driving (30 min prior):</strong> Protein + complex carb &mdash; eggs, oatmeal, or a protein bar. Avoid sugary pastries that spike and crash.</span></li>
+        <li><span class="num">2</span><span><strong>Hour 3&ndash;4 of shift:</strong> Small protein snack (nuts, jerky, string cheese) to prevent the energy dip before it happens.</span></li>
+        <li><span class="num">3</span><span><strong>Main meal at your break:</strong> Balanced plate &mdash; protein, vegetable or fruit, moderate carb. This is your 30-minute HOS break.</span></li>
+        <li><span class="num">4</span><span><strong>Evening meal, 2+ hours before sleep:</strong> Lighter, lower sodium. Heavy late meals disrupt sleep quality and raise overnight blood pressure.</span></li>
+      </ul>
+      <div class="note">If you're doing an overnight push, treat your "breakfast" as whatever meal follows your longest sleep block &mdash; your body's clock matters more than the actual clock on the wall.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     TRUCK STOP CHAIN GUIDE
+══════════════════════════════ -->
+<section class="section cream" id="chains">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">Truck Stop Chain Guide</div>
+      <h2>Exactly what to order &mdash; by name &mdash; at every major chain.</h2>
+      <p>Not "eat healthy." Actual menu items, by name, at the chains you already stop at. Order these and you stay inside your macro and sodium targets without thinking twice.</p>
+    </div>
+
+    <div class="protocol" style="border-top:none;">
+      <h3>Pilot Flying J</h3>
+      <table class="chain-table">
+        <tr><th>Order This</th><th>Why It Works</th></tr>
+        <tr><td class="order-good">Grilled chicken sandwich, no mayo</td><td>~35g protein, moderate sodium if you skip the bun's worth of sauce</td></tr>
+        <tr><td class="order-good">Hard-boiled eggs + string cheese (cooler section)</td><td>Pure protein, minimal sodium, zero prep</td></tr>
+        <tr><td class="order-good">Rotisserie chicken (whole or half)</td><td>High protein, you control the portion, no breading</td></tr>
+        <tr><td>Avoid: Fried chicken tenders, loaded nachos</td><td>800&ndash;1,400mg sodium per serving alone</td></tr>
+      </table>
+    </div>
+
+    <div class="protocol">
+      <h3>Love's Travel Stops</h3>
+      <table class="chain-table">
+        <tr><th>Order This</th><th>Why It Works</th></tr>
+        <tr><td class="order-good">Subway inside Love's: turkey or chicken, no sauce, double veggies</td><td>~350 cal, 25g protein, you control sodium by skipping sauce</td></tr>
+        <tr><td class="order-good">Fresh fruit cup or apple (cooler section)</td><td>Replaces chips as your side, fiber and potassium support healthy BP</td></tr>
+        <tr><td class="order-good">Unsalted or lightly salted nuts</td><td>Healthy fat, protein, much lower sodium than chips</td></tr>
+        <tr><td>Avoid: Footlong subs with multiple sauces, loaded baked potato</td><td>Sauce alone can add 600&ndash;900mg sodium</td></tr>
+      </table>
+    </div>
+
+    <div class="protocol">
+      <h3>TA / Petro</h3>
+      <table class="chain-table">
+        <tr><th>Order This</th><th>Why It Works</th></tr>
+        <tr><td class="order-good">Grilled chicken breast plate (Country Pride restaurant)</td><td>High protein, ask for steamed veggies instead of fries</td></tr>
+        <tr><td class="order-good">Egg white omelet with vegetables</td><td>High protein, low sodium if you skip bacon/sausage add-ons</td></tr>
+        <tr><td class="order-good">Side salad with grilled chicken, dressing on the side</td><td>You control exactly how much dressing you use</td></tr>
+        <tr><td>Avoid: Chicken fried steak, biscuits and gravy</td><td>900&ndash;1,200mg sodium and heavy saturated fat</td></tr>
+      </table>
+    </div>
+
+    <div class="protocol">
+      <h3>McDonald's</h3>
+      <table class="chain-table">
+        <tr><th>Order This</th><th>Why It Works</th></tr>
+        <tr><td class="order-good">Grilled chicken sandwich, no mayo + side salad</td><td>~470 cal total, swaps fries for salad saves ~500mg sodium</td></tr>
+        <tr><td class="order-good">Egg McMuffin (breakfast) &mdash; skip the hash browns</td><td>300 cal, 17g protein, hash browns alone are 310mg sodium</td></tr>
+        <tr><td class="order-good">Black coffee or unsweetened tea</td><td>Zero added sugar, zero sodium, keeps you alert without the energy drink crash</td></tr>
+        <tr><td>Avoid: Big Mac meal with fries + soda</td><td>Combo alone can hit 1,300mg sodium + 60g sugar from the soda</td></tr>
+      </table>
+    </div>
+
+    <div class="protocol">
+      <h3>Subway (standalone or inside any chain)</h3>
+      <table class="chain-table">
+        <tr><th>Order This</th><th>Why It Works</th></tr>
+        <tr><td class="order-good">6-inch turkey or rotisserie chicken, wheat bread, double veggies, mustard</td><td>~350 cal, 25g protein, under 800mg sodium</td></tr>
+        <tr><td class="order-good">Egg white & cheese wrap (breakfast)</td><td>High protein, moderate sodium, filling</td></tr>
+        <tr><td>Avoid: Footlong with multiple meats + cheese + mayo</td><td>Can exceed 2,000mg sodium in one sandwich</td></tr>
+      </table>
+    </div>
+
+    <div class="note" style="max-width:760px;">This list covers the five chains drivers report stopping at most. The principle applies everywhere: grilled over fried, sauce on the side, swap the starchy side for vegetables or fruit, and skip the combo upsell.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CAB STOCKING + GROCERY GUIDE
+══════════════════════════════ -->
+<section class="section dark" id="stocking">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">Cab Stocking List</div>
+      <h2>What to keep in your cab &mdash; and your restock day shopping list.</h2>
+      <p>Half the battle is having the right food within reach before hunger makes the decision for you. Here's exactly what to buy on restock day at any Walmart Supercenter or truck stop store.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <div class="protocol">
+          <div class="meta">No refrigeration needed</div>
+          <h3>Shelf-Stable Cab Stock</h3>
+          <ul class="steps">
+            <li><span class="num">&#10022;</span><span>Unsalted or lightly salted almonds, walnuts, or mixed nuts</span></li>
+            <li><span class="num">&#10022;</span><span>Protein bars under 10g sugar (check label &mdash; many are candy bars in disguise)</span></li>
+            <li><span class="num">&#10022;</span><span>Tuna or chicken packets (no can opener needed)</span></li>
+            <li><span class="num">&#10022;</span><span>Whole grain crackers</span></li>
+            <li><span class="num">&#10022;</span><span>Dried fruit, unsweetened (raisins, apricots)</span></li>
+            <li><span class="num">&#10022;</span><span>Oatmeal cups (just add hot water from any truck stop)</span></li>
+            <li><span class="num">&#10022;</span><span>Sugar-free electrolyte packets</span></li>
+          </ul>
+        </div>
+
+        <div class="protocol">
+          <div class="meta">Cooler section (12V cooler or insulated bag)</div>
+          <h3>Cold Stock</h3>
+          <ul class="steps">
+            <li><span class="num">&#10022;</span><span>Hard-boiled eggs (pre-boil a dozen on restock day)</span></li>
+            <li><span class="num">&#10022;</span><span>String cheese or cheese sticks</span></li>
+            <li><span class="num">&#10022;</span><span>Greek yogurt cups (high protein, low sugar varieties)</span></li>
+            <li><span class="num">&#10022;</span><span>Pre-cut vegetables (baby carrots, celery, cucumber)</span></li>
+            <li><span class="num">&#10022;</span><span>Fresh fruit: apples, oranges (they travel well)</span></li>
+            <li><span class="num">&#10022;</span><span>Rotisserie chicken, portioned into containers</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="protocol">
+          <div class="meta">Restock day &middot; ~$45&ndash;55 per week</div>
+          <h3>Your Walmart Shopping List</h3>
+          <p>This list fills both the shelf-stable and cooler stock above. Total cost typically runs $45&ndash;55 depending on region, and covers a full week of snacks and meal backups.</p>
+          <ul class="steps">
+            <li><span class="num">1</span><span>1 dozen eggs (boil immediately)</span></li>
+            <li><span class="num">2</span><span>1 bag mixed unsalted nuts</span></li>
+            <li><span class="num">3</span><span>1 box whole grain crackers</span></li>
+            <li><span class="num">4</span><span>String cheese, 12-pack</span></li>
+            <li><span class="num">5</span><span>Greek yogurt, 6-pack</span></li>
+            <li><span class="num">6</span><span>5&ndash;6 pieces fresh fruit</span></li>
+            <li><span class="num">7</span><span>Baby carrots or pre-cut veggie tray</span></li>
+            <li><span class="num">8</span><span>1 rotisserie chicken</span></li>
+            <li><span class="num">9</span><span>Protein bars, box of 8&ndash;12</span></li>
+            <li><span class="num">10</span><span>Electrolyte packets, container of 10</span></li>
+          </ul>
+          <div class="note">Pre-portion everything into containers on restock day. Decision fatigue is real &mdash; if it's already portioned, you're far more likely to grab it instead of the gas station candy aisle.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     30-DAY MEAL PLAN
+══════════════════════════════ -->
+<section class="section" id="mealplan">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">30-Day Eating Plan</div>
+      <h2>Breakfast, lunch, dinner, and snacks &mdash; every day for a month.</h2>
+      <p>Expanded from the 3-day plan in the free guide. Real food. Real truck stops. Repeats every 6 days so it stays simple to follow without getting boring.</p>
+    </div>
+
+    <div class="meal-grid">
+      <div class="meal-card">
+        <div class="meal-day">DAY 1 &middot; 7 &middot; 13 &middot; 19 &middot; 25</div>
+        <div class="meal-row"><strong>BREAKFAST</strong>2 hard-boiled eggs + black coffee</div>
+        <div class="meal-row"><strong>LUNCH</strong>Subway turkey 6-inch, double veggies, mustard</div>
+        <div class="meal-row"><strong>DINNER</strong>Rotisserie chicken + side salad</div>
+        <div class="meal-row"><strong>SNACK</strong>Mixed nuts + apple</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-day">DAY 2 &middot; 8 &middot; 14 &middot; 20 &middot; 26</div>
+        <div class="meal-row"><strong>BREAKFAST</strong>Oatmeal cup + protein packet</div>
+        <div class="meal-row"><strong>LUNCH</strong>Grilled chicken wrap (Wendy's or similar)</div>
+        <div class="meal-row"><strong>DINNER</strong>Deli turkey + veggie tray</div>
+        <div class="meal-row"><strong>SNACK</strong>Greek yogurt + berries</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-day">DAY 3 &middot; 9 &middot; 15 &middot; 21 &middot; 27</div>
+        <div class="meal-row"><strong>BREAKFAST</strong>Egg white wrap (Subway)</div>
+        <div class="meal-row"><strong>LUNCH</strong>Grilled chicken sandwich + side salad</div>
+        <div class="meal-row"><strong>DINNER</strong>Canned tuna + whole grain crackers</div>
+        <div class="meal-row"><strong>SNACK</strong>Protein bar + electrolyte water</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-day">DAY 4 &middot; 10 &middot; 16 &middot; 22 &middot; 28</div>
+        <div class="meal-row"><strong>BREAKFAST</strong>Greek yogurt + dried fruit</div>
+        <div class="meal-row"><strong>LUNCH</strong>Pilot rotisserie chicken (half) + fruit cup</div>
+        <div class="meal-row"><strong>DINNER</strong>Grilled chicken plate (TA Country Pride)</div>
+        <div class="meal-row"><strong>SNACK</strong>String cheese + carrots</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-day">DAY 5 &middot; 11 &middot; 17 &middot; 23 &middot; 29</div>
+        <div class="meal-row"><strong>BREAKFAST</strong>2 eggs + 1 slice whole wheat toast</div>
+        <div class="meal-row"><strong>LUNCH</strong>McDonald's grilled chicken + side salad</div>
+        <div class="meal-row"><strong>DINNER</strong>Deli chicken wrap + veggies</div>
+        <div class="meal-row"><strong>SNACK</strong>Apple + almond butter packet</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-day">DAY 6 &middot; 12 &middot; 18 &middot; 24 &middot; 30</div>
+        <div class="meal-row"><strong>BREAKFAST</strong>Protein bar + black coffee</div>
+        <div class="meal-row"><strong>LUNCH</strong>Subway chicken salad bowl (no bread)</div>
+        <div class="meal-row"><strong>DINNER</strong>Rotisserie chicken + steamed veggies</div>
+        <div class="meal-row"><strong>SNACK</strong>Greek yogurt + nuts</div>
+      </div>
+    </div>
+
+    <div class="note" style="max-width:760px;margin-top:30px;">Hydration target every day: half your body weight in ounces of water (a 200 lb driver targets 100oz). Drink most of it in the first 8 hours of your shift and taper in the evening to manage bathroom stops.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CAB-FRIENDLY FITNESS
+══════════════════════════════ -->
+<section class="section dark" id="fitness">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">Cab-Friendly Fitness Program</div>
+      <h2>A structured 4-week program. Zero equipment. Zero gym.</h2>
+      <p>Each session is under 20 minutes and built specifically for HOS breaks. This is the expanded version of the Parking Lot Protocol from the free guide &mdash; with weekly progression.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <div class="protocol">
+          <div class="meta">Week 1&ndash;2 &middot; Foundation</div>
+          <h3>Building the Habit</h3>
+          <ul class="steps">
+            <li><span class="num">&#10022;</span><span>3 laps around your truck (walk) at every fuel stop</span></li>
+            <li><span class="num">&#10022;</span><span>10 squats + 10 push-ups against your rig</span></li>
+            <li><span class="num">&#10022;</span><span>30-second hip flexor stretch each side</span></li>
+            <li><span class="num">&#10022;</span><span>Goal: consistency, not intensity. Do it every single stop.</span></li>
+          </ul>
+        </div>
+
+        <div class="protocol">
+          <div class="meta">Week 3&ndash;4 &middot; Progression</div>
+          <h3>Building Real Strength</h3>
+          <ul class="steps">
+            <li><span class="num">&#10022;</span><span>4 laps around your truck</span></li>
+            <li><span class="num">&#10022;</span><span>15 squats + 15 push-ups + 10 lunges each leg</span></li>
+            <li><span class="num">&#10022;</span><span>20 calf raises + 30-second plank against your bumper</span></li>
+            <li><span class="num">&#10022;</span><span>Hip flexor + hamstring stretch, 45 seconds each side</span></li>
+          </ul>
+          <div class="note">By week 4, most drivers report noticeably less back pain and better energy through the afternoon slump.</div>
+        </div>
+      </div>
+
+      <div class="image-wrap">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80" alt="Outdoor exercise">
+        <div class="image-caption">500+ reps a week from stops alone changes a body over time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLEEP APNEA SELF-CHECK
+══════════════════════════════ -->
+<section class="section cream" id="apnea">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">Sleep Apnea Self-Assessment</div>
+      <h2>Know your risk before your DOT examiner does.</h2>
+      <p>Sleep apnea is the #2 reason drivers fail or receive a conditional DOT certificate. This structured self-check helps you understand your risk level before you're in the exam chair.</p>
+    </div>
+
+    <div class="protocol" style="border-top:none;">
+      <h3>The STOP-BANG Risk Check</h3>
+      <p>This is a simplified version of the clinical screening tool used by sleep specialists. Count how many apply to you.</p>
+      <ul class="steps">
+        <li><span class="num">&#9888;</span><span><strong>S</strong>noring loudly (louder than talking, heard through walls)</span></li>
+        <li><span class="num">&#9888;</span><span><strong>T</strong>ired during the day despite adequate sleep hours</span></li>
+        <li><span class="num">&#9888;</span><span><strong>O</strong>bserved stopping breathing during sleep (ask a partner or rider)</span></li>
+        <li><span class="num">&#9888;</span><span><strong>P</strong>ressure &mdash; high blood pressure, treated or untreated</span></li>
+        <li><span class="num">&#9888;</span><span><strong>B</strong>MI over 35</span></li>
+        <li><span class="num">&#9888;</span><span><strong>A</strong>ge over 50</span></li>
+        <li><span class="num">&#9888;</span><span><strong>N</strong>eck circumference over 17in (men) / 16in (women)</span></li>
+        <li><span class="num">&#9888;</span><span><strong>G</strong>ender &mdash; male sex (higher baseline risk)</span></li>
+      </ul>
+      <div class="note">0&ndash;2 yes answers: low risk. 3&ndash;4: intermediate risk &mdash; mention it to your doctor. 5+: high risk &mdash; talk to your doctor before your next DOT physical, not after. This tool does not diagnose sleep apnea; only a sleep study can do that. It tells you whether the conversation with your doctor is worth having now.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     WELLNESS TRACKER
+══════════════════════════════ -->
+<section class="section" id="tracker">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">Printable Wellness Tracker</div>
+      <h2>Your 30-day daily tracker &mdash; print it, tape it to your dash.</h2>
+      <p>Track the five numbers that matter most. Patterns over 30 days tell you more than any single day's reading.</p>
+    </div>
+
+    <table class="tracker-table">
+      <tr>
+        <th>Day</th><th>BP Reading</th><th>Water (oz)</th><th>Sleep (hrs)</th><th>Movement &#10003;</th><th>Mood (1-5)</th>
+      </tr>
+      <tr><td>1</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
+      <tr><td>2</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
+      <tr><td>3</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
+      <tr><td>4</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
+      <tr><td>5</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
+      <tr><td>6</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
+      <tr><td>7</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
+    </table>
+    <div class="note" style="max-width:760px;margin-top:20px;">This 7-day sample repeats for the full 30 days. Print this page (Ctrl/Cmd + P) for a clean physical copy, or take a screenshot to keep on your phone. Look for trends weekly &mdash; one bad day means nothing, but a week of climbing blood pressure means it's time to revisit Steps 1&ndash;3 of this guide.</div>
+
+    <div class="cta-strip">
+      <div>
+        <h3>Questions about anything in this guide?</h3>
+        <p>Email our RN co-founder directly &mdash; we respond within 24 hours.</p>
+      </div>
+      <a class="btn" href="mailto:shop.lifescape@gmail.com">Email Us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <strong>Road Proof Health &middot; Road Ready Guide</strong>
+    <p>A Lifescape Company &middot; shop.lifescape@gmail.com &middot; &copy; 2026 Road Proof Health. This content is for educational purposes only and does not constitute medical advice. Always consult a licensed healthcare provider for personal medical decisions. This guide is licensed for personal use by the purchasing driver only.</p>
+  </div>
+</footer>
+
+</div><!-- /site-content -->
+
+<script>
+// ══════════════════════════════
+// PASSCODE GATE LOGIC
+// ══════════════════════════════
+// IMPORTANT: This is a client-side deterrent, not real security.
+// Anyone who views page source can see the code below.
+// It stops casual sharing and looks professional, but determined
+// users could bypass it. Treat this like a "members only" sign,
+// not a locked vault. For true security you'd need a backend
+// (e.g. a paid Kajabi/Podia product, or a serverless auth check).
+
+const VALID_CODES = ["ROADREADY97", "RP97DRIVER", "MILES2026"];
+// ^ Add/remove codes here. Give each buyer (or batch of buyers) a code.
+// You can also reuse one shared code for everyone if simpler to manage.
+
+function checkPasscode() {
+  const input = document.getElementById('passInput').value.trim().toUpperCase();
+  const error = document.getElementById('gateError');
+
+  if (VALID_CODES.includes(input)) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('site-content').style.display = 'block';
+    // remember access for this browser for 90 days
+    try {
+      localStorage.setItem('rp_road_ready_access', 'granted');
+      localStorage.setItem('rp_road_ready_expiry', Date.now() + (90*24*60*60*1000));
+    } catch(e) {}
+  } else {
+    error.classList.add('show');
+    document.getElementById('passInput').value = '';
+    document.getElementById('passInput').focus();
+  }
+}
+
+// Allow Enter key to submit
+document.getElementById('passInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') checkPasscode();
+});
+
+// Check for remembered access on page load
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    const granted = localStorage.getItem('rp_road_ready_access');
+    const expiry = localStorage.getItem('rp_road_ready_expiry');
+    if (granted === 'granted' && expiry && Date.now() < parseInt(expiry)) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('site-content').style.display = 'block';
+    }
+  } catch(e) {}
+});
+
+// ══════════════════════════════
+// CHECKLIST TOGGLE (if used elsewhere)
+// ══════════════════════════════
+function toggleCheck(el){
+  el.classList.toggle("checked");
+}
+</script>
+
+</body>
+</html>
