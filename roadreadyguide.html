@@ -707,6 +707,199 @@ a{text-decoration:none;color:inherit}
   line-height:1.7;
 }
 
+
+/* ── evidence/source notes ── */
+.source-note{
+  margin-top:14px;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--muted);
+  font-style:italic;
+}
+.source-note a{
+  color:var(--navy);
+  font-weight:800;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.dark .source-note{color:rgba(255,255,255,.62)}
+.dark .source-note a{color:var(--gold)}
+
+/* ── updated macro labels ── */
+.macro-label{
+  color:var(--navy)!important;
+  font-weight:900;
+}
+
+/* ── chain guide cards ── */
+.chain-block{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:26px;
+  margin:24px 0;
+  box-shadow:0 12px 34px rgba(28,43,74,.06);
+}
+.chain-block h3{
+  color:var(--navy);
+  border-bottom:2px solid rgba(240,180,41,.35);
+  padding-bottom:12px;
+  margin-bottom:18px;
+}
+.chain-category{
+  margin-top:18px;
+  padding-top:4px;
+}
+.chain-category-title{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  font-weight:900;
+}
+.chain-option{
+  display:grid;
+  grid-template-columns:1fr 1.25fr;
+  gap:18px;
+  border-top:1px solid var(--line);
+  padding:13px 0;
+}
+.chain-option:first-of-type{border-top:none}
+.chain-option strong{
+  color:var(--green);
+  font-weight:900;
+}
+.chain-option span{
+  color:var(--muted);
+  line-height:1.55;
+  font-size:13.5px;
+}
+.chain-avoid{
+  margin-top:14px;
+  padding:13px 15px;
+  border-left:4px solid var(--gold);
+  background:rgba(240,180,41,.10);
+  border-radius:10px;
+  color:var(--text);
+  line-height:1.55;
+}
+
+/* ── interactive cab shopping list ── */
+.stock-system{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:28px;
+}
+.stock-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(240,180,41,.25);
+  border-radius:18px;
+  padding:22px;
+}
+.stock-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  margin-bottom:10px;
+  color:white;
+}
+.stock-card .meta{margin-bottom:14px}
+.stock-list{
+  list-style:none;
+  display:grid;
+  gap:10px;
+}
+.stock-list li{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  color:rgba(255,255,255,.76);
+  line-height:1.45;
+  font-size:14px;
+}
+.stock-list li::before{
+  content:"✓";
+  color:var(--gold);
+  font-weight:900;
+  flex-shrink:0;
+}
+.restock-panel{
+  margin-top:30px;
+  background:var(--gold);
+  color:var(--navy);
+  border-radius:22px;
+  padding:28px;
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:26px;
+  align-items:start;
+}
+.restock-panel h3{
+  font-family:'Playfair Display',serif;
+  font-size:32px;
+  line-height:1.05;
+  margin-bottom:10px;
+}
+.restock-panel p{
+  color:rgba(14,24,40,.76);
+  line-height:1.65;
+}
+.restock-list{
+  columns:2;
+  column-gap:26px;
+  list-style:none;
+}
+.restock-list li{
+  break-inside:avoid;
+  padding:7px 0;
+  font-weight:800;
+  font-size:14px;
+}
+.restock-list li::before{
+  content:"□";
+  margin-right:8px;
+  font-family:'DM Mono',monospace;
+}
+
+/* ── STOP-BANG styling ── */
+.stopbang-title{
+  color:var(--navy);
+}
+.stopbang-word{
+  display:inline-flex;
+  gap:4px;
+  margin-left:4px;
+}
+.stopbang-letter{
+  color:var(--gold);
+  font-weight:900;
+}
+.stopbang-list strong{
+  color:var(--gold);
+  font-weight:900;
+  font-size:15px;
+}
+
+@media(max-width:900px){
+  .stock-system,
+  .restock-panel{
+    grid-template-columns:1fr;
+  }
+  .restock-list{
+    columns:1;
+  }
+  .chain-option{
+    grid-template-columns:1fr;
+    gap:5px;
+  }
+  #nutrition .split{
+    gap:22px;
+    margin:34px 0;
+  }
+}
+
 @media(max-width:900px){
   .nav{height:auto;min-height:72px;padding:14px 5%;align-items:flex-start}
   .nav-links{display:none}
@@ -849,7 +1042,7 @@ a{text-decoration:none;color:inherit}
               <div class="macro-label">Fat</div>
             </div>
           </div>
-          <div class="note">Roughly 2,000&ndash;2,200 calories per day. Protein is the priority macro &mdash; it preserves muscle and keeps you full longer between stops, which directly reduces snacking.</div>
+          <div class="note">Roughly 2,000&ndash;2,200 calories per day. Protein is the priority macro &mdash; it helps preserve muscle and keeps you full longer between stops, which can reduce impulse snacking.</div><div class="source-note">Source support: Adult activity guidance recommends regular aerobic activity and muscle-strengthening activity to support long-term health. <a href="https://www.cdc.gov/physical-activity-basics/guidelines/adults.html" target="_blank" rel="noopener">CDC adult physical activity guidance</a></div>
         </div>
 
         <div class="protocol">
@@ -880,7 +1073,7 @@ a{text-decoration:none;color:inherit}
         <li><span class="num">3</span><span><strong>Main meal at your break:</strong> Balanced plate &mdash; protein, vegetable or fruit, moderate carb. This is your 30-minute HOS break.</span></li>
         <li><span class="num">4</span><span><strong>Evening meal, 2+ hours before sleep:</strong> Lighter, lower sodium. Heavy late meals disrupt sleep quality and raise overnight blood pressure.</span></li>
       </ul>
-      <div class="note">If you're doing an overnight push, treat your "breakfast" as whatever meal follows your longest sleep block &mdash; your body's clock matters more than the actual clock on the wall.</div>
+      <div class="note">If you're doing an overnight push, treat your "breakfast" as whatever meal follows your longest sleep block &mdash; your body's clock matters more than the actual clock on the wall.</div><div class="source-note">Source support: The American Heart Association recommends no more than 2,300mg sodium per day, with an optimal goal of 1,500mg for most adults, especially those managing blood pressure. <a href="https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/how-much-sodium-should-i-eat-per-day" target="_blank" rel="noopener">AHA sodium recommendation</a></div>
     </div>
   </div>
 </section>
@@ -893,64 +1086,80 @@ a{text-decoration:none;color:inherit}
     <div class="section-head">
       <div class="kicker">Truck Stop Chain Guide</div>
       <h2>Exactly what to order &mdash; by name &mdash; at every major chain.</h2>
-      <p>Not "eat healthy." Actual menu items, by name, at the chains you already stop at. Order these and you stay inside your macro and sodium targets without thinking twice.</p>
+      <p>Not "eat healthy." Actual menu choices by category, so you can make a quick decision whether you are stopping for breakfast, lunch, dinner, or a grab-and-go snack.</p>
     </div>
 
-    <div class="protocol" style="border-top:none;">
+    <div class="chain-block">
       <h3>Pilot Flying J</h3>
-      <table class="chain-table">
-        <tr><th>Order This</th><th>Why It Works</th></tr>
-        <tr><td class="order-good">Grilled chicken sandwich, no mayo</td><td>~35g protein, moderate sodium if you skip the bun's worth of sauce</td></tr>
-        <tr><td class="order-good">Hard-boiled eggs + string cheese (cooler section)</td><td>Pure protein, minimal sodium, zero prep</td></tr>
-        <tr><td class="order-good">Rotisserie chicken (whole or half)</td><td>High protein, you control the portion, no breading</td></tr>
-        <tr><td>Avoid: Fried chicken tenders, loaded nachos</td><td>800&ndash;1,400mg sodium per serving alone</td></tr>
-      </table>
+      <div class="chain-category">
+        <div class="chain-category-title">Breakfast / Cooler Grab</div>
+        <div class="chain-option"><strong>Hard-boiled eggs + string cheese</strong><span>Protein-forward, fast, and easier to keep lower sodium than hot-case foods.</span></div>
+      </div>
+      <div class="chain-category">
+        <div class="chain-category-title">Lunch / Dinner</div>
+        <div class="chain-option"><strong>Grilled chicken sandwich, no mayo</strong><span>Solid protein and lighter than fried chicken. Skip creamy sauces when possible.</span></div>
+        <div class="chain-option"><strong>Rotisserie chicken, portioned</strong><span>High protein and easy to split into two meals if you have a cooler.</span></div>
+      </div>
+      <div class="chain-avoid"><strong>Limit:</strong> fried chicken tenders, loaded nachos, and hot-case combo meals. These can push sodium up quickly.</div>
     </div>
 
-    <div class="protocol">
+    <div class="chain-block">
       <h3>Love's Travel Stops</h3>
-      <table class="chain-table">
-        <tr><th>Order This</th><th>Why It Works</th></tr>
-        <tr><td class="order-good">Subway inside Love's: turkey or chicken, no sauce, double veggies</td><td>~350 cal, 25g protein, you control sodium by skipping sauce</td></tr>
-        <tr><td class="order-good">Fresh fruit cup or apple (cooler section)</td><td>Replaces chips as your side, fiber and potassium support healthy BP</td></tr>
-        <tr><td class="order-good">Unsalted or lightly salted nuts</td><td>Healthy fat, protein, much lower sodium than chips</td></tr>
-        <tr><td>Avoid: Footlong subs with multiple sauces, loaded baked potato</td><td>Sauce alone can add 600&ndash;900mg sodium</td></tr>
-      </table>
+      <div class="chain-category">
+        <div class="chain-category-title">Breakfast / Snack</div>
+        <div class="chain-option"><strong>Fresh fruit + lightly salted nuts</strong><span>Fiber, potassium, and healthy fat help replace chips and candy as the default grab.</span></div>
+      </div>
+      <div class="chain-category">
+        <div class="chain-category-title">Lunch / Dinner</div>
+        <div class="chain-option"><strong>Subway turkey or chicken, double veggies, mustard</strong><span>You control the bread, sauce, and vegetable load. Mustard is usually a better choice than creamy sauces.</span></div>
+      </div>
+      <div class="chain-avoid"><strong>Limit:</strong> footlong subs with multiple meats, cheese, and heavy sauces. The sodium can add up fast.</div>
     </div>
 
-    <div class="protocol">
+    <div class="chain-block">
       <h3>TA / Petro</h3>
-      <table class="chain-table">
-        <tr><th>Order This</th><th>Why It Works</th></tr>
-        <tr><td class="order-good">Grilled chicken breast plate (Country Pride restaurant)</td><td>High protein, ask for steamed veggies instead of fries</td></tr>
-        <tr><td class="order-good">Egg white omelet with vegetables</td><td>High protein, low sodium if you skip bacon/sausage add-ons</td></tr>
-        <tr><td class="order-good">Side salad with grilled chicken, dressing on the side</td><td>You control exactly how much dressing you use</td></tr>
-        <tr><td>Avoid: Chicken fried steak, biscuits and gravy</td><td>900&ndash;1,200mg sodium and heavy saturated fat</td></tr>
-      </table>
+      <div class="chain-category">
+        <div class="chain-category-title">Breakfast</div>
+        <div class="chain-option"><strong>Egg white omelet with vegetables</strong><span>Protein without the heavier sodium load from bacon, sausage, or gravy.</span></div>
+      </div>
+      <div class="chain-category">
+        <div class="chain-category-title">Lunch / Dinner</div>
+        <div class="chain-option"><strong>Grilled chicken breast plate</strong><span>Ask for vegetables instead of fries when available and keep sauces on the side.</span></div>
+        <div class="chain-option"><strong>Side salad with grilled chicken</strong><span>Use dressing on the side so you control both calories and sodium.</span></div>
+      </div>
+      <div class="chain-avoid"><strong>Limit:</strong> chicken fried steak, biscuits and gravy, and fried sides.</div>
     </div>
 
-    <div class="protocol">
+    <div class="chain-block">
       <h3>McDonald's</h3>
-      <table class="chain-table">
-        <tr><th>Order This</th><th>Why It Works</th></tr>
-        <tr><td class="order-good">Grilled chicken sandwich, no mayo + side salad</td><td>~470 cal total, swaps fries for salad saves ~500mg sodium</td></tr>
-        <tr><td class="order-good">Egg McMuffin (breakfast) &mdash; skip the hash browns</td><td>300 cal, 17g protein, hash browns alone are 310mg sodium</td></tr>
-        <tr><td class="order-good">Black coffee or unsweetened tea</td><td>Zero added sugar, zero sodium, keeps you alert without the energy drink crash</td></tr>
-        <tr><td>Avoid: Big Mac meal with fries + soda</td><td>Combo alone can hit 1,300mg sodium + 60g sugar from the soda</td></tr>
-      </table>
+      <div class="chain-category">
+        <div class="chain-category-title">Breakfast</div>
+        <div class="chain-option"><strong>Egg McMuffin, skip the hash browns</strong><span>A practical portion with protein. Skipping the hash browns keeps the meal lighter.</span></div>
+      </div>
+      <div class="chain-category">
+        <div class="chain-category-title">Lunch / Dinner</div>
+        <div class="chain-option"><strong>Chicken sandwich + side salad or apple slices when available</strong><span>Choose grilled or lighter options where available and avoid turning it into a large combo.</span></div>
+        <div class="chain-option"><strong>Black coffee or unsweetened tea</strong><span>Zero sugar and no energy-drink crash.</span></div>
+      </div>
+      <div class="chain-avoid"><strong>Limit:</strong> large burger meals with fries and soda. Combo meals can carry a heavy sodium and sugar load.</div>
     </div>
 
-    <div class="protocol">
-      <h3>Subway (standalone or inside any chain)</h3>
-      <table class="chain-table">
-        <tr><th>Order This</th><th>Why It Works</th></tr>
-        <tr><td class="order-good">6-inch turkey or rotisserie chicken, wheat bread, double veggies, mustard</td><td>~350 cal, 25g protein, under 800mg sodium</td></tr>
-        <tr><td class="order-good">Egg white & cheese wrap (breakfast)</td><td>High protein, moderate sodium, filling</td></tr>
-        <tr><td>Avoid: Footlong with multiple meats + cheese + mayo</td><td>Can exceed 2,000mg sodium in one sandwich</td></tr>
-      </table>
+    <div class="chain-block">
+      <h3>Subway</h3>
+      <div class="chain-category">
+        <div class="chain-category-title">Breakfast</div>
+        <div class="chain-option"><strong>Egg white and cheese wrap</strong><span>A simple protein-based breakfast when hot food options are limited.</span></div>
+      </div>
+      <div class="chain-category">
+        <div class="chain-category-title">Lunch / Dinner</div>
+        <div class="chain-option"><strong>6-inch turkey or rotisserie chicken, wheat, double veggies, mustard</strong><span>Moderate portion, lean protein, and more vegetables without heavy sauces.</span></div>
+        <div class="chain-option"><strong>Chicken salad bowl, no bread</strong><span>Good option when you want protein and vegetables without a heavy bread meal.</span></div>
+      </div>
+      <div class="chain-avoid"><strong>Limit:</strong> footlongs with multiple meats, cheese, and mayo-based sauces.</div>
     </div>
 
-    <div class="note" style="max-width:760px;">This list covers the five chains drivers report stopping at most. The principle applies everywhere: grilled over fried, sauce on the side, swap the starchy side for vegetables or fruit, and skip the combo upsell.</div>
+    <div class="note" style="max-width:760px;">The principle applies anywhere: grilled over fried, sauce on the side, add fruit or vegetables when possible, and skip the combo upsell when your blood pressure is the priority.</div>
+    <div class="source-note">Source support: The American Heart Association recommends limiting sodium and building a heart-healthy pattern around fruits, vegetables, whole grains, lean proteins, and lower-sodium choices. <a href="https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/managing-blood-pressure-with-a-heart-healthy-diet" target="_blank" rel="noopener">AHA heart-healthy diet guidance</a></div>
   </div>
 </section>
 
@@ -960,62 +1169,73 @@ a{text-decoration:none;color:inherit}
 <section class="section dark" id="stocking">
   <div class="section-inner">
     <div class="section-head">
-      <div class="kicker">Cab Stocking List</div>
-      <h2>What to keep in your cab &mdash; and your restock day shopping list.</h2>
-      <p>Half the battle is having the right food within reach before hunger makes the decision for you. Here's exactly what to buy on restock day at any Walmart Supercenter or truck stop store.</p>
+      <div class="kicker">Cab Stocking System</div>
+      <h2>Build your cab like a rolling wellness station.</h2>
+      <p>Half the battle is having the right food within reach before hunger makes the decision for you. Use this as a simple three-zone system: shelf-stable, cooler, and emergency backup.</p>
     </div>
 
-    <div class="split">
-      <div>
-        <div class="protocol">
-          <div class="meta">No refrigeration needed</div>
-          <h3>Shelf-Stable Cab Stock</h3>
-          <ul class="steps">
-            <li><span class="num">&#10022;</span><span>Unsalted or lightly salted almonds, walnuts, or mixed nuts</span></li>
-            <li><span class="num">&#10022;</span><span>Protein bars under 10g sugar (check label &mdash; many are candy bars in disguise)</span></li>
-            <li><span class="num">&#10022;</span><span>Tuna or chicken packets (no can opener needed)</span></li>
-            <li><span class="num">&#10022;</span><span>Whole grain crackers</span></li>
-            <li><span class="num">&#10022;</span><span>Dried fruit, unsweetened (raisins, apricots)</span></li>
-            <li><span class="num">&#10022;</span><span>Oatmeal cups (just add hot water from any truck stop)</span></li>
-            <li><span class="num">&#10022;</span><span>Sugar-free electrolyte packets</span></li>
-          </ul>
-        </div>
-
-        <div class="protocol">
-          <div class="meta">Cooler section (12V cooler or insulated bag)</div>
-          <h3>Cold Stock</h3>
-          <ul class="steps">
-            <li><span class="num">&#10022;</span><span>Hard-boiled eggs (pre-boil a dozen on restock day)</span></li>
-            <li><span class="num">&#10022;</span><span>String cheese or cheese sticks</span></li>
-            <li><span class="num">&#10022;</span><span>Greek yogurt cups (high protein, low sugar varieties)</span></li>
-            <li><span class="num">&#10022;</span><span>Pre-cut vegetables (baby carrots, celery, cucumber)</span></li>
-            <li><span class="num">&#10022;</span><span>Fresh fruit: apples, oranges (they travel well)</span></li>
-            <li><span class="num">&#10022;</span><span>Rotisserie chicken, portioned into containers</span></li>
-          </ul>
-        </div>
+    <div class="stock-system">
+      <div class="stock-card">
+        <div class="meta">Zone 1 &middot; Shelf-Stable</div>
+        <h3>No-fridge essentials</h3>
+        <ul class="stock-list">
+          <li>Unsalted or lightly salted almonds, walnuts, or mixed nuts</li>
+          <li>Protein bars under 10g sugar</li>
+          <li>Tuna or chicken packets</li>
+          <li>Whole grain crackers</li>
+          <li>Plain oatmeal cups</li>
+          <li>Sugar-free electrolyte packets</li>
+        </ul>
       </div>
 
-      <div>
-        <div class="protocol">
-          <div class="meta">Restock day &middot; ~$45&ndash;55 per week</div>
-          <h3>Your Walmart Shopping List</h3>
-          <p>This list fills both the shelf-stable and cooler stock above. Total cost typically runs $45&ndash;55 depending on region, and covers a full week of snacks and meal backups.</p>
-          <ul class="steps">
-            <li><span class="num">1</span><span>1 dozen eggs (boil immediately)</span></li>
-            <li><span class="num">2</span><span>1 bag mixed unsalted nuts</span></li>
-            <li><span class="num">3</span><span>1 box whole grain crackers</span></li>
-            <li><span class="num">4</span><span>String cheese, 12-pack</span></li>
-            <li><span class="num">5</span><span>Greek yogurt, 6-pack</span></li>
-            <li><span class="num">6</span><span>5&ndash;6 pieces fresh fruit</span></li>
-            <li><span class="num">7</span><span>Baby carrots or pre-cut veggie tray</span></li>
-            <li><span class="num">8</span><span>1 rotisserie chicken</span></li>
-            <li><span class="num">9</span><span>Protein bars, box of 8&ndash;12</span></li>
-            <li><span class="num">10</span><span>Electrolyte packets, container of 10</span></li>
-          </ul>
-          <div class="note">Pre-portion everything into containers on restock day. Decision fatigue is real &mdash; if it's already portioned, you're far more likely to grab it instead of the gas station candy aisle.</div>
-        </div>
+      <div class="stock-card">
+        <div class="meta">Zone 2 &middot; Cooler</div>
+        <h3>Fast protein + produce</h3>
+        <ul class="stock-list">
+          <li>Hard-boiled eggs</li>
+          <li>String cheese or cheese sticks</li>
+          <li>Greek yogurt cups</li>
+          <li>Baby carrots, celery, or cucumber</li>
+          <li>Apples, oranges, or berries</li>
+          <li>Portioned rotisserie chicken</li>
+        </ul>
+      </div>
+
+      <div class="stock-card">
+        <div class="meta">Zone 3 &middot; Emergency Backup</div>
+        <h3>For delays and bad stops</h3>
+        <ul class="stock-list">
+          <li>Two protein bars saved only for emergencies</li>
+          <li>Two tuna or chicken packets</li>
+          <li>Electrolyte packets</li>
+          <li>Small peanut butter packets</li>
+          <li>Backup water bottles</li>
+          <li>Low-sodium soup cup if you can heat water</li>
+        </ul>
       </div>
     </div>
+
+    <div class="restock-panel">
+      <div>
+        <h3>Your weekly restock rhythm.</h3>
+        <p>Restock once per week when possible. The goal is not a perfect meal-prep lifestyle. The goal is to make the healthy choice the easiest choice when your schedule gets rough.</p>
+      </div>
+      <ul class="restock-list">
+        <li>1 dozen eggs</li>
+        <li>1 bag unsalted nuts</li>
+        <li>Whole grain crackers</li>
+        <li>String cheese, 12-pack</li>
+        <li>Greek yogurt, 6-pack</li>
+        <li>5&ndash;6 pieces fresh fruit</li>
+        <li>Baby carrots or veggie tray</li>
+        <li>1 rotisserie chicken</li>
+        <li>Protein bars, box of 8&ndash;12</li>
+        <li>Electrolyte packets</li>
+      </ul>
+    </div>
+
+    <div class="note">Pre-portion what you can after restock. When food is already ready, you are less likely to make a tired decision from the candy aisle or hot case.</div>
+    <div class="source-note">Source support: Potassium-rich foods such as fruits, vegetables, dairy, and some proteins are part of heart-healthy eating patterns that can support blood pressure control. <a href="https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/how-potassium-can-help-control-high-blood-pressure" target="_blank" rel="noopener">AHA potassium and blood pressure guidance</a></div>
   </div>
 </section>
 
@@ -1098,7 +1318,7 @@ a{text-decoration:none;color:inherit}
           <ul class="steps">
             <li><span class="num">&#10022;</span><span>3 laps around your truck (walk) at every fuel stop</span></li>
             <li><span class="num">&#10022;</span><span>10 squats + 10 push-ups against your rig</span></li>
-            <li><span class="num">&#10022;</span><span>30-second hip flexor stretch each side</span></li>
+            <li><span class="num">&#10022;</span><span>30-second hip flexor stretch each side. Step one foot forward into a gentle lunge, keep your chest tall, and lightly tuck your hips under until you feel the front of the back hip stretch.</span></li>
             <li><span class="num">&#10022;</span><span>Goal: consistency, not intensity. Do it every single stop.</span></li>
           </ul>
         </div>
@@ -1110,9 +1330,9 @@ a{text-decoration:none;color:inherit}
             <li><span class="num">&#10022;</span><span>4 laps around your truck</span></li>
             <li><span class="num">&#10022;</span><span>15 squats + 15 push-ups + 10 lunges each leg</span></li>
             <li><span class="num">&#10022;</span><span>20 calf raises + 30-second plank against your bumper</span></li>
-            <li><span class="num">&#10022;</span><span>Hip flexor + hamstring stretch, 45 seconds each side</span></li>
+            <li><span class="num">&#10022;</span><span>Hip flexor + hamstring stretch, 45 seconds each side. For the hip flexor, use the gentle lunge position above; for the hamstring, straighten one leg and hinge forward from the hips.</span></li>
           </ul>
-          <div class="note">By week 4, most drivers report noticeably less back pain and better energy through the afternoon slump.</div>
+          <div class="note">By week 4, the goal is not perfection &mdash; it is a repeatable movement habit. Less sitting and more light movement can support strength, mobility, energy, and daily comfort over time.</div><div class="source-note">Source support: The CDC notes that physical activity can strengthen bones and muscles and help people perform daily activities. <a href="https://www.cdc.gov/physical-activity-basics/benefits/index.html" target="_blank" rel="noopener">CDC physical activity benefits</a></div>
         </div>
       </div>
 
@@ -1136,9 +1356,9 @@ a{text-decoration:none;color:inherit}
     </div>
 
     <div class="protocol" style="border-top:none;">
-      <h3>The STOP-BANG Risk Check</h3>
+      <h3 class="stopbang-title">The <span class="stopbang-word"><span class="stopbang-letter">S</span><span class="stopbang-letter">T</span><span class="stopbang-letter">O</span><span class="stopbang-letter">P</span>-<span class="stopbang-letter">B</span><span class="stopbang-letter">A</span><span class="stopbang-letter">N</span><span class="stopbang-letter">G</span></span> Risk Check</h3>
       <p>This is a simplified version of the clinical screening tool used by sleep specialists. Count how many apply to you.</p>
-      <ul class="steps">
+      <ul class="steps stopbang-list">
         <li><span class="num">&#9888;</span><span><strong>S</strong>noring loudly (louder than talking, heard through walls)</span></li>
         <li><span class="num">&#9888;</span><span><strong>T</strong>ired during the day despite adequate sleep hours</span></li>
         <li><span class="num">&#9888;</span><span><strong>O</strong>bserved stopping breathing during sleep (ask a partner or rider)</span></li>
@@ -1148,7 +1368,7 @@ a{text-decoration:none;color:inherit}
         <li><span class="num">&#9888;</span><span><strong>N</strong>eck circumference over 17in (men) / 16in (women)</span></li>
         <li><span class="num">&#9888;</span><span><strong>G</strong>ender &mdash; male sex (higher baseline risk)</span></li>
       </ul>
-      <div class="note">0&ndash;2 yes answers: low risk. 3&ndash;4: intermediate risk &mdash; mention it to your doctor. 5+: high risk &mdash; talk to your doctor before your next DOT physical, not after. This tool does not diagnose sleep apnea; only a sleep study can do that. It tells you whether the conversation with your doctor is worth having now.</div>
+      <div class="note">0&ndash;2 yes answers: low risk. 3&ndash;4: intermediate risk &mdash; mention it to your doctor. 5+: high risk &mdash; talk to your doctor before your next DOT physical, not after. This tool does not diagnose sleep apnea; only a sleep study can do that. It tells you whether the conversation with your doctor is worth having now.</div><div class="source-note">Source support: STOP-Bang is widely studied as a screening tool for obstructive sleep apnea, including in commercial-driver populations. <a href="https://pubmed.ncbi.nlm.nih.gov/33507478/" target="_blank" rel="noopener">STOP-Bang commercial driver review</a></div>
     </div>
   </div>
 </section>
@@ -1231,7 +1451,7 @@ a{text-decoration:none;color:inherit}
           </ul>
 
           <div class="note">
-            Hygiene is health protection. Skin infections, stomach bugs, foot fungus, odor, and poor sleep can all start with small cleanliness habits slipping during long runs.
+            Clean routines protect your health on long runs. A few simple habits &mdash; dry feet, clean sleep surfaces, separated laundry, and wiped-down high-touch areas &mdash; can help reduce odor, skin irritation, stomach bugs, and avoidable discomfort on the road.
           </div>
         </div>
       </div>
