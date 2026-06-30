@@ -1331,6 +1331,7 @@ a{text-decoration:none;color:inherit}
         <button class="rr-btn rr-btn-dark" onclick="copySummary()">Copy My Summary</button>
         <button class="rr-btn rr-btn-dark" onclick="copyWellnessReport()">Copy Wellness Report</button>
         <button class="rr-btn rr-btn-outline" onclick="resetTracker()">Reset Tracker</button>
+        
       </div>
 
       <div class="rr-complete" id="rrCompleteBox">
@@ -1801,6 +1802,23 @@ function showRoadReadyMessage(day){
     }, 600);
 
   }, 4000);
+}
+
+  function resetTracker(){
+  const confirmReset = confirm(
+    "Reset the full 30-day tracker? This will erase all saved tracker entries in this browser."
+  );
+
+  if(confirmReset){
+    localStorage.removeItem(RR_STORAGE_KEY);
+    rrData = {};
+    rrCurrentDay = 1;
+
+    loadDay(1);
+    updateTrackerProgress();
+
+    alert("Your Road Ready tracker has been reset.");
+  }
 }
 
 initTracker();
