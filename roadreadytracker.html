@@ -641,7 +641,12 @@ function updateProgress(){
 function copyToClipboard(text,msg){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>alert(msg));}else{const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);alert(msg);}}
 function copySummary(){
   let lines=['Road Ready Tracker Summary',''];
-  for(let i=1;i<=30;i++){const d=data[i];if(!dayHasEntry(d))continue;lines.push('Day '+i);if(d.bpReading)lines.push('Blood Pressure: '+d.bpReading);if(d.waterOz)lines.push('Water: '+d.waterOz+' oz');if(d.sleepHours)lines.push('Sleep: '+d.sleepHours+' hrs');if(d.moodScore)lines.push('Mood: '+moodLabels[d.moodScore]);const completed=habits.filter(h=>d[h]).map(h=>habitLabels[h]);if(completed.length)lines.push('Completed Habits: '+completed.join(', '));if(d.complete)lines.push('Day marked complete: Yes');if(d.dailyNotes)lines.push('Notes: '+d.dailyNotes);lines.push('');}
+  for(let i=1;i<=30;i++){const d=data[i];if(!dayHasEntry(d))continue;lines.push('Day '+i);if(d.bpReading)lines.push('Blood Pressure: '+d.bpReading);if(d.waterOz)lines.push('Water: '+d.waterOz+' oz');if(d.sleepHours)lines.push('Sleep: '+d.sleepHours+' hrs');if(d.moodScore)lines.push('Mood: '+moodLabels[d.moodScore]);const completed=habits.filter(h=>d[h]).map(h=>habitLabels[h]);if(completed.length)lines.push('Completed Habits: '+completed.join(', '));if(d.complete)lines.push('Day marked complete: Yes');
+                        if(d.dailyNotes){
+  const reflectionQuestion = reflections[(i - 1) % reflections.length];
+  lines.push("Reflection Question: " + reflectionQuestion);
+  lines.push("Your Response: " + d.dailyNotes);
+}lines.push('');}
   if(lines.length<=2){alert('No tracker entries yet. Add at least one day before copying your summary.');return;}
   copyToClipboard(lines.join('\n'),'Your Road Ready tracker summary was copied.');
 }
