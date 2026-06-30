@@ -783,7 +783,7 @@ a{text-decoration:none;color:inherit}
     <a href="#chains">Truck Stops</a>
     <a href="#mealplan">Meal Plan</a>
     <a href="#fitness">Fitness</a>
-    <a href="#tracker">Tracker</a>
+    <a href="#tracker">Wellness Dashboard</a>
     <a class="nav-cta" href="https://roadproofhealth.github.io/roadproof/">Main Site</a>
   </nav>
 </header>
@@ -798,10 +798,10 @@ a{text-decoration:none;color:inherit}
       <span class="type">one-time &middot; Mind.Body.Miles</span>
     </div>
     <h1>The Road Ready<br><span>Guide</span></h1>
-    <p>The complete cab nutrition system &mdash; macro targets, meal timing built around your HOS windows, exactly what to order at every major truck stop chain, a full 30-day eating plan, cab-friendly fitness, and your printable wellness tracker.</p>
+    <p>The complete cab nutrition system &mdash; macro targets, meal timing built around your HOS windows, exactly what to order at every major truck stop chain, a full 30-day eating plan, cab-friendly fitness, and your interactive wellness dashboard.</p>
     <div class="hero-actions">
       <a href="#nutrition" class="btn btn-gold">Start the Guide</a>
-      <a href="#tracker" class="btn btn-outline">Jump to Tracker</a>
+      <a href="#tracker" class="btn btn-outline">Jump to Dashboard</a>
     </div>
   </div>
 </section>
@@ -815,7 +815,7 @@ a{text-decoration:none;color:inherit}
   <a href="#fitness">Cab Fitness</a>
   <a href="#apnea">Sleep Apnea Check</a>
   <a href="#hygiene">Hygiene Bonus</a>
-  <a href="#tracker">Wellness Tracker</a>
+  <a href="#tracker">Wellness Dashboard</a>
 </div>
 
 <!-- ══════════════════════════════
@@ -1244,79 +1244,49 @@ a{text-decoration:none;color:inherit}
 ══════════════════════════════ -->
 
 <!-- ===========================================================
-ROAD READY DASHBOARD CTA
+ROAD READY FINAL STEP CTA
 Replace the existing tracker section with this
 =========================================================== -->
 
 <section id="tracker" class="section">
-  <div class="container">
+  <div class="section-inner">
 
-    <div class="tracker-launch">
+    <div class="tracker-step-cta">
 
-      <div class="tracker-icon">
-        🚛
+      <div class="tracker-step-image">
+        <img
+          src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1400&q=85"
+          alt="Professional truck driver on the road">
       </div>
 
-      <span class="tracker-label">
-        ROAD READY EXPERIENCE
-      </span>
+      <div class="tracker-step-content">
 
-      <h2>Start Today's Check-In </h2>
+        <div class="kicker">Final Step</div>
 
-      <p>
-        You've learned the strategies. Now it's time to put them into action.
-        The <strong>Road Ready Wellness Dashboard</strong> transforms everything in this guide
-        into a simple daily routine that keeps you focused, motivated, and accountable.
-      </p>
+        <h2>Turn the guide into daily habits.</h2>
 
-      <div class="tracker-features">
+        <p>
+          You’ve learned the Road Ready system. Now use the Wellness Dashboard to put it into practice with daily check-ins, guided health missions, progress tracking, and milestone celebrations built for life on the road.
+        </p>
 
-        <div class="feature">
-          ✅ Daily Health Missions
+        <div class="tracker-steps">
+          <div><span>✓</span><strong>Step 1:</strong> Learn the system</div>
+          <div><span>✓</span><strong>Step 2:</strong> Apply the strategies</div>
+          <div><span>•</span><strong>Step 3:</strong> Track your progress daily</div>
         </div>
 
-        <div class="feature">
-          ✅ Progress Dashboard
-        </div>
+        <a
+          href="https://roadproofhealth.github.io/roadproof/roadreadytracker"
+          target="_blank"
+          class="tracker-step-button">
+          Open Road Ready Wellness Dashboard
+        </a>
 
-        <div class="feature">
-          ✅ Wellness Tracker
-        </div>
-
-        <div class="feature">
-          ✅ Daily Nurse Tips
-        </div>
-
-        <div class="feature">
-          ✅ Achievement Badges
-        </div>
-
-        <div class="feature">
-          ✅ Milestone Celebrations
-        </div>
-
-        <div class="feature">
-          ✅ Personalized Wellness Reports
-        </div>
-
-        <div class="feature">
-          ✅ Resume Anytime
-        </div>
+        <p class="tracker-step-note">
+          Your progress is saved on this device so you can continue where you left off.
+        </p>
 
       </div>
-
-      <a
-        href="https://roadproofhealth.github.io/roadproof/roadreadytracker"
-        class="tracker-button"
-        target="_blank">
-
-        🚀 Launch My Wellness Dashboard
-
-      </a>
-
-      <p class="tracker-note">
-        Your progress is automatically saved on this device, so you can continue where you left off anytime.
-      </p>
 
     </div>
 
@@ -1324,171 +1294,123 @@ Replace the existing tracker section with this
 </section>
 
 <style>
+.tracker-step-cta{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:48px;
+  align-items:center;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:34px;
+  box-shadow:0 18px 50px rgba(28,43,74,.08);
+}
 
-.tracker-launch{
+.tracker-step-image{
+  min-height:430px;
+  border-radius:22px;
+  overflow:hidden;
+  position:relative;
+}
 
-    max-width:900px;
+.tracker-step-image img{
+  width:100%;
+  height:100%;
+  min-height:430px;
+  object-fit:cover;
+}
 
-    margin:auto;
+.tracker-step-content h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(34px,4vw,52px);
+  line-height:1.04;
+  color:var(--navy);
+  margin-bottom:18px;
+}
 
-    background:white;
+.tracker-step-content p{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.8;
+  max-width:620px;
+}
 
-    padding:70px 50px;
+.tracker-steps{
+  margin:28px 0 30px;
+  display:grid;
+  gap:12px;
+}
 
-    border-radius:28px;
+.tracker-steps div{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:15px 17px;
+  color:var(--text);
+  font-size:15px;
+}
 
+.tracker-steps span{
+  display:inline-flex;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  align-items:center;
+  justify-content:center;
+  background:var(--gold);
+  color:var(--navy);
+  font-weight:900;
+  margin-right:10px;
+}
+
+.tracker-steps strong{
+  color:var(--navy);
+}
+
+.tracker-step-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--gold);
+  color:var(--navy);
+  padding:16px 30px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:14px;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.tracker-step-button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(240,180,41,.28);
+}
+
+.tracker-step-note{
+  margin-top:16px;
+  font-family:'DM Mono',monospace;
+  font-size:10px!important;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  color:var(--muted)!important;
+}
+
+@media(max-width:900px){
+  .tracker-step-cta{
+    grid-template-columns:1fr;
+    padding:24px;
+  }
+
+  .tracker-step-image,
+  .tracker-step-image img{
+    min-height:300px;
+  }
+
+  .tracker-step-button{
+    width:100%;
     text-align:center;
-
-    box-shadow:0 25px 70px rgba(0,0,0,.08);
-
-    border:1px solid rgba(0,0,0,.08);
-
+  }
 }
-
-.tracker-icon{
-
-    font-size:64px;
-
-    margin-bottom:20px;
-
-}
-
-.tracker-label{
-
-    display:inline-block;
-
-    padding:8px 18px;
-
-    border-radius:999px;
-
-    background:#F0B429;
-
-    color:#0E1828;
-
-    font-weight:800;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-
-    margin-bottom:24px;
-
-}
-
-.tracker-launch h2{
-
-    font-size:42px;
-
-    color:#0E1828;
-
-    margin-bottom:20px;
-
-}
-
-.tracker-launch p{
-
-    max-width:700px;
-
-    margin:0 auto 35px;
-
-    color:#666;
-
-    line-height:1.8;
-
-    font-size:18px;
-
-}
-
-.tracker-features{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:18px;
-
-    max-width:700px;
-
-    margin:40px auto;
-
-    text-align:left;
-
-}
-
-.feature{
-
-    background:#F8F8F8;
-
-    padding:18px;
-
-    border-radius:12px;
-
-    font-weight:600;
-
-}
-
-.tracker-button{
-
-    display:inline-block;
-
-    background:#F0B429;
-
-    color:#0E1828;
-
-    padding:18px 42px;
-
-    border-radius:999px;
-
-    font-weight:800;
-
-    font-size:18px;
-
-    text-decoration:none;
-
-    transition:.3s;
-
-}
-
-.tracker-button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 15px 35px rgba(240,180,41,.35);
-
-}
-
-.tracker-note{
-
-    margin-top:25px;
-
-    font-size:14px !important;
-
-    color:#777 !important;
-
-}
-
-@media(max-width:768px){
-
-.tracker-launch{
-
-padding:40px 25px;
-
-}
-
-.tracker-launch h2{
-
-font-size:32px;
-
-}
-
-.tracker-features{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
 </style>
  
 
