@@ -709,6 +709,30 @@ a{text-decoration:none;color:inherit}
   .cta-strip{flex-direction:column;align-items:flex-start}
   .chain-table{font-size:12px;}
 }
+  @media(max-width:900px){
+  .image-wrap{
+    position:relative !important;
+    min-height:auto;
+    overflow:hidden;
+  }
+
+  .image-wrap img{
+    min-height:280px;
+    height:280px;
+    object-fit:cover;
+  }
+
+  .image-caption{
+    position:absolute;
+    left:14px;
+    right:14px;
+    bottom:14px;
+    max-width:none;
+    font-size:12px;
+    line-height:1.4;
+    padding:10px 12px;
+  }
+}
 </style>
 </head>
 
@@ -1247,27 +1271,27 @@ a{text-decoration:none;color:inherit}
         <button onclick="changeDay(1)">Next Day →</button>
       </div>
 
-      <div class="rr-input-grid">
-        <div class="rr-field">
-          <label>Blood Pressure</label>
-          <input id="bpReading" placeholder="128/82" oninput="saveField('bpReading', this.value)">
-        </div>
+<div class="rr-input-grid">
+  <div class="rr-field">
+    <label>Blood Pressure</label>
+    <input id="bpReading" placeholder="128/82" inputmode="numeric" pattern="[0-9/]*" oninput="validateBP(this); saveField('bpReading', this.value)">
+  </div>
 
-        <div class="rr-field">
-          <label>Water Ounces</label>
-          <input id="waterOz" placeholder="80" oninput="saveField('waterOz', this.value)">
-        </div>
+  <div class="rr-field">
+    <label>Water Ounces</label>
+    <input id="waterOz" type="number" min="0" max="300" placeholder="80" oninput="saveField('waterOz', this.value)">
+  </div>
 
-        <div class="rr-field">
-          <label>Sleep Hours</label>
-          <input id="sleepHours" placeholder="6.5" oninput="saveField('sleepHours', this.value)">
-        </div>
+  <div class="rr-field">
+    <label>Sleep Hours</label>
+    <input id="sleepHours" type="number" min="0" max="24" step="0.5" placeholder="6.5" oninput="saveField('sleepHours', this.value)">
+  </div>
 
-        <div class="rr-field">
-          <label>Mood 1-5</label>
-          <input id="moodScore" placeholder="4" oninput="saveField('moodScore', this.value)">
-        </div>
-      </div>
+  <div class="rr-field">
+    <label>Mood 1-5</label>
+    <input id="moodScore" type="number" min="1" max="5" placeholder="4" oninput="validateMood(this); saveField('moodScore', this.value)">
+  </div>
+</div>
 
       <div class="rr-habits">
         <label class="rr-check">
@@ -1734,23 +1758,70 @@ function calculateStreak(){
 }
 
 function copySummary(){
-  let summary = "Road Ready 30-Day Tracker Summary\\n\\n";
+  let summaryLines = [];
+  summaryLines.push("Road Ready Tracker Summary");
+  summaryLines.push("");
 
   for(let i = 1; i <= 30; i++){
-    ensureDay(i);
     const d = rrData[i];
 
-    summary += "Day " + i + "\\n";
-    summary += "BP: " + (d.bpReading || "-") + "\\n";
-    summary += "Water: " + (d.waterOz || "-") + " oz\\n";
-    summary += "Sleep: " + (d.sleepHours || "-") + " hrs\\n";
-    summary += "Mood: " + (d.moodScore || "-") + "\\n";
-    summary += "Complete: " + (d.complete ? "Yes" : "No") + "\\n";
-    summary += "Notes: " + (d.dailyNotes || "-") + "\\n\\n";
+    if(!d) continue;
+
+    const hasEntry =
+      d.bpReading ||
+      d.waterOz ||
+      d.sleepHours ||
+      d.moodScore ||
+      d.dailyNotes ||
+      d.complete ||
+      rrHabits.some(function(habit){ return d[habit]; });
+
+    if(!hasEntry) continue;
+
+    summaryLines.push("Day " + i);
+
+    if(d.bpReading) summaryLines.push("Blood Pressure: " + d.bpReading);
+    if(d.waterOz) summaryLines.push("Water: " + d.waterOz + " oz");
+    if(d.sleepHours) summaryLines.push("Sleep: " + d.sleepHours + " hrs");
+    if(d.moodScore) summaryLines.push("Mood: " + d.moodScore + "/5");
+
+    const completedHabits = rrHabits
+      .filter(function(habit){ return d[habit]; })
+      .map(function(habit){
+        return {
+          habitWater:"Hit water goal",
+          habitMovement:"Moved or stretched",
+          habitFood:"Made one smart food swap",
+          habitBP:"Logged blood pressure",
+          habitSleep:"Used sleep routine",
+          habitBreathing:"Breathing or stress reset"
+        }[habit];
+      });
+
+    if(completedHabits.length){
+      summaryLines.push("Completed Habits: " + completedHabits.join(", "));
+    }
+
+    if(d.complete){
+      summaryLines.push("Day marked complete: Yes");
+    }
+
+    if(d.dailyNotes){
+      summaryLines.push("Notes: " + d.dailyNotes);
+    }
+
+    summaryLines.push("");
   }
 
-  navigator.clipboard.writeText(summary).then(function(){
-    alert("Your tracker summary was copied. You can paste it into your Notes app or email to yourself to keep track of your progress.");
+  if(summaryLines.length <= 2){
+    alert("No tracker entries yet. Add at least one day before copying your summary.");
+    return;
+  }
+
+  const cleanSummary = summaryLines.join("\n");
+
+  navigator.clipboard.writeText(cleanSummary).then(function(){
+    alert("Your tracker summary was copied. You can paste it into Notes, email, or send it to Road Proof Health.");
   });
 }
 
@@ -1760,8 +1831,24 @@ function resetTracker(){
     location.reload();
   }
 }
+function validateBP(input){
+  input.value = input.value.replace(/[^0-9/]/g, "");
+}
 
+function validateMood(input){
+  let value = Number(input.value);
+
+  if(value < 1 && input.value !== ""){
+    input.value = 1;
+  }
+
+  if(value > 5){
+    input.value = 5;
+  }
+}
 initTracker();
+
+  
 </script>
 
 </main>
