@@ -168,6 +168,103 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
 .hero-sub{opacity:0;animation:fadeUp .6s .52s forwards;}
 .hero-capture{opacity:0;animation:fadeUp .7s .6s forwards;}
 .hero-bg{animation:fadeIn 1.2s .0s forwards;opacity:0;}
+.wellness-hub-feature{
+  background:var(--white);
+  padding:86px 6%;
+  border-top:1px solid #E8E4DC;
+  border-bottom:1px solid #E8E4DC;
+}
+
+.wh-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:54px;
+  align-items:center;
+  max-width:1180px;
+  margin:0 auto;
+}
+
+.wh-content h2{
+  max-width:560px;
+}
+
+.wh-list{
+  list-style:none;
+  margin:26px 0 30px;
+  max-width:560px;
+}
+
+.wh-list li{
+  padding:10px 0;
+  border-bottom:1px solid #EDE9E0;
+  font-size:14px;
+  color:var(--charcoal);
+  line-height:1.6;
+  display:flex;
+  gap:10px;
+}
+
+.wh-list li::before{
+  content:'→';
+  color:var(--marigold);
+  font-weight:900;
+  flex-shrink:0;
+}
+
+.wh-btn{
+  display:inline-block;
+  background:var(--navy);
+  color:#fff;
+  padding:15px 30px;
+  border-radius:6px;
+  font-size:14px;
+  font-weight:800;
+  text-decoration:none;
+  transition:all .2s;
+}
+
+.wh-btn:hover{
+  background:var(--navy2);
+  transform:translateY(-2px);
+}
+
+.wh-visual{
+  min-height:430px;
+  border-radius:14px;
+  background:
+    linear-gradient(to bottom,rgba(14,24,40,.18),rgba(14,24,40,.76)),
+    url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&q=85&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
+  border:4px solid var(--marigold);
+}
+
+.wh-badge{
+  position:absolute;
+  left:26px;
+  bottom:26px;
+  background:var(--marigold);
+  color:var(--navy);
+  padding:12px 18px;
+  border-radius:6px;
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+@media(max-width:760px){
+  .wh-grid{
+    grid-template-columns:1fr;
+  }
+
+  .wh-visual{
+    min-height:300px;
+  }
+}  
 @media(max-width:960px){.pkg-grid{grid-template-columns:1fr;}.stats-strip{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:760px){.hero-content{padding:110px 5% 70px;}.story-grid{grid-template-columns:1fr;}.guide-grid{grid-template-columns:1fr;}.fleet-banner{grid-template-columns:1fr;}.fleet-right{align-items:flex-start;}.ft-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.stats-strip{grid-template-columns:repeat(2,1fr);}}
 </style>
@@ -448,6 +545,35 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
   </div>
 </div>
 
+  <!-- ── WELLNESS HUB FEATURE ── -->
+<section class="wellness-hub-feature" id="wellness-hub">
+  <div class="wh-grid">
+    <div class="wh-content">
+      <div class="s-eye">Free Wellness Resource</div>
+      <h2>Visit the Road Proof Wellness Hub</h2>
+      <p class="ssub">
+        Built for CDL drivers, fleet drivers, and life on the road. The Wellness Hub gives drivers practical tools for breathing, sleep, cab-friendly movement, mental health, women driver wellness, and a daily health checklist.
+      </p>
+
+      <ul class="wh-list">
+        <li>Breathing techniques for stress and blood pressure support</li>
+        <li>Sleep routines built for sleeper berths and irregular hours</li>
+        <li>Cab-friendly fitness with no gym required</li>
+        <li>Mental health tools for long-haul isolation and stress</li>
+        <li>Daily wellness checklist drivers can use from the cab</li>
+      </ul>
+
+      <a href="https://roadproofhealth.github.io/roadproof/wellness" class="wh-btn">
+        Explore the Wellness Hub &rarr;
+      </a>
+    </div>
+
+    <div class="wh-visual">
+      <div class="wh-badge">Mind • Body • Miles</div>
+    </div>
+  </div>
+</section>
+  
 <!-- ── LIFESCAPE BAND ── -->
 <div class="ls-band">
   <div class="ls-tag">Part of Something Bigger</div>
