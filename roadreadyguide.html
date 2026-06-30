@@ -1341,11 +1341,11 @@ a{text-decoration:none;color:inherit}
 
     </div>
   </div>
- <div id="rr-toast">
+ <div id="rr-toast" class="rr-toast" style="display:none;">
   <div class="rr-toast-icon" id="rr-toast-icon">✓</div>
   <h3 id="rr-toast-title"></h3>
   <p id="rr-toast-message"></p>
-</div> 
+</div>
 </section>
 
 <style>
@@ -1393,7 +1393,8 @@ a{text-decoration:none;color:inherit}
 .rr-complete h3{font-family:'Playfair Display',serif;font-size:34px;margin-bottom:8px;}
 .rr-complete p{color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:18px;}
 .rr-complete a{color:var(--gold);font-weight:900;}
-  .rr-toast{
+  
+.rr-toast{
   position:fixed;
   left:50%;
   top:40px;
@@ -1412,6 +1413,7 @@ a{text-decoration:none;color:inherit}
 }
 
 .rr-toast.show{
+  display:block!important;
   opacity:1;
   transform:translateX(-50%) translateY(0);
 }
@@ -1779,22 +1781,26 @@ function showRoadReadyMessage(day){
     milestoneMessages[day] ||
     encouragements[Math.floor(Math.random() * encouragements.length)];
 
+  const toast = document.getElementById("rr-toast");
+
   document.getElementById("rr-toast-icon").textContent = message.icon;
   document.getElementById("rr-toast-title").textContent = message.title;
   document.getElementById("rr-toast-message").textContent = message.message;
 
-  const toast = document.getElementById("rr-toast");
-  toast.classList.add("show");
+  toast.style.display = "block";
+
+  setTimeout(function(){
+    toast.classList.add("show");
+  }, 10);
 
   setTimeout(function(){
     toast.classList.remove("show");
+
+    setTimeout(function(){
+      toast.style.display = "none";
+    }, 350);
+
   }, 2000);
-}
-function resetTracker(){
-  if(confirm("Reset the full 30-day tracker? This cannot be undone.")){
-    localStorage.removeItem(RR_STORAGE_KEY);
-    location.reload();
-  }
 }
 
 initTracker();
