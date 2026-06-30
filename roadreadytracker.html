@@ -428,20 +428,22 @@ a{text-decoration:none;color:inherit}
 
       <div class="input-grid">
         <div class="field">
-          <label>Blood Pressure</label>
+          <label>Today's Blood Pressure</label>
           
           <input id="bpReading" type="text" inputmode="numeric" maxlength="7" placeholder="12080" oninput="formatBP(this); saveField('bpReading', this.value)">
-          <small>Type numbers only. Example: 12080 becomes 120/80.</small>
+          <small>Just type the numbers. Example: 12080 becomes 120/80.</small>
           <div class="why-box">Why it matters: blood pressure control protects your health and supports DOT readiness.</div>
         </div>
         <div class="field">
           <label>Water Ounces</label>
           <input id="waterOz" type="number" min="0" max="300" placeholder="80" oninput="saveField('waterOz', this.value)">
+          <small></small>
           <div class="why-box">Why it matters: dehydration can worsen fatigue, cravings, and blood pressure.</div>
         </div>
         <div class="field">
           <label>Sleep Hours</label>
           <input id="sleepHours" type="number" min="0" max="24" step="0.5" placeholder="6.5" oninput="saveField('sleepHours', this.value)">
+          <small></small>
           <div class="why-box">Why it matters: sleep affects alertness, weight, cravings, mood, and BP.</div>
         </div>
       </div>
@@ -470,7 +472,7 @@ a{text-decoration:none;color:inherit}
 
       <div class="notes">
         <label id="reflectionLabel">Daily Reflection</label>
-        <textarea id="dailyNotes" placeholder="Write a quick note..." oninput="saveField('dailyNotes', this.value)"></textarea>
+        <textarea id="dailyNotes" placeholder="Write a quick note... How did it go today? Any symptoms, stress, food wins, energy changes or BP concerns?" oninput="saveField('dailyNotes', this.value)"></textarea>
       </div>
 
       <div class="actions">
