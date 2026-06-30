@@ -466,6 +466,14 @@ a{text-decoration:none;color:inherit}
 .chain-table tr:last-child td{
   border-bottom:none;
 }
+  .rr-help{
+    display:block;
+    margin-top:4px;
+    margin-bottom:8px;
+    font-size:11px;
+    color:var(--muted);
+    line-height:1.4;
+}
 
 @media(max-width:700px){
   .chain-table,
@@ -1273,8 +1281,17 @@ a{text-decoration:none;color:inherit}
 
 <div class="rr-input-grid">
   <div class="rr-field">
-    <label>Blood Pressure</label>
-    <input id="bpReading" placeholder="128/82" inputmode="numeric" pattern="[0-9/]*" oninput="validateBP(this); saveField('bpReading', this.value)">
+    <label>Today's Blood Pressure</label>
+<small class="rr-help">
+Example: Type 12080 for 120/80. Just type the numbers. We'll add the "/" automatically.
+</small>
+   <input
+    id="bpReading"
+    type="text"
+    inputmode="numeric"
+    maxlength="6"
+    placeholder="Example: 12080"
+    oninput="formatBP(this); saveField('bpReading', this.value)">
   </div>
 
   <div class="rr-field">
@@ -1831,20 +1848,25 @@ function resetTracker(){
     location.reload();
   }
 }
-function validateBP(input){
-  input.value = input.value.replace(/[^0-9/]/g, "");
-}
+function formatBP(input){
 
-function validateMood(input){
-  let value = Number(input.value);
+    // Keep only digits
+    let digits = input.value.replace(/\D/g,'');
 
-  if(value < 1 && input.value !== ""){
-    input.value = 1;
-  }
+    // Maximum 6 digits (180120)
+    digits = digits.substring(0,6);
 
-  if(value > 5){
-    input.value = 5;
-  }
+    let formatted = digits;
+
+    // Automatically insert slash after the first 3 digits
+    if(digits.length > 3){
+        formatted =
+            digits.substring(0,3) +
+            "/" +
+            digits.substring(3);
+    }
+
+    input.value = formatted;
 }
 initTracker();
 
