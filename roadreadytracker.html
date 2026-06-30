@@ -188,23 +188,18 @@ a{text-decoration:none;color:inherit}
   text-transform:uppercase;
   margin-bottom:16px;
 }
-.greeting{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(42px,6vw,78px);
-  line-height:.95;
-  letter-spacing:-1.5px;
-  margin-bottom:14px;
-}
-  #greeting{
+
+  /* Greeting fix */
+#greeting{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   line-height:1.1;
 }
 
 .greeting-icon{
   flex-shrink:0;
-  font-size:34px;
+  font-size:44px;
   line-height:1;
 }
 
@@ -214,15 +209,37 @@ a{text-decoration:none;color:inherit}
 
 @media(max-width:700px){
   #greeting{
-    align-items:flex-start;
-    gap:10px;
+    align-items:center;
+    gap:12px;
   }
 
   .greeting-icon{
-    font-size:28px;
-    margin-top:2px;
+    font-size:38px;
+    margin-top:0;
   }
 }
+
+
+/* Blood pressure mobile-only helper */
+.bp-mobile-help{
+  display:none !important;
+}
+
+@media(max-width:700px){
+  .bp-mobile-help{
+    display:block !important;
+    margin-top:8px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.4;
+  }
+
+  .rr-field-helper,
+  .rr-input-note{
+    display:none !important;
+  }
+}
+ 
 .hero-copy p{
   color:rgba(255,255,255,.72);
   font-size:17px;
@@ -380,20 +397,6 @@ a{text-decoration:none;color:inherit}
   display:none;
 }
 
-@media(max-width:700px){
-  .bp-mobile-help{
-    display:block;
-    margin-top:8px;
-    font-size:12px;
-    color:var(--muted);
-    line-height:1.4;
-  }
-
-  .rr-field-helper,
-  .rr-input-note{
-    display:none;
-  }
-}
 </style>
 </head>
 <body>
@@ -479,7 +482,7 @@ a{text-decoration:none;color:inherit}
           <label>Today's Blood Pressure</label>
           
           <input id="bpReading" type="text" inputmode="numeric" maxlength="7" placeholder="12080" oninput="formatBP(this); saveField('bpReading', this.value)">
-         <small class="bp-mobile-help">Type numbers only. 12080 becomes 120/80.</small>
+        <small class="bp-mobile-help">  Type numbers only. 12080 becomes 120/80.</small>
           <div class="why-box">Why it matters: blood pressure control protects your health and supports DOT readiness.</div>
         </div>
         <div class="field">
