@@ -1210,37 +1210,559 @@ a{text-decoration:none;color:inherit}
 <!-- ══════════════════════════════
      WELLNESS TRACKER
 ══════════════════════════════ -->
+<!-- ══════════════════════════════
+     INTERACTIVE 30-DAY WELLNESS TRACKER
+══════════════════════════════ -->
 <section class="section" id="tracker">
   <div class="section-inner">
+
     <div class="section-head">
-      <div class="kicker">Printable Wellness Tracker</div>
-      <h2>Your 30-day daily tracker &mdash; print it, tape it to your dash.</h2>
-      <p>Track the five numbers that matter most. Patterns over 30 days tell you more than any single day's reading.</p>
+      <div class="kicker">30-Day Road Ready Tracker</div>
+      <h2>Your Road Ready progress tracker.</h2>
+      <p>Use this from your phone each day. Track blood pressure, water, sleep, movement, meals, mood, and key wellness habits. Your progress saves automatically in this browser.</p>
     </div>
 
-    <table class="tracker-table">
-      <tr>
-        <th>Day</th><th>BP Reading</th><th>Water (oz)</th><th>Sleep (hrs)</th><th>Movement &#10003;</th><th>Mood (1-5)</th>
-      </tr>
-      <tr><td>1</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
-      <tr><td>2</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
-      <tr><td>3</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
-      <tr><td>4</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
-      <tr><td>5</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
-      <tr><td>6</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
-      <tr><td>7</td><td>____ / ____</td><td>______</td><td>______</td><td>&#9744;</td><td>______</td></tr>
-    </table>
-    <div class="note" style="max-width:760px;margin-top:20px;">This 7-day sample repeats for the full 30 days. Print this page (Ctrl/Cmd + P) for a clean physical copy, or take a screenshot to keep on your phone. Look for trends weekly &mdash; one bad day means nothing, but a week of climbing blood pressure means it's time to revisit Steps 1&ndash;3 of this guide.</div>
+    <div class="rr-tracker-app">
 
-    <div class="cta-strip">
-      <div>
-        <h3>Questions about anything in this guide?</h3>
-        <p>Email our RN co-founder directly &mdash; we respond within 24 hours.</p>
+      <div class="rr-dashboard">
+        <div>
+          <div class="rr-label">Road Ready Progress</div>
+          <h3 id="rrDayTitle">Day 1 of 30</h3>
+          <p id="rrProgressText">0% complete</p>
+        </div>
+
+        <div class="rr-streak">
+          <span id="rrStreak">0</span>
+          <small>Day Streak</small>
+        </div>
       </div>
-      <a class="btn" href="mailto:shop.lifescape@gmail.com">Email Us</a>
+
+      <div class="rr-progress-bar">
+        <div id="rrProgressFill"></div>
+      </div>
+
+      <div class="rr-day-nav">
+        <button onclick="changeDay(-1)">← Previous Day</button>
+        <select id="rrDaySelect" onchange="goToDay(this.value)"></select>
+        <button onclick="changeDay(1)">Next Day →</button>
+      </div>
+
+      <div class="rr-input-grid">
+        <div class="rr-field">
+          <label>Blood Pressure</label>
+          <input id="bpReading" placeholder="128/82" oninput="saveField('bpReading', this.value)">
+        </div>
+
+        <div class="rr-field">
+          <label>Water Ounces</label>
+          <input id="waterOz" placeholder="80" oninput="saveField('waterOz', this.value)">
+        </div>
+
+        <div class="rr-field">
+          <label>Sleep Hours</label>
+          <input id="sleepHours" placeholder="6.5" oninput="saveField('sleepHours', this.value)">
+        </div>
+
+        <div class="rr-field">
+          <label>Mood 1-5</label>
+          <input id="moodScore" placeholder="4" oninput="saveField('moodScore', this.value)">
+        </div>
+      </div>
+
+      <div class="rr-habits">
+        <label class="rr-check">
+          <input type="checkbox" id="habitWater" onchange="saveCheck('habitWater', this.checked)">
+          <span>Hit water goal</span>
+        </label>
+
+        <label class="rr-check">
+          <input type="checkbox" id="habitMovement" onchange="saveCheck('habitMovement', this.checked)">
+          <span>Moved or stretched</span>
+        </label>
+
+        <label class="rr-check">
+          <input type="checkbox" id="habitFood" onchange="saveCheck('habitFood', this.checked)">
+          <span>Made one smart food swap</span>
+        </label>
+
+        <label class="rr-check">
+          <input type="checkbox" id="habitBP" onchange="saveCheck('habitBP', this.checked)">
+          <span>Logged blood pressure</span>
+        </label>
+
+        <label class="rr-check">
+          <input type="checkbox" id="habitSleep" onchange="saveCheck('habitSleep', this.checked)">
+          <span>Used sleep routine</span>
+        </label>
+
+        <label class="rr-check">
+          <input type="checkbox" id="habitBreathing" onchange="saveCheck('habitBreathing', this.checked)">
+          <span>Breathing or stress reset</span>
+        </label>
+      </div>
+
+      <div class="rr-notes">
+        <label>Daily Notes</label>
+        <textarea id="dailyNotes" placeholder="How did today go? Any symptoms, stress, food wins, energy changes, or BP concerns?" oninput="saveField('dailyNotes', this.value)"></textarea>
+      </div>
+
+      <div class="rr-actions">
+        <button class="rr-btn rr-btn-gold" onclick="markDayComplete()">Mark Today Complete</button>
+        <button class="rr-btn rr-btn-dark" onclick="copySummary()">Copy My Summary</button>
+        <button class="rr-btn rr-btn-outline" onclick="resetTracker()">Reset Tracker</button>
+      </div>
+
+      <div class="rr-complete" id="rrCompleteBox">
+        <h3>🎉 Congratulations</h3>
+        <p>You completed the Road Ready 30-Day Challenge. Your next step is to keep the habits going and consider nurse-led coaching if you want personalized support.</p>
+        <a href="mailto:shop.lifescape@gmail.com">Ask About Coaching →</a>
+      </div>
+
     </div>
+
   </div>
 </section>
+
+<style>
+.rr-tracker-app{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 18px 50px rgba(28,43,74,.08);
+}
+
+.rr-dashboard{
+  background:var(--navy);
+  color:#fff;
+  border-radius:18px;
+  padding:26px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:22px;
+}
+
+.rr-label{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.rr-dashboard h3{
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  margin-bottom:6px;
+}
+
+.rr-dashboard p{
+  color:rgba(255,255,255,.68);
+  font-size:14px;
+}
+
+.rr-streak{
+  width:112px;
+  height:112px;
+  border-radius:50%;
+  background:rgba(240,180,41,.12);
+  border:2px solid var(--gold);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  flex-shrink:0;
+}
+
+.rr-streak span{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  color:var(--gold);
+  line-height:1;
+}
+
+.rr-streak small{
+  font-family:'DM Mono',monospace;
+  color:rgba(255,255,255,.6);
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.rr-progress-bar{
+  height:14px;
+  background:#E8E4DC;
+  border-radius:999px;
+  overflow:hidden;
+  margin:22px 0;
+}
+
+.rr-progress-bar div{
+  height:100%;
+  width:0%;
+  background:var(--gold);
+  transition:.25s;
+}
+
+.rr-day-nav{
+  display:flex;
+  gap:12px;
+  margin-bottom:24px;
+  flex-wrap:wrap;
+}
+
+.rr-day-nav button,
+.rr-day-nav select{
+  padding:12px 16px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-family:'DM Sans',sans-serif;
+  font-weight:800;
+  color:var(--navy);
+  cursor:pointer;
+}
+
+.rr-day-nav select{
+  flex:1;
+  min-width:160px;
+}
+
+.rr-input-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.rr-field label,
+.rr-notes label{
+  display:block;
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+
+.rr-field input,
+.rr-notes textarea{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1.5px solid var(--line);
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  outline:none;
+}
+
+.rr-field input:focus,
+.rr-notes textarea:focus{
+  border-color:var(--gold);
+}
+
+.rr-habits{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.rr-check{
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  padding:15px;
+  cursor:pointer;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-weight:800;
+  color:var(--navy);
+}
+
+.rr-check input{
+  width:20px;
+  height:20px;
+  accent-color:var(--gold);
+}
+
+.rr-check.checked{
+  border-color:var(--gold);
+  background:rgba(240,180,41,.12);
+}
+
+.rr-notes textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.rr-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.rr-btn{
+  border:none;
+  border-radius:999px;
+  padding:14px 22px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.rr-btn-gold{
+  background:var(--gold);
+  color:var(--navy);
+}
+
+.rr-btn-dark{
+  background:var(--navy);
+  color:var(--gold);
+}
+
+.rr-btn-outline{
+  background:transparent;
+  border:1.5px solid var(--navy);
+  color:var(--navy);
+}
+
+.rr-complete{
+  display:none;
+  margin-top:26px;
+  background:var(--navy);
+  color:#fff;
+  padding:30px;
+  border-radius:18px;
+  border-left:5px solid var(--gold);
+}
+
+.rr-complete h3{
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.rr-complete p{
+  color:rgba(255,255,255,.72);
+  line-height:1.7;
+  margin-bottom:18px;
+}
+
+.rr-complete a{
+  color:var(--gold);
+  font-weight:900;
+}
+
+@media(max-width:900px){
+  .rr-dashboard{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .rr-input-grid,
+  .rr-habits{
+    grid-template-columns:1fr;
+  }
+
+  .rr-day-nav{
+    flex-direction:column;
+  }
+
+  .rr-day-nav button,
+  .rr-day-nav select,
+  .rr-btn{
+    width:100%;
+  }
+}
+</style>
+
+<script>
+const RR_STORAGE_KEY = "road_ready_interactive_tracker";
+let rrCurrentDay = 1;
+let rrData = JSON.parse(localStorage.getItem(RR_STORAGE_KEY) || "{}");
+
+const rrHabits = [
+  "habitWater",
+  "habitMovement",
+  "habitFood",
+  "habitBP",
+  "habitSleep",
+  "habitBreathing"
+];
+
+function rrSave(){
+  localStorage.setItem(RR_STORAGE_KEY, JSON.stringify(rrData));
+  updateTrackerProgress();
+}
+
+function initTracker(){
+  const daySelect = document.getElementById("rrDaySelect");
+
+  for(let i = 1; i <= 30; i++){
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = "Day " + i;
+    daySelect.appendChild(opt);
+  }
+
+  loadDay(1);
+  updateTrackerProgress();
+}
+
+function ensureDay(day){
+  if(!rrData[day]){
+    rrData[day] = {
+      bpReading:"",
+      waterOz:"",
+      sleepHours:"",
+      moodScore:"",
+      dailyNotes:"",
+      complete:false
+    };
+  }
+}
+
+function loadDay(day){
+  rrCurrentDay = Number(day);
+  ensureDay(rrCurrentDay);
+
+  document.getElementById("rrDayTitle").textContent = "Day " + rrCurrentDay + " of 30";
+  document.getElementById("rrDaySelect").value = rrCurrentDay;
+
+  document.getElementById("bpReading").value = rrData[rrCurrentDay].bpReading || "";
+  document.getElementById("waterOz").value = rrData[rrCurrentDay].waterOz || "";
+  document.getElementById("sleepHours").value = rrData[rrCurrentDay].sleepHours || "";
+  document.getElementById("moodScore").value = rrData[rrCurrentDay].moodScore || "";
+  document.getElementById("dailyNotes").value = rrData[rrCurrentDay].dailyNotes || "";
+
+  rrHabits.forEach(function(id){
+    const input = document.getElementById(id);
+    const label = input.closest(".rr-check");
+    input.checked = !!rrData[rrCurrentDay][id];
+    label.classList.toggle("checked", input.checked);
+  });
+
+  updateTrackerProgress();
+}
+
+function saveField(key, value){
+  ensureDay(rrCurrentDay);
+  rrData[rrCurrentDay][key] = value;
+  rrSave();
+}
+
+function saveCheck(key, checked){
+  ensureDay(rrCurrentDay);
+  rrData[rrCurrentDay][key] = checked;
+
+  const input = document.getElementById(key);
+  input.closest(".rr-check").classList.toggle("checked", checked);
+
+  rrSave();
+}
+
+function changeDay(direction){
+  let next = rrCurrentDay + direction;
+  if(next < 1) next = 1;
+  if(next > 30) next = 30;
+  loadDay(next);
+}
+
+function goToDay(day){
+  loadDay(day);
+}
+
+function markDayComplete(){
+  ensureDay(rrCurrentDay);
+  rrData[rrCurrentDay].complete = true;
+  rrSave();
+
+  if(rrCurrentDay < 30){
+    loadDay(rrCurrentDay + 1);
+  }else{
+    document.getElementById("rrCompleteBox").style.display = "block";
+  }
+}
+
+function updateTrackerProgress(){
+  let completeDays = 0;
+  let completedHabits = 0;
+  let totalHabits = 30 * rrHabits.length;
+
+  for(let i = 1; i <= 30; i++){
+    ensureDay(i);
+
+    if(rrData[i].complete){
+      completeDays++;
+    }
+
+    rrHabits.forEach(function(habit){
+      if(rrData[i][habit]){
+        completedHabits++;
+      }
+    });
+  }
+
+  const percent = Math.round((completedHabits / totalHabits) * 100);
+  document.getElementById("rrProgressText").textContent = percent + "% complete • " + completeDays + "/30 days marked complete";
+  document.getElementById("rrProgressFill").style.width = percent + "%";
+  document.getElementById("rrStreak").textContent = calculateStreak();
+
+  if(completeDays >= 30){
+    document.getElementById("rrCompleteBox").style.display = "block";
+  }
+}
+
+function calculateStreak(){
+  let streak = 0;
+
+  for(let i = 1; i <= 30; i++){
+    if(rrData[i] && rrData[i].complete){
+      streak++;
+    }else{
+      break;
+    }
+  }
+
+  return streak;
+}
+
+function copySummary(){
+  let summary = "Road Ready 30-Day Tracker Summary\\n\\n";
+
+  for(let i = 1; i <= 30; i++){
+    ensureDay(i);
+    const d = rrData[i];
+
+    summary += "Day " + i + "\\n";
+    summary += "BP: " + (d.bpReading || "-") + "\\n";
+    summary += "Water: " + (d.waterOz || "-") + " oz\\n";
+    summary += "Sleep: " + (d.sleepHours || "-") + " hrs\\n";
+    summary += "Mood: " + (d.moodScore || "-") + "\\n";
+    summary += "Complete: " + (d.complete ? "Yes" : "No") + "\\n";
+    summary += "Notes: " + (d.dailyNotes || "-") + "\\n\\n";
+  }
+
+  navigator.clipboard.writeText(summary).then(function(){
+    alert("Your tracker summary was copied. You can paste it into Notes, email, or send it to Road Proof Health.");
+  });
+}
+
+function resetTracker(){
+  if(confirm("Reset the full 30-day tracker? This cannot be undone.")){
+    localStorage.removeItem(RR_STORAGE_KEY);
+    location.reload();
+  }
+}
+
+initTracker();
+</script>
 
 </main>
 
