@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Road Ready 30-Day Tracker — Road Proof Health</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#0E1828;
+  --navy2:#1C2B4A;
+  --gold:#F0B429;
+  --cream:#F9F7F2;
+  --white:#FFFFFF;
+  --text:#182033;
+  --muted:#6B6560;
+  --line:rgba(28,43,74,.15);
+  --green:#1A6B3A;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  padding-bottom:80px;
+}
+
+.header{
+  background:var(--navy);
+  color:white;
+  padding:44px 6% 36px;
+  border-bottom:4px solid var(--gold);
+}
+
+.brand{
+  font-family:'DM Mono',monospace;
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,7vw,64px);
+  line-height:1;
+  margin-bottom:14px;
+}
+
+.header p{
+  max-width:680px;
+  color:rgba(255,255,255,.72);
+  line-height:1.7;
+  font-size:16px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+
+.btn{
+  border:none;
+  border-radius:999px;
+  padding:13px 22px;
+  font-weight:800;
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.btn-gold{
+  background:var(--gold);
+  color:var(--navy);
+}
+
+.btn-outline{
+  background:transparent;
+  color:white;
+  border:1px solid rgba(255,255,255,.35);
+}
+
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:38px 6%;
+}
+
+.notice{
+  background:var(--white);
+  border-left:5px solid var(--gold);
+  padding:18px 20px;
+  border-radius:10px;
+  margin-bottom:28px;
+  line-height:1.65;
+  color:var(--muted);
+}
+
+.notice strong{
+  color:var(--navy);
+}
+
+.progress-box{
+  background:var(--navy);
+  color:white;
+  padding:24px;
+  border-radius:18px;
+  margin-bottom:30px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.progress-top strong{
+  font-size:20px;
+}
+
+.progress-top span{
+  color:var(--gold);
+  font-family:'DM Mono',monospace;
+  font-size:13px;
+}
+
+.progress-bar{
+  height:14px;
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--gold);
+  transition:.25s;
+}
+
+.day{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 10px 28px rgba(28,43,74,.05);
+}
+
+.day-head{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  margin-bottom:18px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:14px;
+}
+
+.day-title{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  font-weight:900;
+  color:var(--navy);
+}
+
+.day-complete{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--gold);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.fields{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.field label{
+  display:block;
+  font-family:'DM Mono',monospace;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.field input{
+  width:100%;
+  padding:13px 12px;
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  font-size:15px;
+  font-family:'DM Sans',sans-serif;
+}
+
+.checks{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.check-item{
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  padding:13px;
+  cursor:pointer;
+  user-select:none;
+  background:#fff;
+}
+
+.check-item input{
+  display:none;
+}
+
+.check-item span{
+  display:block;
+  font-size:13px;
+  font-weight:800;
+  color:var(--navy);
+  line-height:1.3;
+}
+
+.check-item small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+  line-height:1.4;
+}
+
+.check-item.checked{
+  border-color:var(--gold);
+  background:rgba(240,180,41,.12);
+}
+
+.check-item.checked span::before{
+  content:"✓ ";
+  color:var(--green);
+}
+
+.footer-actions{
+  background:var(--navy);
+  color:white;
+  padding:24px 6%;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  border-top:3px solid var(--gold);
+}
+
+.print-only-note{
+  display:none;
+}
+
+@media(max-width:800px){
+  .fields{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .checks{
+    grid-template-columns:1fr;
+  }
+
+  .footer-actions{
+    position:static;
+    flex-direction:column;
+  }
+
+  .btn{
+    text-align:center;
+  }
+}
+
+@media print{
+  .actions,
+  .footer-actions{
+    display:none;
+  }
+
+  body{
+    background:white;
+    padding-bottom:0;
+  }
+
+  .header{
+    background:white;
+    color:var(--navy);
+    border-bottom:3px solid var(--gold);
+  }
+
+  .header p{
+    color:var(--muted);
+  }
+
+  .day{
+    break-inside:avoid;
+    box-shadow:none;
+  }
+
+  .print-only-note{
+    display:block;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="brand">Road Proof Health • Road Ready Guide</div>
+  <h1>30-Day Driver Wellness Tracker</h1>
+  <p>
+    Use this from your phone each day. Track blood pressure, water, sleep, movement, meals, mood, and key habits. Your entries save automatically in this browser.
+  </p>
+
+  <div class="actions">
+    <a href="road-ready.html" class="btn btn-outline">← Back to Road Ready Guide</a>
+    <button class="btn btn-gold" onclick="window.print()">Print Optional Copy</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="notice">
+    <strong>Best way to use this:</strong> save this page to your phone home screen. Open it once per day during your evening shutdown routine. Printing is optional — the phone version is the practical version.
+  </div>
+
+  <div class="progress-box">
+    <div class="progress-top">
+      <strong>Your 30-Day Progress</strong>
+      <span id="progressText">0% complete</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div id="tracker"></div>
+
+</main>
+
+<div class="footer-actions">
+  <button class="btn btn-gold" onclick="exportTracker()">Copy My Tracker Summary</button>
+  <button class="btn btn-outline" onclick="resetTracker()">Reset Tracker</button>
+</div>
+
+<script>
+const tracker = document.getElementById("tracker");
+const STORAGE_KEY = "road_ready_30_day_tracker";
+
+const habits = [
+  ["water", "Water", "Hit your target"],
+  ["movement", "Movement", "Walk/stretch/workout"],
+  ["meal", "Food Choice", "One smart swap"],
+  ["bp", "BP Check", "Logged reading"],
+  ["sleepRoutine", "Sleep Routine", "Screens down/breathing"]
+];
+
+let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+function save(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  updateProgress();
+}
+
+function buildTracker(){
+  for(let day=1; day<=30; day++){
+    if(!data[day]) data[day] = {};
+
+    const dayEl = document.createElement("section");
+    dayEl.className = "day";
+
+    dayEl.innerHTML = `
+      <div class="day-head">
+        <div class="day-title">Day ${day}</div>
+        <div class="day-complete" id="complete-${day}">Not started</div>
+      </div>
+
+      <div class="fields">
+        <div class="field">
+          <label>BP Reading</label>
+          <input placeholder="128/82" value="${data[day].bpReading || ""}" oninput="updateField(${day}, 'bpReading', this.value)">
+        </div>
+
+        <div class="field">
+          <label>Water oz</label>
+          <input placeholder="80" value="${data[day].waterOz || ""}" oninput="updateField(${day}, 'waterOz', this.value)">
+        </div>
+
+        <div class="field">
+          <label>Sleep hrs</label>
+          <input placeholder="6.5" value="${data[day].sleep || ""}" oninput="updateField(${day}, 'sleep', this.value)">
+        </div>
+
+        <div class="field">
+          <label>Mood 1-5</label>
+          <input placeholder="4" value="${data[day].mood || ""}" oninput="updateField(${day}, 'mood', this.value)">
+        </div>
+      </div>
+
+      <div class="checks">
+        ${habits.map(([key,title,sub]) => `
+          <label class="check-item ${data[day][key] ? "checked" : ""}" id="check-${day}-${key}">
+            <input type="checkbox" ${data[day][key] ? "checked" : ""} onchange="toggleHabit(${day}, '${key}', this.checked)">
+            <span>${title}</span>
+            <small>${sub}</small>
+          </label>
+        `).join("")}
+      </div>
+    `;
+
+    tracker.appendChild(dayEl);
+  }
+
+  updateProgress();
+}
+
+function updateField(day, key, value){
+  if(!data[day]) data[day] = {};
+  data[day][key] = value;
+  save();
+}
+
+function toggleHabit(day, key, checked){
+  if(!data[day]) data[day] = {};
+  data[day][key] = checked;
+
+  const item = document.getElementById(`check-${day}-${key}`);
+  if(item) item.classList.toggle("checked", checked);
+
+  save();
+}
+
+function updateProgress(){
+  let totalHabits = 30 * habits.length;
+  let completed = 0;
+
+  for(let day=1; day<=30; day++){
+    let dayCompleted = 0;
+
+    habits.forEach(([key]) => {
+      if(data[day] && data[day][key]) {
+        completed++;
+        dayCompleted++;
+      }
+    });
+
+    const label = document.getElementById(`complete-${day}`);
+    if(label){
+      if(dayCompleted === 0) label.textContent = "Not started";
+      else if(dayCompleted === habits.length) label.textContent = "Complete";
+      else label.textContent = `${dayCompleted}/${habits.length} done`;
+    }
+  }
+
+  const percent = Math.round((completed / totalHabits) * 100);
+  document.getElementById("progressText").textContent = `${percent}% complete`;
+  document.getElementById("progressFill").style.width = `${percent}%`;
+}
+
+function exportTracker(){
+  let summary = "Road Ready 30-Day Tracker Summary\\n\\n";
+
+  for(let day=1; day<=30; day++){
+    const d = data[day] || {};
+    summary += `Day ${day}\\n`;
+    summary += `BP: ${d.bpReading || "-"} | Water: ${d.waterOz || "-"} oz | Sleep: ${d.sleep || "-"} hrs | Mood: ${d.mood || "-"}\\n`;
+    summary += `Habits: ${habits.map(([key,title]) => `${title}: ${d[key] ? "Yes" : "No"}`).join(", ")}\\n\\n`;
+  }
+
+  navigator.clipboard.writeText(summary).then(() => {
+    alert("Tracker summary copied. You can paste it into Notes, email, or send it to your coach.");
+  });
+}
+
+function resetTracker(){
+  if(confirm("Reset the entire 30-day tracker? This cannot be undone.")){
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+}
+
+buildTracker();
+</script>
+
+</body>
+</html>
