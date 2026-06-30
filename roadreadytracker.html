@@ -518,6 +518,12 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
+  
+if(localStorage.getItem("rp_road_ready_access") !== "granted"){
+
+    window.location.href="roadready.html";
+
+}  
 const VALID_CODES = ["ROADREADY97", "RP97DRIVER", "MILES2026", "TRACKER30"];
 const GATE_KEY = "road_ready_tracker_unlocked";
 const RR_STORAGE_KEY = "road_ready_tracker_v2";
