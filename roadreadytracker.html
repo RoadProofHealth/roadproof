@@ -402,9 +402,77 @@ a{text-decoration:none;color:inherit}
   }
 }
 
+
+
+/* ==========================================================
+   FINAL MOBILE + ACCESS UX PATCH
+   Keeps BP helpers from conflicting and adds loading screen.
+========================================================== */
+.loader{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top right,rgba(240,180,41,.15),transparent 35%),var(--navy);
+  color:white;
+  z-index:1000000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+}
+.loader-logo{
+  width:68px;
+  height:68px;
+  border-radius:17px;
+  background:var(--gold);
+  color:var(--navy);
+  display:grid;
+  place-items:center;
+  font-family:'DM Mono',monospace;
+  font-weight:900;
+  font-size:21px;
+  margin-bottom:22px;
+  box-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+.loader h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,5vw,42px);
+  line-height:1.05;
+  margin-bottom:10px;
+}
+.loader p{
+  color:rgba(255,255,255,.68);
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* Desktop: show only desktop BP helper below all 3 fields. */
+.bp-mobile-help{display:none!important;}
+.bp-desktop-help{display:block!important;}
+
+@media(max-width:900px){
+  /* Mobile: show BP instruction directly under BP input only. */
+  .bp-mobile-help{
+    display:block!important;
+    margin-top:8px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.45;
+  }
+  .bp-desktop-help{display:none!important;}
+}
+
 </style>
 </head>
 <body>
+
+<div id="loader" class="loader">
+  <div class="loader-logo">RP</div>
+  <h2>Preparing your Wellness Dashboard...</h2>
+  <p>Loading your Road Ready check-in experience.</p>
+</div>
+
 
 <div id="gate">
   <div class="gate-box">
@@ -631,6 +699,7 @@ function checkGate(){
   if(VALID_CODES.includes(input)){
     localStorage.setItem(GATE_KEY,"yes");
     localStorage.setItem("rp_road_ready_access","granted");
+    localStorage.setItem("rp_road_ready_expiry", String(Date.now() + (90 * 24 * 60 * 60 * 1000)));
     unlockApp();
   }else{
     error.classList.add("show");
@@ -639,12 +708,19 @@ function checkGate(){
   }
 }
 function unlockApp(){
-  document.getElementById("gate").style.display="none";
-  document.getElementById("app").style.display="block";
+  const loader = document.getElementById("loader");
+  if(loader) loader.style.display = "none";
+  document.getElementById("gate").style.display = "none";
+  document.getElementById("app").style.display = "block";
   setGreeting();
   initTracker();
 }
-function lockTracker(){localStorage.removeItem(GATE_KEY);location.reload();}
+function lockTracker(){
+  localStorage.removeItem(GATE_KEY);
+  localStorage.removeItem("rp_road_ready_access");
+  localStorage.removeItem("rp_road_ready_expiry");
+  location.reload();
+}
 function setGreeting(){
   const h = new Date().getHours();
   const msg = h < 12 ? "☀️ Good Morning!" : h < 18 ? "🌅 Good Afternoon!" : "🌙 Good Evening!";
@@ -815,9 +891,24 @@ function confetti(){
   }
 }
 document.getElementById("gateInput").addEventListener("keypress",function(e){if(e.key==="Enter")checkGate();});
-window.addEventListener("DOMContentLoaded",function(){
-  if(localStorage.getItem("rp_road_ready_access")==="granted"||localStorage.getItem(GATE_KEY)==="yes") unlockApp();
-  else setGreeting();
+window.addEventListener("DOMContentLoaded", function(){
+  const loader = document.getElementById("loader");
+  const granted = localStorage.getItem("rp_road_ready_access");
+  const expiry = Number(localStorage.getItem("rp_road_ready_expiry"));
+  const legacyTrackerUnlock = localStorage.getItem(GATE_KEY) === "yes";
+
+  setGreeting();
+
+  setTimeout(function(){
+    const guideAccessStillValid = granted === "granted" && (!expiry || Date.now() < expiry);
+
+    if(guideAccessStillValid || legacyTrackerUnlock){
+      unlockApp();
+    }else{
+      if(loader) loader.style.display = "none";
+      document.getElementById("gate").style.display = "flex";
+    }
+  }, 650);
 });
 </script>
 </body>
