@@ -1341,6 +1341,11 @@ a{text-decoration:none;color:inherit}
 
     </div>
   </div>
+  <div id="rr-toast">
+  <div class="rr-toast-icon" id="rr-toast-icon">✓</div>
+  <h3 id="rr-toast-title"></h3>
+  <p id="rr-toast-message"></p>
+</div>
 </section>
 
 <style>
@@ -1388,6 +1393,56 @@ a{text-decoration:none;color:inherit}
 .rr-complete h3{font-family:'Playfair Display',serif;font-size:34px;margin-bottom:8px;}
 .rr-complete p{color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:18px;}
 .rr-complete a{color:var(--gold);font-weight:900;}
+  .rr-toast{
+  position:fixed;
+  left:50%;
+  top:40px;
+  transform:translateX(-50%) translateY(-30px);
+  background:white;
+  width:min(430px,92vw);
+  padding:28px;
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,.18);
+  text-align:center;
+  z-index:99999;
+  opacity:0;
+  pointer-events:none;
+  transition:.35s;
+  border-top:6px solid var(--gold);
+}
+
+.rr-toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.rr-toast-icon{
+  width:70px;
+  height:70px;
+  margin:auto;
+  border-radius:50%;
+  background:var(--gold);
+  color:var(--navy);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:34px;
+  font-weight:900;
+  margin-bottom:18px;
+}
+
+.rr-toast h3{
+  font-family:'Playfair Display',serif;
+  color:var(--navy);
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.rr-toast p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:15px;
+}
 
 @media(max-width:900px){
   .rr-dashboard{flex-direction:column;align-items:flex-start;}
@@ -1522,13 +1577,20 @@ function goToDay(day){
 
 function markDayComplete(){
   ensureDay(rrCurrentDay);
-  rrData[rrCurrentDay].complete=true;
+
+  rrData[rrCurrentDay].complete = true;
   rrSave();
 
-  if(rrCurrentDay<30){
-    loadDay(rrCurrentDay+1);
+  showRoadReadyMessage(rrCurrentDay);
+
+  if(rrCurrentDay < 30){
+    setTimeout(function(){
+      loadDay(rrCurrentDay + 1);
+    }, 2200);
   }else{
-    document.getElementById("rrCompleteBox").style.display="block";
+    setTimeout(function(){
+      document.getElementById("rrCompleteBox").style.display = "block";
+    }, 2200);
   }
 }
 
@@ -1651,7 +1713,83 @@ function copyWellnessReport(){
     alert("Your Road Ready Wellness Report was copied.");
   });
 }
+const milestoneMessages = {
+  1: {
+    icon: "🎉",
+    title: "Great Start!",
+    message: "Day 1 is complete. You officially started your Road Ready journey."
+  },
+  7: {
+    icon: "🏅",
+    title: "One Week Down!",
+    message: "You completed your first week. Momentum is building."
+  },
+  14: {
+    icon: "💪",
+    title: "Two Weeks Strong!",
+    message: "Fourteen days in. These habits are starting to become routine."
+  },
+  21: {
+    icon: "🚛",
+    title: "Three Weeks In!",
+    message: "You are proving that consistency beats perfection."
+  },
+  30: {
+    icon: "🏆",
+    title: "Challenge Complete!",
+    message: "You completed the Road Ready 30-Day Challenge. That is a serious win."
+  }
+};
 
+const encouragements = [
+  {
+    icon: "✓",
+    title: "Outstanding!",
+    message: "Day completed. Every healthy choice today protects your CDL and your future."
+  },
+  {
+    icon: "✓",
+    title: "Keep Rolling!",
+    message: "Small daily habits become lifelong health. One day at a time."
+  },
+  {
+    icon: "✓",
+    title: "Excellent Work!",
+    message: "Progress beats perfection. You're building healthier miles."
+  },
+  {
+    icon: "✓",
+    title: "Road Ready!",
+    message: "Today's effort moves you one step closer to a healthier career."
+  },
+  {
+    icon: "✓",
+    title: "Great Job!",
+    message: "Consistency is what changes blood pressure, energy, and long-term health."
+  },
+  {
+    icon: "✓",
+    title: "You're Doing It!",
+    message: "Remember why you started. Your family and your future are worth it."
+  }
+];
+
+function showRoadReadyMessage(day){
+  const message =
+    milestoneMessages[day] ||
+    encouragements[Math.floor(Math.random() * encouragements.length)];
+
+  document.getElementById("rr-toast-icon").textContent = message.icon;
+  document.getElementById("rr-toast-title").textContent = message.title;
+  document.getElementById("rr-toast-message").textContent = message.message;
+
+  const toast = document.getElementById("rr-toast");
+  toast.classList.add("show");
+
+  setTimeout(function(){
+    toast.classList.remove("show");
+  }, 2000);
+}
 function resetTracker(){
   if(confirm("Reset the full 30-day tracker? This cannot be undone.")){
     localStorage.removeItem(RR_STORAGE_KEY);
