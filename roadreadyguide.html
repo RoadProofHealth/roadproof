@@ -1282,9 +1282,6 @@ a{text-decoration:none;color:inherit}
 <div class="rr-input-grid">
   <div class="rr-field">
     <label>Today's Blood Pressure</label>
-<small class="rr-help">
-Example: Type 12080 for 120/80. Just type the numbers. We'll add the "/" automatically.
-</small>
    <input
     id="bpReading"
     type="text"
@@ -1292,6 +1289,9 @@ Example: Type 12080 for 120/80. Just type the numbers. We'll add the "/" automat
     maxlength="6"
     placeholder="Example: 12080"
     oninput="formatBP(this); saveField('bpReading', this.value)">
+    <small class="rr-help">
+Just type the numbers. We'll add the "/" automatically.
+</small>
   </div>
 
   <div class="rr-field">
