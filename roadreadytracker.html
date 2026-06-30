@@ -429,8 +429,9 @@ a{text-decoration:none;color:inherit}
       <div class="input-grid">
         <div class="field">
           <label>Blood Pressure</label>
-          <small>Type numbers only. Example: 12080 becomes 120/80.</small>
+          
           <input id="bpReading" type="text" inputmode="numeric" maxlength="7" placeholder="12080" oninput="formatBP(this); saveField('bpReading', this.value)">
+          <small>Type numbers only. Example: 12080 becomes 120/80.</small>
           <div class="why-box">Why it matters: blood pressure control protects your health and supports DOT readiness.</div>
         </div>
         <div class="field">
