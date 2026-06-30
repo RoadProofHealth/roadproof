@@ -195,6 +195,34 @@ a{text-decoration:none;color:inherit}
   letter-spacing:-1.5px;
   margin-bottom:14px;
 }
+  #greeting{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  line-height:1.1;
+}
+
+.greeting-icon{
+  flex-shrink:0;
+  font-size:34px;
+  line-height:1;
+}
+
+.greeting-text{
+  display:block;
+}
+
+@media(max-width:700px){
+  #greeting{
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .greeting-icon{
+    font-size:28px;
+    margin-top:2px;
+  }
+}
 .hero-copy p{
   color:rgba(255,255,255,.72);
   font-size:17px;
@@ -336,6 +364,8 @@ a{text-decoration:none;color:inherit}
 .confetti{position:fixed;top:-20px;width:9px;height:14px;z-index:999999;animation:fall 2.8s linear forwards;border-radius:2px}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 
+
+  
 @media(max-width:900px){
   .topbar,.hero-grid,.dashboard{grid-template-columns:1fr;display:grid}
   .topbar{display:flex;align-items:flex-start;flex-direction:column}
@@ -345,6 +375,24 @@ a{text-decoration:none;color:inherit}
   .toast-actions{flex-direction:column}
   .toast-btn{width:100%}
   .app-header{padding-top:22px}
+}
+  .bp-mobile-help{
+  display:none;
+}
+
+@media(max-width:700px){
+  .bp-mobile-help{
+    display:block;
+    margin-top:8px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.4;
+  }
+
+  .rr-field-helper,
+  .rr-input-note{
+    display:none;
+  }
 }
 </style>
 </head>
@@ -361,7 +409,7 @@ a{text-decoration:none;color:inherit}
     <div class="gate-help">Need help? Email <a href="mailto:shop.lifescape@gmail.com">shop.lifescape@gmail.com</a></div>
   </div>
 </div>
-
+<div id="top"></div>
 <div id="app">
   <header class="app-header">
     <div class="topbar">
@@ -431,7 +479,7 @@ a{text-decoration:none;color:inherit}
           <label>Today's Blood Pressure</label>
           
           <input id="bpReading" type="text" inputmode="numeric" maxlength="7" placeholder="12080" oninput="formatBP(this); saveField('bpReading', this.value)">
-       
+         <small class="bp-mobile-help">Type numbers only. 12080 becomes 120/80.</small>
           <div class="why-box">Why it matters: blood pressure control protects your health and supports DOT readiness.</div>
         </div>
         <div class="field">
@@ -569,9 +617,15 @@ window.addEventListener('DOMContentLoaded',function(){if(localStorage.getItem(GA
 
 function setGreeting(){
   const h = new Date().getHours();
-  let msg = h < 12 ? "☀️ Good Morning!" : h < 18 ? "🌅 Good Afternoon!" : "🌙 Good Evening!";
-  document.getElementById('greeting').textContent = msg;
+
+  let icon = h < 12 ? "☀️" : h < 18 ? "🌅" : "🌙";
+  let text = h < 12 ? "Good Morning!" : h < 18 ? "Good Afternoon!" : "Good Evening!";
+
+  document.getElementById("greeting").innerHTML =
+    '<span class="greeting-icon">' + icon + '</span>' +
+    '<span class="greeting-text">' + text + '</span>';
 }
+  
 function ensureDay(day){if(!data[day]) data[day]={bpReading:"",waterOz:"",sleepHours:"",moodScore:"",dailyNotes:"",complete:false};}
 function save(){localStorage.setItem(RR_STORAGE_KEY,JSON.stringify(data));updateProgress();}
 function initTracker(){
@@ -624,7 +678,36 @@ function showToast(day){
   if(milestones[day]) confetti();
 }
 function closeToast(){const toast=document.getElementById('toast');toast.classList.remove('show');setTimeout(()=>toast.style.display='none',350);}
-function continueToNextDay(){closeToast(); if(nextDayAfterToast){loadDay(nextDayAfterToast);}else{document.getElementById('completeBox').style.display='block';}}
+
+
+
+function continueToNextDay(){
+  closeRoadReadyToast();
+
+  if(rrNextDayAfterToast){
+    loadDay(rrNextDayAfterToast);
+
+    setTimeout(function(){
+      document.getElementById("top").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    }, 250);
+
+  }else{
+    document.getElementById("rrCompleteBox").style.display = "block";
+
+    setTimeout(function(){
+      document.getElementById("top").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    }, 250);
+  }
+}
+
+
+  
 function dayHasEntry(d){return d && (d.bpReading||d.waterOz||d.sleepHours||d.moodScore||d.dailyNotes||d.complete||habits.some(h=>d[h]));}
 function calculateStreak(){let streak=0;for(let i=1;i<=30;i++){if(data[i]&&data[i].complete)streak++;else break;}return streak;}
 function updateProgress(){
