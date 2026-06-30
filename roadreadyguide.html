@@ -415,12 +415,15 @@ a{text-decoration:none;color:inherit}
 }
 .dark .note{color:rgba(255,255,255,.8)}
 
+
 /* ── chain order table ── */
 .chain-table{
   width:100%;
   border-collapse:collapse;
-  margin-top:8px;
+  table-layout:fixed;
+  margin-top:12px;
 }
+
 .chain-table th{
   text-align:left;
   font-family:'DM Mono',monospace;
@@ -428,50 +431,117 @@ a{text-decoration:none;color:inherit}
   letter-spacing:1.5px;
   text-transform:uppercase;
   color:var(--gold);
-  padding:10px 12px;
-  border-bottom:2px solid rgba(240,180,41,.3);
+  padding:12px 14px;
+  border-bottom:2px solid rgba(240,180,41,.35);
 }
+
+.chain-table th:first-child,
+.chain-table td:first-child{
+  width:42%;
+}
+
+.chain-table th:last-child,
+.chain-table td:last-child{
+  width:58%;
+}
+
 .chain-table td{
-  padding:12px 12px;
+  padding:14px;
   font-size:13.5px;
   border-bottom:1px solid var(--line);
   vertical-align:top;
+  line-height:1.55;
 }
-.dark .chain-table td{border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
-.chain-name{font-weight:800;color:var(--text);}
-.dark .chain-name{color:#fff}
-.order-good{color:var(--green);font-weight:700;}
-.dark .order-good{color:#5fd38a;}
 
+.chain-name{
+  font-weight:800;
+  color:var(--text);
+}
+
+.order-good{
+  color:var(--green);
+  font-weight:800;
+}
+
+.chain-table tr:last-child td{
+  border-bottom:none;
+}
+
+@media(max-width:700px){
+  .chain-table,
+  .chain-table tbody,
+  .chain-table tr,
+  .chain-table th,
+  .chain-table td{
+    display:block;
+    width:100%!important;
+  }
+
+  .chain-table th{
+    display:none;
+  }
+
+  .chain-table td{
+    padding:10px 0;
+  }
+
+  .chain-table td:first-child{
+    font-weight:800;
+    color:var(--navy);
+  }
+
+  .chain-table td:last-child{
+    padding-bottom:18px;
+    border-bottom:1px solid var(--line);
+  }
+}
+
+/* ── meal plan day cards ── */
 /* ── meal plan day cards ── */
 .meal-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
   margin-top:8px;
 }
+
 .meal-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(240,180,41,.18);
-  border-radius:12px;
-  padding:18px;
+  background:var(--white);
+  border:1.5px solid rgba(28,43,74,.14);
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 10px 28px rgba(28,43,74,.06);
 }
+
 .meal-day{
   font-family:'DM Mono',monospace;
   font-size:10px;
   color:var(--gold);
   letter-spacing:1.5px;
-  margin-bottom:8px;
+  margin-bottom:10px;
+  font-weight:900;
 }
+
 .meal-row{
-  font-size:13px;
-  color:rgba(255,255,255,.75);
-  padding:6px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  line-height:1.5;
+  font-size:13.5px;
+  color:var(--text);
+  padding:9px 0;
+  border-bottom:1px solid rgba(28,43,74,.10);
+  line-height:1.55;
 }
-.meal-row:last-child{border-bottom:none;}
-.meal-row strong{color:#fff;display:block;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:.5px;margin-bottom:2px;}
+
+.meal-row:last-child{
+  border-bottom:none;
+}
+
+.meal-row strong{
+  color:var(--navy);
+  display:block;
+  font-size:11px;
+  font-family:'DM Mono',monospace;
+  letter-spacing:.7px;
+  margin-bottom:3px;
+}
 
 /* ── macro cards ── */
 .macro-grid{
@@ -712,6 +782,7 @@ a{text-decoration:none;color:inherit}
   <a href="#mealplan">30-Day Meal Plan</a>
   <a href="#fitness">Cab Fitness</a>
   <a href="#apnea">Sleep Apnea Check</a>
+  <a href="#hygiene">Hygiene Bonus</a>
   <a href="#tracker">Wellness Tracker</a>
 </div>
 
@@ -1046,6 +1117,92 @@ a{text-decoration:none;color:inherit}
         <li><span class="num">&#9888;</span><span><strong>G</strong>ender &mdash; male sex (higher baseline risk)</span></li>
       </ul>
       <div class="note">0&ndash;2 yes answers: low risk. 3&ndash;4: intermediate risk &mdash; mention it to your doctor. 5+: high risk &mdash; talk to your doctor before your next DOT physical, not after. This tool does not diagnose sleep apnea; only a sleep study can do that. It tells you whether the conversation with your doctor is worth having now.</div>
+    </div>
+  </div>
+</section>
+
+  <!-- ══════════════════════════════
+     BONUS: TRUCK STOP HYGIENE
+══════════════════════════════ -->
+<section class="section dark" id="hygiene">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="kicker">Bonus Section</div>
+      <h2>Truck stop hygiene, cleanliness, and health protection.</h2>
+      <p>Health on the road is not only about food and fitness. Showers, restrooms, laundry, skin care, and basic cleanliness matter — especially when you live and work in shared public spaces.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <div class="protocol">
+          <div class="meta">Truck stop showers</div>
+          <h3>Shower Do’s</h3>
+          <ul class="steps">
+            <li><span class="num">✓</span><span>Wear shower shoes every time.</span></li>
+            <li><span class="num">✓</span><span>Bring your own towel when possible.</span></li>
+            <li><span class="num">✓</span><span>Use a waterproof bag for soap, razor, toothbrush, and grooming items.</span></li>
+            <li><span class="num">✓</span><span>Dry your feet completely before putting socks back on.</span></li>
+            <li><span class="num">✓</span><span>Keep a backup hygiene kit in the cab for delays.</span></li>
+          </ul>
+        </div>
+
+        <div class="protocol">
+          <div class="meta">Avoid this</div>
+          <h3>Shower Don’ts</h3>
+          <ul class="steps">
+            <li><span class="num">×</span><span>Do not walk barefoot in public showers.</span></li>
+            <li><span class="num">×</span><span>Do not place clean clothes directly on the floor or bench.</span></li>
+            <li><span class="num">×</span><span>Do not reuse damp towels for multiple days.</span></li>
+            <li><span class="num">×</span><span>Do not ignore athlete’s foot, rashes, or skin irritation.</span></li>
+          </ul>
+        </div>
+
+        <div class="protocol">
+          <div class="meta">Restrooms & public spaces</div>
+          <h3>Restroom Cleanliness Tips</h3>
+          <ul class="steps">
+            <li><span class="num">✓</span><span>Carry hand sanitizer, wipes, and backup tissue.</span></li>
+            <li><span class="num">✓</span><span>Wash hands before eating, after fueling, and after touching pumps or door handles.</span></li>
+            <li><span class="num">✓</span><span>Keep disinfecting wipes in the cab for steering wheel, handles, phone, and dashboard.</span></li>
+            <li><span class="num">✓</span><span>Use separate bags for dirty clothes, shower gear, and clean clothing.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="protocol">
+          <div class="meta">For men and women</div>
+          <h3>Personal Hygiene Kit</h3>
+          <ul class="steps">
+            <li><span class="num">•</span><span>Shower shoes</span></li>
+            <li><span class="num">•</span><span>Body wipes</span></li>
+            <li><span class="num">•</span><span>Hand sanitizer</span></li>
+            <li><span class="num">•</span><span>Disinfecting wipes</span></li>
+            <li><span class="num">•</span><span>Deodorant</span></li>
+            <li><span class="num">•</span><span>Clean socks and underwear</span></li>
+            <li><span class="num">•</span><span>Small laundry bag</span></li>
+            <li><span class="num">•</span><span>Toothbrush, toothpaste, floss</span></li>
+            <li><span class="num">•</span><span>Moisturizer or skin barrier cream</span></li>
+            <li><span class="num">•</span><span>Menstrual products if needed</span></li>
+          </ul>
+        </div>
+
+        <div class="protocol">
+          <div class="meta">Cab cleanliness</div>
+          <h3>Cab Health Rules</h3>
+          <ul class="steps">
+            <li><span class="num">1</span><span>Wipe high-touch surfaces at least twice per week.</span></li>
+            <li><span class="num">2</span><span>Keep food trash out of the cab overnight when possible.</span></li>
+            <li><span class="num">3</span><span>Separate clean clothes from worn clothes.</span></li>
+            <li><span class="num">4</span><span>Change pillowcase or sleep towel weekly.</span></li>
+            <li><span class="num">5</span><span>Air out shoes and damp gear to prevent odor, fungus, and skin issues.</span></li>
+          </ul>
+
+          <div class="note">
+            Hygiene is health protection. Skin infections, stomach bugs, foot fungus, odor, and poor sleep can all start with small cleanliness habits slipping during long runs.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
