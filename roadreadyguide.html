@@ -1588,11 +1588,11 @@ function markDayComplete(){
   if(rrCurrentDay < 30){
     setTimeout(function(){
       loadDay(rrCurrentDay + 1);
-    }, 2200);
+    }, 4500);
   }else{
     setTimeout(function(){
       document.getElementById("rrCompleteBox").style.display = "block";
-    }, 2200);
+    }, 4500);
   }
 }
 
@@ -1798,9 +1798,9 @@ function showRoadReadyMessage(day){
 
     setTimeout(function(){
       toast.style.display = "none";
-    }, 350);
+    }, 600);
 
-  }, 2000);
+  }, 4000);
 }
 
 initTracker();
