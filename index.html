@@ -254,6 +254,56 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
   letter-spacing:2px;
   text-transform:uppercase;
 }
+  .rp-confirm-panel{
+  background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(240,180,41,.35);
+  border-radius:10px;
+  padding:20px;
+}
+
+.rp-confirm-kicker{
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--marigold);
+  margin-bottom:10px;
+}
+
+.rp-confirm-panel h3{
+  color:#fff;
+  font-size:18px;
+  line-height:1.35;
+  margin-bottom:10px;
+}
+
+.rp-confirm-panel h4{
+  color:var(--marigold);
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.rp-confirm-panel p{
+  color:rgba(200,196,188,.75);
+  font-size:12.5px;
+  line-height:1.65;
+}
+
+.rp-confirm-panel strong,
+.rp-confirm-panel a{
+  color:var(--marigold);
+  font-weight:800;
+}
+
+.rp-confirm-divider{
+  height:1px;
+  background:rgba(255,255,255,.12);
+  margin:16px 0;
+}
+
+.rp-confirm-help{
+  margin-top:10px;
+}
 
 @media(max-width:760px){
   .wh-grid{
@@ -338,10 +388,33 @@ h1{opacity:0;animation:fadeUp .7s .25s forwards;}
         </form>
       <p class="form-note">&#10022; INSTANT PDF &middot; NURSE-WRITTEN &middot; NO SPAM &middot; ALWAYS FREE</p>
       </div>
-       <div class="row-success" style="display:none;padding:16px 0 0;">
-          <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#F0B429;font-weight:700;">&#10022; You&#39;re in! Check your email for the download link. <br><br> To make sure you receive your guide, add
-   shop.lifescape@gmail.com to your contacts. <br><br>Some email providers may send the download email to your Spam, Junk, or Promotions folder.</p>
-        </div>
+       <div class="row-success" style="display:none;padding:18px 0 0;">
+  <div class="rp-confirm-panel">
+    <div class="rp-confirm-kicker">Almost Done</div>
+
+    <h3>Check your email to get the guide.</h3>
+
+    <p>
+      If this is your first time signing up, please verify your email address first.
+      After verification, your free Driver Health Survival Guide will be sent to your inbox.
+    </p>
+
+    <div class="rp-confirm-divider"></div>
+
+    <h4>Already subscribed?</h4>
+
+    <p>
+      Search your inbox for <strong>Road Proof</strong> or
+      <strong>shop.lifescape@gmail.com</strong>.
+      If you do not see it, check Spam, Junk, or Promotions.
+    </p>
+
+    <p class="rp-confirm-help">
+      Still need help? Email
+      <a href="mailto:shop.lifescape@gmail.com">shop.lifescape@gmail.com</a>
+    </p>
+  </div>
+</div>
    
     </div>
     </div>
